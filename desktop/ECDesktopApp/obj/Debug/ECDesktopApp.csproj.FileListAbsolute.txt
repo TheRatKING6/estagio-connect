@@ -1,0 +1,13 @@
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\ECDesktopApp.exe.config
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\ECDesktopApp.exe
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\ECDesktopApp.pdb
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.csproj.AssemblyReference.cache
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.Form1.resources
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.Properties.Resources.resources
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.csproj.GenerateResource.cache
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.csproj.CoreCompileInputs.cache
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.exe
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.pdb
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormLogin.resources
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormCadastroEmpresa.resources
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormCadastroAluno.resources
