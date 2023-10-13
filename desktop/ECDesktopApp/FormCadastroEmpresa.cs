@@ -33,31 +33,58 @@ namespace ECDesktopApp
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            //Deixa a parte da senha visivel
-            lblQuaseLa.Visible = true;
-            btnVoltar.Visible = true;
-            gpbSenha.Visible = true;
-            btnCadastro.Visible = true;
+            //Verifica se tudo foi preenchido corretamente
+            string stringCnpj = msktxtCnpj.Text;
+            stringCnpj = stringCnpj.Replace(".", "").Replace("/", "").Replace("-", "");
 
-            //torna a si mesmo invisivel
-            btnNext.Visible = false;
+            if (stringCnpj.Length != 14 || String.IsNullOrEmpty(txtNumero.Text) || msktxtCep.Text.Length != 9)
+            {
+                MessageBox.Show("Preencha completamente os campos de CNPJ, Número e CEP para prosseguir", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (String.IsNullOrEmpty(txtNome.Text) || String.IsNullOrEmpty(txtRua.Text) || String.IsNullOrEmpty(txtBairro.Text) || String.IsNullOrEmpty(txtCidade.Text) ||
+                String.IsNullOrEmpty(cbbEstado.Text) || String.IsNullOrEmpty(txtEmail.Text) || String.IsNullOrEmpty(txtRamo.Text))
+            {
+                MessageBox.Show("Todos os campos não opcionais devem ser preenchidos para que seu cadastro seja efetuado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else 
+            {
+                //try catch pra verificarse alguem pos letra no campo numero
+                try
+                {
+                    int numero = int.Parse(txtNumero.Text);
+                    //Deixa a parte da senha visivel
+                    lblQuaseLa.Visible = true;
+                    btnVoltar.Visible = true;
+                    gpbSenha.Visible = true;
+                    btnCadastro.Visible = true;
 
-            //Desbilita a edição de todos os campos
-            msktxtCnpj.ReadOnly = true;
-            msktxtCep.ReadOnly = true;
-            msktxtTelefone.ReadOnly = true;
+                    //torna a si mesmo invisivel
+                    btnNext.Visible = false;
 
-            txtNome.ReadOnly = true;
-            txtRamo.ReadOnly = true;
-            txtRua.ReadOnly = true;
-            txtBairro.ReadOnly = true;
-            txtCidade.ReadOnly = true;
-            txtComplmento.ReadOnly = true;
-            txtDescricao.ReadOnly = true;
-            txtEmail.ReadOnly = true;
-            txtNumero.ReadOnly = true;
+                    //Desbilita a edição de todos os campos
+                    msktxtCnpj.ReadOnly = true;
+                    msktxtCep.ReadOnly = true;
+                    msktxtTelefone.ReadOnly = true;
 
-            cbbEstado.Enabled = false;
+                    txtNome.ReadOnly = true;
+                    txtRamo.ReadOnly = true;
+                    txtRua.ReadOnly = true;
+                    txtBairro.ReadOnly = true;
+                    txtCidade.ReadOnly = true;
+                    txtComplmento.ReadOnly = true;
+                    txtDescricao.ReadOnly = true;
+                    txtEmail.ReadOnly = true;
+                    txtNumero.ReadOnly = true;
+
+                    cbbEstado.Enabled = false;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Por favor, preencha corretamente o campo 'número'", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
+            }
+            
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -93,16 +120,60 @@ namespace ECDesktopApp
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //verifica se a senha ta certa
+            if(String.IsNullOrEmpty(txtSenha.Text) || (txtSenha.Text.Length < 8))
+            {
+                MessageBox.Show("Você precisa criar uma senha com ao menos 8 caracteres.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (!(txtSenha.Text.Equals(txtConfirmaSenha.Text)))
+            {
+                MessageBox.Show("Você deve digitar a senha de forma igual nos campos 'senha' e 'confirmar senha'", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                //cria um objeto Empresa
+                long cnpj = long.Parse(msktxtCnpj.Text.Replace(".", "").Replace("/", "").Replace("-", ""));
+                string nome = txtNome.Text;
+                string rua = txtRua.Text;
+                int numero = int.Parse(txtNumero.Text);
+                string bairro = txtBairro.Text;
+                string complemento = txtComplmento.Text;
+                string cidade = txtCidade.Text;
+                string estado = cbbEstado.Text;
+                int cep = int.Parse(msktxtCep.Text.Replace("-", ""));
+                string email = txtEmail.Text;
+                string telefone = msktxtTelefone.Text;
+                string ramo = txtRamo.Text;
+                string descricao = txtDescricao.Text;
+                string senha = txtSenha.Text;
 
-            //Descobrir como mexer no MdiParent a partir de MdiChild
-            /*
-            * 
-            * this.MdiParent.IsMdiContainer = false;
-            * this.MdiParent.Close();
-            *
-            */
-            //Nenhum dos dois acima funciona por algum motivo. Erro: 'NullReferenceException' ou algo do tipo
+                if(telefone.Length < 14)
+                {
+                    telefone = null;
+                }
+
+                Empresa empresa = new Empresa(cnpj, nome, rua, numero, bairro, complemento, cidade, estado, cep, email, telefone, ramo, descricao, senha);
+
+                //faz o cadastro no BD
+                if (empresa.verificaCadastroEmpresa())
+                {
+                    MessageBox.Show("O CNPJ da sua empresa já está cadastradoem nosso sistema.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if(empresa.cadastrarEmpresa())
+                {
+                    MessageBox.Show("Cadastro efetuado com sucesso!", "Cadastrado", MessageBoxButtons.OK);
+                    
+                    Form1 form = (Form1)this.MdiParent;
+                    this.Close();
+                    
+                    form.IsMdiContainer = false;
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao efetuar o cadastro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
     }
 }

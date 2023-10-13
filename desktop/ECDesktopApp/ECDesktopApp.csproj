@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>MySQL\MySQL Connector NET 8.1.0\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aluno.cs" />
+    <Compile Include="DAO_Conexao.cs" />
+    <Compile Include="Empresa.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +71,12 @@
     <Compile Include="FormCadastroEmpresa.Designer.cs">
       <DependentUpon>FormCadastroEmpresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormInicioAluno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInicioAluno.Designer.cs">
+      <DependentUpon>FormInicioAluno.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCadastroEmpresa.resx">
       <DependentUpon>FormCadastroEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInicioAluno.resx">
+      <DependentUpon>FormInicioAluno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

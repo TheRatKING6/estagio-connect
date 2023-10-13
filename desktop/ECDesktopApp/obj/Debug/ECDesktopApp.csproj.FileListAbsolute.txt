@@ -11,3 +11,11 @@ C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopA
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormLogin.resources
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormCadastroEmpresa.resources
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormCadastroAluno.resources
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormInicioAluno.resources
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\MySql.Data.dll
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\System.Memory.dll
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\System.Buffers.dll
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\MySql.Data.xml
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.csproj.CopyComplete

@@ -34,6 +34,29 @@ namespace ECDesktopApp
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            string cpfstring = msktxtCpf.Text;
+            cpfstring = cpfstring.Replace(".", "").Replace("-", "");
+
+            /*
+             * string data = dateNascimento.Text.Replace("/", "");
+               int dia = int.Parse(data.Substring())
+                
+                terminar de fazer o negocio pra validar a data de nascimento
+             
+             */
+
+            if(cpfstring.Length < 11 || msktxtCep.Text.Length < 9 || String.IsNullOrEmpty(txtNumero.Text))
+            {
+                MessageBox.Show("Preencha completamente os campos de CPF, CEP e Número para prosseguir.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if(String.IsNullOrEmpty(txtNome.Text) || String.IsNullOrEmpty(cbxEspecializacao.Text) || String.IsNullOrEmpty(cbxStatus.Text) || 
+                String.IsNullOrEmpty(txtEscola.Text) || String.IsNullOrEmpty(txtEmail.Text) || String.IsNullOrEmpty(cbxAno.Text) || String.IsNullOrEmpty(txtRua.Text) ||
+                String.IsNullOrEmpty(txtBairro.Text) || String.IsNullOrEmpty(txtCidade.Text) || String.IsNullOrEmpty(cbbEstado.Text) || String.IsNullOrEmpty(txtNome.Text))
+            {
+                MessageBox.Show("Você precisa preencher todos os campos não opcionais.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning );
+            }
+
+
             //Deixa a parte da senha visivel
             lblQuaseLa.Visible = true;
             btnVoltar.Visible = true;

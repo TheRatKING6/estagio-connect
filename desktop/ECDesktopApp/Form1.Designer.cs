@@ -31,19 +31,19 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblDescricao = new System.Windows.Forms.Label();
             this.pnlEmpresa = new System.Windows.Forms.Panel();
-            this.pnlAluno = new System.Windows.Forms.Panel();
-            this.picEmpresa = new System.Windows.Forms.PictureBox();
-            this.picAluno = new System.Windows.Forms.PictureBox();
+            this.lblEmpresa = new System.Windows.Forms.Label();
             this.btnCadEmpresa = new System.Windows.Forms.Button();
+            this.picEmpresa = new System.Windows.Forms.PictureBox();
+            this.pnlAluno = new System.Windows.Forms.Panel();
+            this.lblAluno = new System.Windows.Forms.Label();
             this.btnCadAluno = new System.Windows.Forms.Button();
+            this.picAluno = new System.Windows.Forms.PictureBox();
             this.lblSemCadastro = new System.Windows.Forms.Label();
             this.lblEu = new System.Windows.Forms.Label();
-            this.lblEmpresa = new System.Windows.Forms.Label();
-            this.lblAluno = new System.Windows.Forms.Label();
             this.lblCadastro = new System.Windows.Forms.Label();
             this.pnlEmpresa.SuspendLayout();
-            this.pnlAluno.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picEmpresa)).BeginInit();
+            this.pnlAluno.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAluno)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,33 +81,15 @@
             this.pnlEmpresa.Size = new System.Drawing.Size(440, 352);
             this.pnlEmpresa.TabIndex = 3;
             // 
-            // pnlAluno
+            // lblEmpresa
             // 
-            this.pnlAluno.BackColor = System.Drawing.SystemColors.Info;
-            this.pnlAluno.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlAluno.Controls.Add(this.lblAluno);
-            this.pnlAluno.Controls.Add(this.btnCadAluno);
-            this.pnlAluno.Controls.Add(this.picAluno);
-            this.pnlAluno.Location = new System.Drawing.Point(878, 400);
-            this.pnlAluno.Name = "pnlAluno";
-            this.pnlAluno.Size = new System.Drawing.Size(440, 352);
-            this.pnlAluno.TabIndex = 4;
-            // 
-            // picEmpresa
-            // 
-            this.picEmpresa.Location = new System.Drawing.Point(159, 36);
-            this.picEmpresa.Name = "picEmpresa";
-            this.picEmpresa.Size = new System.Drawing.Size(128, 128);
-            this.picEmpresa.TabIndex = 0;
-            this.picEmpresa.TabStop = false;
-            // 
-            // picAluno
-            // 
-            this.picAluno.Location = new System.Drawing.Point(149, 36);
-            this.picAluno.Name = "picAluno";
-            this.picAluno.Size = new System.Drawing.Size(128, 128);
-            this.picAluno.TabIndex = 0;
-            this.picAluno.TabStop = false;
+            this.lblEmpresa.AutoSize = true;
+            this.lblEmpresa.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmpresa.Location = new System.Drawing.Point(94, 211);
+            this.lblEmpresa.Name = "lblEmpresa";
+            this.lblEmpresa.Size = new System.Drawing.Size(250, 35);
+            this.lblEmpresa.TabIndex = 2;
+            this.lblEmpresa.Text = "... Sou uma Empresa";
             // 
             // btnCadEmpresa
             // 
@@ -120,6 +102,36 @@
             this.btnCadEmpresa.UseVisualStyleBackColor = true;
             this.btnCadEmpresa.Click += new System.EventHandler(this.btnLoginEmpresa_Click);
             // 
+            // picEmpresa
+            // 
+            this.picEmpresa.Location = new System.Drawing.Point(159, 36);
+            this.picEmpresa.Name = "picEmpresa";
+            this.picEmpresa.Size = new System.Drawing.Size(128, 128);
+            this.picEmpresa.TabIndex = 0;
+            this.picEmpresa.TabStop = false;
+            // 
+            // pnlAluno
+            // 
+            this.pnlAluno.BackColor = System.Drawing.SystemColors.Info;
+            this.pnlAluno.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlAluno.Controls.Add(this.lblAluno);
+            this.pnlAluno.Controls.Add(this.btnCadAluno);
+            this.pnlAluno.Controls.Add(this.picAluno);
+            this.pnlAluno.Location = new System.Drawing.Point(878, 400);
+            this.pnlAluno.Name = "pnlAluno";
+            this.pnlAluno.Size = new System.Drawing.Size(440, 352);
+            this.pnlAluno.TabIndex = 4;
+            // 
+            // lblAluno
+            // 
+            this.lblAluno.AutoSize = true;
+            this.lblAluno.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAluno.Location = new System.Drawing.Point(112, 211);
+            this.lblAluno.Name = "lblAluno";
+            this.lblAluno.Size = new System.Drawing.Size(204, 35);
+            this.lblAluno.TabIndex = 2;
+            this.lblAluno.Text = "... Sou um Aluno";
+            // 
             // btnCadAluno
             // 
             this.btnCadAluno.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -130,6 +142,14 @@
             this.btnCadAluno.Text = "Cadastrar-se";
             this.btnCadAluno.UseVisualStyleBackColor = true;
             this.btnCadAluno.Click += new System.EventHandler(this.btnCadAluno_Click);
+            // 
+            // picAluno
+            // 
+            this.picAluno.Location = new System.Drawing.Point(149, 36);
+            this.picAluno.Name = "picAluno";
+            this.picAluno.Size = new System.Drawing.Size(128, 128);
+            this.picAluno.TabIndex = 0;
+            this.picAluno.TabStop = false;
             // 
             // lblSemCadastro
             // 
@@ -155,26 +175,6 @@
             this.lblEu.TabIndex = 6;
             this.lblEu.Text = "Eu...";
             // 
-            // lblEmpresa
-            // 
-            this.lblEmpresa.AutoSize = true;
-            this.lblEmpresa.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmpresa.Location = new System.Drawing.Point(94, 211);
-            this.lblEmpresa.Name = "lblEmpresa";
-            this.lblEmpresa.Size = new System.Drawing.Size(250, 35);
-            this.lblEmpresa.TabIndex = 2;
-            this.lblEmpresa.Text = "... Sou uma Empresa";
-            // 
-            // lblAluno
-            // 
-            this.lblAluno.AutoSize = true;
-            this.lblAluno.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAluno.Location = new System.Drawing.Point(112, 211);
-            this.lblAluno.Name = "lblAluno";
-            this.lblAluno.Size = new System.Drawing.Size(204, 35);
-            this.lblAluno.TabIndex = 2;
-            this.lblAluno.Text = "... Sou um Aluno";
-            // 
             // lblCadastro
             // 
             this.lblCadastro.AutoSize = true;
@@ -197,15 +197,15 @@
             this.Controls.Add(this.pnlEmpresa);
             this.Controls.Add(this.lblDescricao);
             this.Controls.Add(this.lblTitulo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
-            this.Text = "Estágio Connect";
+            this.Text = "Estágio Connect - Cadastro";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pnlEmpresa.ResumeLayout(false);
             this.pnlEmpresa.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picEmpresa)).EndInit();
             this.pnlAluno.ResumeLayout(false);
             this.pnlAluno.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picEmpresa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAluno)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
