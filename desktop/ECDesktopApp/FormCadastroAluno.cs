@@ -200,8 +200,8 @@ namespace ECDesktopApp
                     //Faz com que o MdiParent deixe de ser um MdiContainer e fecha o form atual
                     Form1 form = (Form1)this.MdiParent;
                     this.Close();
-
-                    form.IsMdiContainer = false;
+                    form.Close();
+                    //form.IsMdiContainer = false;
                 }
                 else
                 {

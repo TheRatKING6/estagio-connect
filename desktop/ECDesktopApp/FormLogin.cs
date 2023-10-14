@@ -25,6 +25,8 @@ namespace ECDesktopApp
             {
                 Console.WriteLine("\r\n  ______                      _         _____                                         __\r\n |  ____|                    | |       / ____|                                   _   / /\r\n | |__   _ __ _ __ ___     __| | ___  | |     ___  _ __   _____  ____ _  ___    (_) | | \r\n |  __| | '__| '__/ _ \\   / _` |/ _ \\ | |    / _ \\| '_ \\ / _ \\ \\/ / _` |/ _ \\       | | \r\n | |____| |  | | | (_) | | (_| |  __/ | |___| (_) | | | |  __/>  < (_| | (_) |   _  | | \r\n |______|_|  |_|  \\___/   \\__,_|\\___|  \\_____\\___/|_| |_|\\___/_/\\_\\__,_|\\___/   (_) | | \r\n                                                                                     \\_\\\r\n                                                                                        \r\n");
             }
+
+            menuStrip1.Visible = false;
         }
 
         private void FormCadastroInicio_Load(object sender, EventArgs e)
@@ -93,16 +95,21 @@ namespace ECDesktopApp
 
                     gpbLogin.Visible = false;
 
+                    menuStrip1.Visible = true;
+
                     if(tipo == 0)
                     {
                         //Abre o FormInicioAluno
                         FormInicioAluno form = new FormInicioAluno();
                         form.MdiParent = this;
+                        form.UserId = userId; //passa o cpf do aluno logando para a propriedade UserId, para poder identificar o aluno logado
                         form.Show();
                     }
                     else
                     {
-
+                        FormPerfilEmpresa form = new FormPerfilEmpresa();
+                        form.MdiParent = this;
+                        form.Show();
                     }
                     
 
@@ -126,6 +133,22 @@ namespace ECDesktopApp
             
 
             
+        }
+
+        private void inícioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //??????????????????????
+        }
+
+        private void inícioToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            string userId = msktxtPK.Text;
+
+            
+            FormInicioAluno form = new FormInicioAluno();
+            form.MdiParent = this;
+            form.UserId = userId; //passa o cpf do aluno logando para a propriedade UserId, para poder identificar o aluno logado
+            form.Show();
         }
     }
 }

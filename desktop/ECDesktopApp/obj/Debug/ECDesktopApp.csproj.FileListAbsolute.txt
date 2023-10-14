@@ -19,3 +19,4 @@ C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\System.Num
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\System.Buffers.dll
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\MySql.Data.xml
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.csproj.CopyComplete
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormPerfilEmpresa.resources

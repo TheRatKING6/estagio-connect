@@ -177,5 +177,25 @@ namespace ECDesktopApp
 
             return existe;
         }
+
+        public MySqlDataReader getInfoAluno()
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select * from Connect_Aluno where CPF='"+ cpf + "'", DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            
+            return reader;
+        }
     }
 }

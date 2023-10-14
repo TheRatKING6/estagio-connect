@@ -28,20 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.lblWelcome = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Location = new System.Drawing.Point(357, 44);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(652, 59);
+            this.lblWelcome.TabIndex = 0;
+            this.lblWelcome.Text = "Bem vindo ao Estágio Connect, ";
             // 
             // FormInicioAluno
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1821, 1008);
+            this.ClientSize = new System.Drawing.Size(1834, 869);
+            this.Controls.Add(this.lblWelcome);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormInicioAluno";
             this.Text = "Início";
             this.Load += new System.EventHandler(this.FormInicioAluno_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblWelcome;
     }
 }
