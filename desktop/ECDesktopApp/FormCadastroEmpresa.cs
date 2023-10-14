@@ -132,7 +132,7 @@ namespace ECDesktopApp
             else
             {
                 //cria um objeto Empresa
-                long cnpj = long.Parse(msktxtCnpj.Text.Replace(".", "").Replace("/", "").Replace("-", ""));
+                string cnpj = msktxtCnpj.Text;
                 string nome = txtNome.Text;
                 string rua = txtRua.Text;
                 int numero = int.Parse(txtNumero.Text);
@@ -140,7 +140,7 @@ namespace ECDesktopApp
                 string complemento = txtComplmento.Text;
                 string cidade = txtCidade.Text;
                 string estado = cbbEstado.Text;
-                int cep = int.Parse(msktxtCep.Text.Replace("-", ""));
+                string cep = msktxtCep.Text;
                 string email = txtEmail.Text;
                 string telefone = msktxtTelefone.Text;
                 string ramo = txtRamo.Text;
@@ -157,12 +157,13 @@ namespace ECDesktopApp
                 //faz o cadastro no BD
                 if (empresa.verificaCadastroEmpresa())
                 {
-                    MessageBox.Show("O CNPJ da sua empresa já está cadastradoem nosso sistema.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("O CNPJ da sua empresa já está cadastradoem nosso sistema. Verifique se você digitou seu CNPJ corretamente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else if(empresa.cadastrarEmpresa())
                 {
                     MessageBox.Show("Cadastro efetuado com sucesso!", "Cadastrado", MessageBoxButtons.OK);
                     
+                    //Faz com que o MdiParent deixe de ser um MdiContainer e fecha o form atual
                     Form1 form = (Form1)this.MdiParent;
                     this.Close();
                     

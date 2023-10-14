@@ -9,10 +9,10 @@ namespace ECDesktopApp
 {
     internal class Aluno
     {
-        private long cpf;
+        private string cpf;
         private string matricula;
         private string nome;
-        private DateTime nascimento;
+        private string nascimento;
         private string email;
         private string telefone;
         private string especialidade;
@@ -20,11 +20,12 @@ namespace ECDesktopApp
         private byte curriculo;
         private string descricao;
         private string rua;
-        private int numero;private string bairro;
+        private int numero;
+        private string bairro;
         private string complemento;
         private string cidade;
         private string estado;
-        private int cep;
+        private string cep;
         private string status;
         private int ano;
         private string escola;
@@ -32,19 +33,19 @@ namespace ECDesktopApp
 
         public Aluno() { }
 
-        public Aluno(long cpf)
+        public Aluno(string cpf)
         {
             this.cpf = cpf;
         }
 
-        public Aluno(long cpf, string senha)
+        public Aluno(string cpf, string senha)
         {
             this.cpf = cpf;
             this.senha = senha;
         }
 
-        public Aluno(long cpf, string matricula, string nome, DateTime nascimento, string email, string telefone, string especialidade, string descricao,
-            string rua, int numero, string bairro, string complemento, string cidade, string estado, int cep, string status, int ano, string escola, string senha)
+        public Aluno(string cpf, string matricula, string nome, string nascimento, string email, string telefone, string especialidade, string descricao,
+            string rua, int numero, string bairro, string complemento, string cidade, string estado, string cep, string status, int ano, string escola, string senha)
         {
             this.cpf = cpf;
             this.matricula = matricula;
@@ -67,8 +68,8 @@ namespace ECDesktopApp
             this.senha = senha;
         }
 
-        public Aluno(long cpf, string matricula, string nome, DateTime nascimento, string email, string telefone, string especialidade, byte foto, byte curriculo, string descricao, 
-            string rua, int numero, string bairro, string complemento, string cidade, string estado, int cep, string status, int ano, string escola, string senha)
+        public Aluno(string cpf, string matricula, string nome, string nascimento, string email, string telefone, string especialidade, byte foto, byte curriculo, string descricao, 
+            string rua, int numero, string bairro, string complemento, string cidade, string estado, string cep, string status, int ano, string escola, string senha)
         {
             this.cpf = cpf;
             this.matricula = matricula;
@@ -93,10 +94,10 @@ namespace ECDesktopApp
             this.senha = senha;
         }
 
-        public long Cpf { get => cpf; set => cpf = value; }
+        public string Cpf { get => cpf; set => cpf = value; }
         public string Matricula { get => matricula; set => matricula = value; }
         public string Nome { get => nome; set => nome = value; }
-        public DateTime Nascimento { get => nascimento; set => nascimento = value; }
+        public string Nascimento { get => nascimento; set => nascimento = value; }
         public string Email { get => email; set => email = value; }
         public string Telefone { get => telefone; set => telefone = value; }
         public string Especialidade { get => especialidade; set => especialidade = value; }
@@ -109,7 +110,7 @@ namespace ECDesktopApp
         public string Complemento { get => complemento; set => complemento = value; }
         public string Cidade { get => cidade; set => cidade = value; }
         public string Estado { get => estado; set => estado = value; }
-        public int Cep { get => cep; set => cep = value; }
+        public string Cep { get => cep; set => cep = value; }
         public string Status { get => status; set => status = value; }
         public int Ano { get => ano; set => ano = value; }
         public string Escola { get => escola; set => escola = value; }
@@ -127,9 +128,9 @@ namespace ECDesktopApp
                 DAO_Conexao.con.Open();
 
                 MySqlCommand insert = new MySqlCommand("insert into Connect_Aluno (CPF, Matricula, Nome, Nascimento, Email, Telefone, Especialidade, Descricao, Rua, " +
-                    "Numero, Bairro, Complemento, Cidade, Estado, CEP, Status, Ano_Letivo, Escola, Senha) values(" + cpf + ", '" + matricula + "', '" + nome + "', " + nascimento + "," +
+                    "Numero, Bairro, Complemento, Cidade, Estado, CEP, Status, Ano_Letivo, Escola, Senha) values('" + cpf + "', '" + matricula + "', '" + nome + "', '" + nascimento+ "'," +
                     " '" + email + "', '" + telefone + "', '" + especialidade + "', '" + descricao + "', '" + rua + "', " + numero + ", '" + bairro + "', '" + complemento + "', '" + cidade + "', '" + estado + "', " +
-                    "" + cep + ", '" + status + "', " + ano + ", '" + escola + "', '" + senha + "')", DAO_Conexao.con);
+                    "'" + cep + "', '" + status + "', " + ano + ", '" + escola + "', '" + senha + "')", DAO_Conexao.con);
 
                 insert.ExecuteNonQuery();
 
@@ -156,7 +157,7 @@ namespace ECDesktopApp
             {
                 DAO_Conexao.con.Open();
 
-                MySqlCommand select = new MySqlCommand("select * from Connect where CPF=" + cpf, DAO_Conexao.con);
+                MySqlCommand select = new MySqlCommand("select * from Connect_Aluno where CPF='" + cpf + "'", DAO_Conexao.con);
 
                 reader = select.ExecuteReader();
 

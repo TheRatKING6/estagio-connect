@@ -40,7 +40,7 @@ namespace ECDesktopApp
                 //se for empresa
                 if(tipo == 1)
                 {
-                    MySqlCommand busca = new MySqlCommand("select * from Connect_Empresa where CNPJ=" + userId + " and senha='" + password + "'", con);
+                    MySqlCommand busca = new MySqlCommand("select * from Connect_Empresa where CNPJ='" + userId + "' and senha='" + password + "'", con);
                     MySqlDataReader resultado = busca.ExecuteReader();
 
                     if(resultado.Read())
@@ -51,7 +51,7 @@ namespace ECDesktopApp
                 //se for aluno
                 else if(tipo == 0)
                 {
-                    MySqlCommand busca = new MySqlCommand("select * from Connect_Aluno where CPF=" + userId + " and senha='" + password + "'", con);
+                    MySqlCommand busca = new MySqlCommand("select * from Connect_Aluno where CPF='" + userId + "' and senha='" + password + "'", con);
                     MySqlDataReader resultado = busca.ExecuteReader();
 
                     if(resultado.Read())

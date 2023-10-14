@@ -74,7 +74,6 @@ namespace ECDesktopApp
 
             //pega os valores dos campos e efetua login
             string userId = msktxtPK.Text;
-            userId = userId.Replace(".", "").Replace("-", "").Replace("/", "");
             string password = txtSenha.Text;
 
             //Console.WriteLine(userId);
@@ -94,10 +93,18 @@ namespace ECDesktopApp
 
                     gpbLogin.Visible = false;
 
-                    //Abre o FormInicio
-                    FormInicioAluno form = new FormInicioAluno();
-                    form.MdiParent = this;
-                    form.Show();
+                    if(tipo == 0)
+                    {
+                        //Abre o FormInicioAluno
+                        FormInicioAluno form = new FormInicioAluno();
+                        form.MdiParent = this;
+                        form.Show();
+                    }
+                    else
+                    {
+
+                    }
+                    
 
                     //Muda o texto na janela do FormLogin
                     this.Text = "Estágio Connect";

@@ -76,6 +76,8 @@
             this.lblSenha = new System.Windows.Forms.Label();
             this.lblQuaseLa = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
+            this.lblMatricula = new System.Windows.Forms.Label();
+            this.txtMatricula = new System.Windows.Forms.TextBox();
             this.gpbInfoContato.SuspendLayout();
             this.gpbEndereco.SuspendLayout();
             this.gpbSenha.SuspendLayout();
@@ -610,11 +612,29 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
+            // lblMatricula
+            // 
+            this.lblMatricula.AutoSize = true;
+            this.lblMatricula.Location = new System.Drawing.Point(479, 192);
+            this.lblMatricula.Name = "lblMatricula";
+            this.lblMatricula.Size = new System.Drawing.Size(110, 13);
+            this.lblMatricula.TabIndex = 30;
+            this.lblMatricula.Text = "Número de Matrícula:";
+            // 
+            // txtMatricula
+            // 
+            this.txtMatricula.Location = new System.Drawing.Point(592, 189);
+            this.txtMatricula.Name = "txtMatricula";
+            this.txtMatricula.Size = new System.Drawing.Size(159, 20);
+            this.txtMatricula.TabIndex = 31;
+            // 
             // FormCadastroAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1005, 1061);
+            this.Controls.Add(this.txtMatricula);
+            this.Controls.Add(this.lblMatricula);
             this.Controls.Add(this.btnCadastro);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.gpbSenha);
@@ -705,5 +725,7 @@
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.Label lblQuaseLa;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Label lblMatricula;
+        private System.Windows.Forms.TextBox txtMatricula;
     }
 }

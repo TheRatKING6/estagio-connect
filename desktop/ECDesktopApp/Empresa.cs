@@ -9,7 +9,7 @@ namespace ECDesktopApp
 {
     internal class Empresa
     {
-        private long cnpj;
+        private string cnpj;
         private string nome;
         private string rua;
         private int numero;
@@ -17,7 +17,7 @@ namespace ECDesktopApp
         private string complemento;
         private string cidade;
         private string estado;
-        private int cep;
+        private string cep;
         private string email;
         private string telefone;
         private string ramo;
@@ -27,18 +27,18 @@ namespace ECDesktopApp
 
         public Empresa() { }
 
-        public Empresa(long cnpj)
+        public Empresa(string cnpj)
         {
             this.cnpj = cnpj;
         }
 
-        public Empresa(long cnpj, string senha)
+        public Empresa(string cnpj, string senha)
         {
             this.cnpj= cnpj;
             this.senha = senha;
         }
 
-        public Empresa(long cnpj, string nome, string rua, int numero, string bairro, string complemento, string cidade, string estado, int cep, string email,
+        public Empresa(string cnpj, string nome, string rua, int numero, string bairro, string complemento, string cidade, string estado, string cep, string email,
             string telefone, string ramo, string descricao, string senha)
         {
             this.cnpj = cnpj;
@@ -57,7 +57,7 @@ namespace ECDesktopApp
             this.senha = senha;
         }
 
-        public Empresa(long cnpj, string nome, string rua, int numero, string bairro, string complemento, string cidade, string estado, int cep, string email, 
+        public Empresa(string cnpj, string nome, string rua, int numero, string bairro, string complemento, string cidade, string estado, string cep, string email, 
             string telefone, string ramo, byte foto, string descricao, string senha)
         {
             this.cnpj = cnpj;
@@ -77,7 +77,7 @@ namespace ECDesktopApp
             this.senha = senha;
         }
 
-        public long Cnpj { get => cnpj; set => cnpj = value; }
+        public string Cnpj { get => cnpj; set => cnpj = value; }
         public string Nome { get => nome; set => nome = value; }
         public string Rua { get => rua; set => rua = value; }
         public int Numero { get => numero; set => numero = value; }
@@ -85,7 +85,7 @@ namespace ECDesktopApp
         public string Complemento { get => complemento; set => complemento = value; }
         public string Cidade { get => cidade; set => cidade = value; }
         public string Estado { get => estado; set => estado = value; }
-        public int Cep { get => cep; set => cep = value; }
+        public string Cep { get => cep; set => cep = value; }
         public string Email { get => email; set => email = value; }
         public string Telefone { get => telefone; set => telefone = value; }
         public string Ramo { get => ramo; set => ramo = value; }
@@ -105,8 +105,8 @@ namespace ECDesktopApp
                 DAO_Conexao.con.Open();
 
                 MySqlCommand insert = new MySqlCommand("insert into Connect_Empresa (CNPJ, Nome, Rua, Numero, Bairro, Complemento, Cidade, Estado, CEP, Email, Telefone, " +
-                    "Ramo, Descricao, Senha) values("+cnpj+", '"+nome+"', '"+rua+"', "+numero+", '"+bairro+"', '"+complemento+"', '"+cidade+"', '"+estado+"'," +
-                    " "+cep+", '"+email+"', '"+telefone+"', '"+ramo+"', '"+descricao+"', '"+senha+"')", DAO_Conexao.con); //insert SEM a Foto (ainda n sei como usar foto, priscila nunca ensinou)
+                    "Ramo, Descricao, Senha) values('"+cnpj+"', '"+nome+"', '"+rua+"', "+numero+", '"+bairro+"', '"+complemento+"', '"+cidade+"', '"+estado+"'," +
+                    " '"+cep+"', '"+email+"', '"+telefone+"', '"+ramo+"', '"+descricao+"', '"+senha+"')", DAO_Conexao.con); //insert SEM a Foto (ainda n sei como usar foto, priscila nunca ensinou)
 
                 insert.ExecuteNonQuery();
 
@@ -133,7 +133,7 @@ namespace ECDesktopApp
             {
                 DAO_Conexao.con.Open();
 
-                MySqlCommand select = new MySqlCommand("select * from Connect_Empresa where CNPJ=" + cnpj, DAO_Conexao.con);
+                MySqlCommand select = new MySqlCommand("select * from Connect_Empresa where CNPJ='" + cnpj + "'", DAO_Conexao.con);
 
                 MySqlDataReader result = select.ExecuteReader();
 
