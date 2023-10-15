@@ -110,6 +110,8 @@ namespace ECDesktopApp
                         FormPerfilEmpresa form = new FormPerfilEmpresa();
                         form.MdiParent = this;
                         form.Show();
+
+                        inicioToolStripMenuItem.Visible = false; //se for empresa, desabilita o botao 'inicio' no menuStrip
                     }
                     
 
@@ -149,6 +151,27 @@ namespace ECDesktopApp
             form.MdiParent = this;
             form.UserId = userId; //passa o cpf do aluno logando para a propriedade UserId, para poder identificar o aluno logado
             form.Show();
+        }
+
+        private void meuPerfilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string userId = msktxtPK.Text;
+
+            if(userId.Replace(".", "").Replace("-", "").Replace("/", "").Length == 14) //verifica se e empresa
+            {
+                //abre o form do perfil da empresa
+                FormPerfilEmpresa form = new FormPerfilEmpresa();
+                form.MdiParent = this;
+                form.Show();
+                //lembra de passar o id do usuario
+            }
+            else
+            {
+                FormPerfilAluno form = new FormPerfilAluno();
+                form.MdiParent = this;
+                form.Show();
+                //lembrar de passar o id do usuario
+            }
         }
     }
 }

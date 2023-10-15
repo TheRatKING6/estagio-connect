@@ -20,3 +20,5 @@ C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\System.Buf
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\MySql.Data.xml
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.csproj.CopyComplete
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormPerfilEmpresa.resources
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormInfoVagas.resources
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormPerfilAluno.resources

@@ -796,6 +796,7 @@
             this.btnAlunosInteressados.TabIndex = 8;
             this.btnAlunosInteressados.Text = "Vizualizar Alunos Interessados";
             this.btnAlunosInteressados.UseVisualStyleBackColor = true;
+            this.btnAlunosInteressados.Click += new System.EventHandler(this.btnAlunosInteressados_Click);
             // 
             // FormPerfilEmpresa
             // 
@@ -804,7 +805,7 @@
             this.ClientSize = new System.Drawing.Size(1505, 1016);
             this.Controls.Add(this.tabCtrlPerfilEmpresa);
             this.Name = "FormPerfilEmpresa";
-            this.Text = "FormPerfilEmpresa";
+            this.Text = "Seu Perfil";
             this.Load += new System.EventHandler(this.FormPerfilEmpresa_Load);
             this.tabCtrlPerfilEmpresa.ResumeLayout(false);
             this.tabPgPerfil.ResumeLayout(false);

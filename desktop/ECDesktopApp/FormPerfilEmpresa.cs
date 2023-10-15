@@ -204,5 +204,22 @@ namespace ECDesktopApp
 
             btnCriarVaga.Visible = true;
         }
+
+        private void btnAlunosInteressados_Click(object sender, EventArgs e)
+        {
+            //abre o form de informacoes sobre a vaga selecionada como MdiChild do MdiParent do form atual
+            FormInfoVagas form = new FormInfoVagas();
+            form.MdiParent = this.MdiParent;
+            this.Close();
+            form.Show();
+            try
+            {
+                form.VagaId = int.Parse(lblIdVaga.Text.Replace("#", "")); //passa o id da vaga sendo visualizada
+            }
+            catch(Exception ex)
+            {
+                form.VagaId=0;
+            }
+        }
     }
 }
