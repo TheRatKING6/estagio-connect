@@ -20,7 +20,7 @@ namespace ECDesktopApp
             this.AutoScroll = true;
             tabPgPerfil.AutoScroll = true;
 
-            //desabilita tudo pra deixar como ReadOnly as informacoes
+            //desabilita tudo do perfil pra deixar como ReadOnly as informacoes --- PERFIL ---
             btnCancelar.Visible = false;
             btnSalvar.Visible = false;
 
@@ -39,6 +39,16 @@ namespace ECDesktopApp
             txtNome.Enabled = false;
             txtRamo.Enabled = false;
             txtDescricao.Enabled = false;
+
+            //tudo o que nao e pra ver na parte das vagas some --- VAGAS ---
+            gpbInfoVaga.Visible = false;
+            btnCancelarVaga .Visible = false;
+            btnConfirmaCriar.Visible = false;
+            btnConfirmaEditar.Visible = false;
+            btnEditarVaga.Visible = false;
+            btnExcluirVaga.Visible = false;
+
+            //btnAlunosInteressados.Visible = false;
 
         }
 
@@ -136,6 +146,63 @@ namespace ECDesktopApp
                     //apagar a conta
                 }
             }
+        }
+
+        private void btnCriarVaga_Click(object sender, EventArgs e)
+        {
+            //deixa tudo o que precisa visivel
+            gpbInfoVaga.Visible = true;
+            btnCancelarVaga.Visible = true;
+            btnConfirmaCriar.Visible = true;
+
+            btnEditarVaga.Visible = false;
+            btnCriarVaga.Visible = false;
+        }
+
+        private void btnEditarVaga_Click(object sender, EventArgs e)
+        {
+            //deixa tudo o que precisa visivel
+            //gpbInfoVaga.Visible = true;  //o btn editar vaga so vai aparecer quando o user selecionar uma das vagas no DataGridView
+            btnCancelarVaga.Visible = true;
+            btnConfirmaEditar.Visible = true;
+            btnExcluirVaga.Visible = true;
+
+            btnEditarVaga.Visible = false;
+            btnCriarVaga.Visible = false;
+        }
+
+        private void btnConfirmaCriar_Click(object sender, EventArgs e)
+        {
+            //faz o oposto do btnCriarVaga
+            gpbInfoVaga.Visible = false;
+            btnCancelarVaga.Visible = false;
+            btnConfirmaCriar.Visible = false;
+
+            btnCriarVaga.Visible = true;
+        }
+
+        private void btnConfirmaEditar_Click(object sender, EventArgs e)
+        {
+            //deixa tudo o que precisa visivel
+            gpbInfoVaga.Visible = false;
+            btnCancelarVaga.Visible = false;
+            btnConfirmaEditar.Visible = false;
+            btnExcluirVaga.Visible = false;
+
+            btnEditarVaga.Visible = true;
+            btnCriarVaga.Visible = true;
+        }
+
+        private void btnCancelarVaga_Click(object sender, EventArgs e)
+        {
+            //deixa tudo invisivel
+            gpbInfoVaga.Visible = false;
+            btnCancelarVaga.Visible = false;
+            btnConfirmaCriar.Visible = false;
+            btnConfirmaEditar.Visible = false;
+            btnExcluirVaga.Visible = false;
+
+            btnCriarVaga.Visible = true;
         }
     }
 }

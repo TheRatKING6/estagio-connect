@@ -30,10 +30,10 @@
         {
             this.tabCtrlPerfilEmpresa = new System.Windows.Forms.TabControl();
             this.tabPgPerfil = new System.Windows.Forms.TabPage();
-            this.tabPgVagas = new System.Windows.Forms.TabPage();
-            this.lblNomeEmpresa = new System.Windows.Forms.Label();
-            this.picFoto = new System.Windows.Forms.PictureBox();
-            this.lblFoto = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.lblDescricao = new System.Windows.Forms.Label();
             this.txtRamo = new System.Windows.Forms.TextBox();
@@ -62,35 +62,55 @@
             this.lblRua = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
             this.lblCnpj = new System.Windows.Forms.Label();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnSalvar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descricaoVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.areaVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblFoto = new System.Windows.Forms.Label();
+            this.picFoto = new System.Windows.Forms.PictureBox();
+            this.lblNomeEmpresa = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.gpbInfoVaga = new System.Windows.Forms.GroupBox();
+            this.txtNomeVaga = new System.Windows.Forms.TextBox();
+            this.lblNomeVaga = new System.Windows.Forms.Label();
+            this.txtCarga = new System.Windows.Forms.TextBox();
+            this.cbxEspecializacao = new System.Windows.Forms.ComboBox();
+            this.txtRequisitos = new System.Windows.Forms.TextBox();
+            this.lblRequisitos = new System.Windows.Forms.Label();
+            this.lblCarga = new System.Windows.Forms.Label();
+            this.lblEspecializacao = new System.Windows.Forms.Label();
+            this.txtDescricaoVaga = new System.Windows.Forms.TextBox();
+            this.lblDescricaoVaga = new System.Windows.Forms.Label();
+            this.dgvVagasEmpresa = new System.Windows.Forms.DataGridView();
+            this.vagaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vagaNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vagaDescricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vagaArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requisitosVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cargaVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.verVaga = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnCriarVaga = new System.Windows.Forms.Button();
+            this.btnCancelarVaga = new System.Windows.Forms.Button();
+            this.btnEditarVaga = new System.Windows.Forms.Button();
+            this.btnConfirmaEditar = new System.Windows.Forms.Button();
+            this.btnConfirmaCriar = new System.Windows.Forms.Button();
+            this.lblIdVaga = new System.Windows.Forms.Label();
+            this.btnExcluirVaga = new System.Windows.Forms.Button();
+            this.btnAlunosInteressados = new System.Windows.Forms.Button();
             this.tabCtrlPerfilEmpresa.SuspendLayout();
             this.tabPgPerfil.SuspendLayout();
-            this.tabPgVagas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.gpbInfoContato.SuspendLayout();
             this.gpbEndereco.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.gpbInfoVaga.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVagasEmpresa)).BeginInit();
             this.SuspendLayout();
             // 
             // tabCtrlPerfilEmpresa
             // 
             this.tabCtrlPerfilEmpresa.Controls.Add(this.tabPgPerfil);
-            this.tabCtrlPerfilEmpresa.Controls.Add(this.tabPgVagas);
+            this.tabCtrlPerfilEmpresa.Controls.Add(this.tabPage2);
             this.tabCtrlPerfilEmpresa.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabCtrlPerfilEmpresa.Location = new System.Drawing.Point(21, 79);
             this.tabCtrlPerfilEmpresa.Name = "tabCtrlPerfilEmpresa";
             this.tabCtrlPerfilEmpresa.SelectedIndex = 0;
-            this.tabCtrlPerfilEmpresa.Size = new System.Drawing.Size(1472, 797);
+            this.tabCtrlPerfilEmpresa.Size = new System.Drawing.Size(1472, 866);
             this.tabCtrlPerfilEmpresa.TabIndex = 0;
             // 
             // tabPgPerfil
@@ -115,51 +135,56 @@
             this.tabPgPerfil.Location = new System.Drawing.Point(4, 28);
             this.tabPgPerfil.Name = "tabPgPerfil";
             this.tabPgPerfil.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPgPerfil.Size = new System.Drawing.Size(1464, 765);
+            this.tabPgPerfil.Size = new System.Drawing.Size(1464, 834);
             this.tabPgPerfil.TabIndex = 0;
             this.tabPgPerfil.Text = "Meu Perfil";
             this.tabPgPerfil.UseVisualStyleBackColor = true;
             this.tabPgPerfil.Click += new System.EventHandler(this.tabPgPerfil_Click);
             // 
-            // tabPgVagas
+            // btnDelete
             // 
-            this.tabPgVagas.Controls.Add(this.dataGridView1);
-            this.tabPgVagas.Location = new System.Drawing.Point(4, 28);
-            this.tabPgVagas.Name = "tabPgVagas";
-            this.tabPgVagas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPgVagas.Size = new System.Drawing.Size(1464, 765);
-            this.tabPgVagas.TabIndex = 1;
-            this.tabPgVagas.Text = "Minhas Vagas";
-            this.tabPgVagas.UseVisualStyleBackColor = true;
+            this.btnDelete.BackColor = System.Drawing.Color.Salmon;
+            this.btnDelete.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(77, 716);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(148, 38);
+            this.btnDelete.TabIndex = 27;
+            this.btnDelete.Text = "Excluir meu perfil";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // lblNomeEmpresa
+            // btnCancelar
             // 
-            this.lblNomeEmpresa.AutoSize = true;
-            this.lblNomeEmpresa.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeEmpresa.Location = new System.Drawing.Point(562, 12);
-            this.lblNomeEmpresa.Name = "lblNomeEmpresa";
-            this.lblNomeEmpresa.Size = new System.Drawing.Size(306, 59);
-            this.lblNomeEmpresa.TabIndex = 0;
-            this.lblNomeEmpresa.Text = "nomeempresa";
+            this.btnCancelar.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(1103, 716);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(117, 38);
+            this.btnCancelar.TabIndex = 26;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // picFoto
+            // btnSalvar
             // 
-            this.picFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picFoto.Location = new System.Drawing.Point(1153, 98);
-            this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(250, 250);
-            this.picFoto.TabIndex = 1;
-            this.picFoto.TabStop = false;
+            this.btnSalvar.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalvar.Location = new System.Drawing.Point(945, 716);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(109, 38);
+            this.btnSalvar.TabIndex = 25;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
-            // lblFoto
+            // btnEditar
             // 
-            this.lblFoto.AutoSize = true;
-            this.lblFoto.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFoto.Location = new System.Drawing.Point(1228, 351);
-            this.lblFoto.Name = "lblFoto";
-            this.lblFoto.Size = new System.Drawing.Size(101, 19);
-            this.lblFoto.TabIndex = 2;
-            this.lblFoto.Text = "Foto de Perfil";
+            this.btnEditar.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditar.Location = new System.Drawing.Point(1261, 716);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(119, 38);
+            this.btnEditar.TabIndex = 24;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // txtDescricao
             // 
@@ -478,102 +503,305 @@
             this.lblCnpj.TabIndex = 14;
             this.lblCnpj.Text = "CNPJ:";
             // 
-            // btnEditar
+            // lblFoto
             // 
-            this.btnEditar.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(1261, 716);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(119, 38);
-            this.btnEditar.TabIndex = 24;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.lblFoto.AutoSize = true;
+            this.lblFoto.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFoto.Location = new System.Drawing.Point(1228, 351);
+            this.lblFoto.Name = "lblFoto";
+            this.lblFoto.Size = new System.Drawing.Size(101, 19);
+            this.lblFoto.TabIndex = 2;
+            this.lblFoto.Text = "Foto de Perfil";
             // 
-            // btnSalvar
+            // picFoto
             // 
-            this.btnSalvar.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(945, 716);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(109, 38);
-            this.btnSalvar.TabIndex = 25;
-            this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.picFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picFoto.Location = new System.Drawing.Point(1153, 98);
+            this.picFoto.Name = "picFoto";
+            this.picFoto.Size = new System.Drawing.Size(250, 250);
+            this.picFoto.TabIndex = 1;
+            this.picFoto.TabStop = false;
             // 
-            // btnCancelar
+            // lblNomeEmpresa
             // 
-            this.btnCancelar.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(1103, 716);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(117, 38);
-            this.btnCancelar.TabIndex = 26;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.lblNomeEmpresa.AutoSize = true;
+            this.lblNomeEmpresa.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeEmpresa.Location = new System.Drawing.Point(562, 12);
+            this.lblNomeEmpresa.Name = "lblNomeEmpresa";
+            this.lblNomeEmpresa.Size = new System.Drawing.Size(306, 59);
+            this.lblNomeEmpresa.TabIndex = 0;
+            this.lblNomeEmpresa.Text = "nomeempresa";
             // 
-            // btnDelete
+            // tabPage2
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.Salmon;
-            this.btnDelete.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(77, 716);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(148, 38);
-            this.btnDelete.TabIndex = 27;
-            this.btnDelete.Text = "Excluir meu perfil";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.tabPage2.Controls.Add(this.btnAlunosInteressados);
+            this.tabPage2.Controls.Add(this.btnExcluirVaga);
+            this.tabPage2.Controls.Add(this.btnConfirmaCriar);
+            this.tabPage2.Controls.Add(this.btnConfirmaEditar);
+            this.tabPage2.Controls.Add(this.btnEditarVaga);
+            this.tabPage2.Controls.Add(this.btnCancelarVaga);
+            this.tabPage2.Controls.Add(this.btnCriarVaga);
+            this.tabPage2.Controls.Add(this.gpbInfoVaga);
+            this.tabPage2.Controls.Add(this.dgvVagasEmpresa);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1464, 834);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Minhas Vagas";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // gpbInfoVaga
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idVaga,
-            this.descricaoVaga,
-            this.areaVaga,
+            this.gpbInfoVaga.Controls.Add(this.lblIdVaga);
+            this.gpbInfoVaga.Controls.Add(this.txtNomeVaga);
+            this.gpbInfoVaga.Controls.Add(this.lblNomeVaga);
+            this.gpbInfoVaga.Controls.Add(this.txtCarga);
+            this.gpbInfoVaga.Controls.Add(this.cbxEspecializacao);
+            this.gpbInfoVaga.Controls.Add(this.txtRequisitos);
+            this.gpbInfoVaga.Controls.Add(this.lblRequisitos);
+            this.gpbInfoVaga.Controls.Add(this.lblCarga);
+            this.gpbInfoVaga.Controls.Add(this.lblEspecializacao);
+            this.gpbInfoVaga.Controls.Add(this.txtDescricaoVaga);
+            this.gpbInfoVaga.Controls.Add(this.lblDescricaoVaga);
+            this.gpbInfoVaga.Location = new System.Drawing.Point(167, 33);
+            this.gpbInfoVaga.Name = "gpbInfoVaga";
+            this.gpbInfoVaga.Size = new System.Drawing.Size(1190, 223);
+            this.gpbInfoVaga.TabIndex = 1;
+            this.gpbInfoVaga.TabStop = false;
+            this.gpbInfoVaga.Text = "Informações da Vaga";
+            // 
+            // txtNomeVaga
+            // 
+            this.txtNomeVaga.Location = new System.Drawing.Point(834, 168);
+            this.txtNomeVaga.Name = "txtNomeVaga";
+            this.txtNomeVaga.Size = new System.Drawing.Size(288, 27);
+            this.txtNomeVaga.TabIndex = 19;
+            // 
+            // lblNomeVaga
+            // 
+            this.lblNomeVaga.AutoSize = true;
+            this.lblNomeVaga.Location = new System.Drawing.Point(777, 171);
+            this.lblNomeVaga.Name = "lblNomeVaga";
+            this.lblNomeVaga.Size = new System.Drawing.Size(51, 19);
+            this.lblNomeVaga.TabIndex = 18;
+            this.lblNomeVaga.Text = "Nome:";
+            // 
+            // txtCarga
+            // 
+            this.txtCarga.Location = new System.Drawing.Point(972, 120);
+            this.txtCarga.Name = "txtCarga";
+            this.txtCarga.Size = new System.Drawing.Size(150, 27);
+            this.txtCarga.TabIndex = 17;
+            // 
+            // cbxEspecializacao
+            // 
+            this.cbxEspecializacao.FormattingEnabled = true;
+            this.cbxEspecializacao.Items.AddRange(new object[] {
+            "Química",
+            "Desenvolvimento de Sistemas",
+            "Arquitetura/Engenharia",
+            "Mecânica Industrial",
+            "Enfermagem",
+            "Qualidade de produção"});
+            this.cbxEspecializacao.Location = new System.Drawing.Point(867, 62);
+            this.cbxEspecializacao.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxEspecializacao.Name = "cbxEspecializacao";
+            this.cbxEspecializacao.Size = new System.Drawing.Size(255, 27);
+            this.cbxEspecializacao.TabIndex = 16;
+            // 
+            // txtRequisitos
+            // 
+            this.txtRequisitos.Location = new System.Drawing.Point(501, 62);
+            this.txtRequisitos.Multiline = true;
+            this.txtRequisitos.Name = "txtRequisitos";
+            this.txtRequisitos.Size = new System.Drawing.Size(248, 138);
+            this.txtRequisitos.TabIndex = 5;
+            // 
+            // lblRequisitos
+            // 
+            this.lblRequisitos.AutoSize = true;
+            this.lblRequisitos.Location = new System.Drawing.Point(497, 39);
+            this.lblRequisitos.Name = "lblRequisitos";
+            this.lblRequisitos.Size = new System.Drawing.Size(161, 19);
+            this.lblRequisitos.TabIndex = 4;
+            this.lblRequisitos.Text = "Requisitos para a vaga:";
+            // 
+            // lblCarga
+            // 
+            this.lblCarga.AutoSize = true;
+            this.lblCarga.Location = new System.Drawing.Point(863, 122);
+            this.lblCarga.Name = "lblCarga";
+            this.lblCarga.Size = new System.Drawing.Size(103, 19);
+            this.lblCarga.TabIndex = 3;
+            this.lblCarga.Text = "Carga Horária:";
+            // 
+            // lblEspecializacao
+            // 
+            this.lblEspecializacao.AutoSize = true;
+            this.lblEspecializacao.Location = new System.Drawing.Point(863, 39);
+            this.lblEspecializacao.Name = "lblEspecializacao";
+            this.lblEspecializacao.Size = new System.Drawing.Size(162, 19);
+            this.lblEspecializacao.TabIndex = 2;
+            this.lblEspecializacao.Text = "Área de especialização:";
+            // 
+            // txtDescricaoVaga
+            // 
+            this.txtDescricaoVaga.Location = new System.Drawing.Point(49, 61);
+            this.txtDescricaoVaga.Multiline = true;
+            this.txtDescricaoVaga.Name = "txtDescricaoVaga";
+            this.txtDescricaoVaga.Size = new System.Drawing.Size(410, 139);
+            this.txtDescricaoVaga.TabIndex = 1;
+            // 
+            // lblDescricaoVaga
+            // 
+            this.lblDescricaoVaga.AutoSize = true;
+            this.lblDescricaoVaga.Location = new System.Drawing.Point(45, 39);
+            this.lblDescricaoVaga.Name = "lblDescricaoVaga";
+            this.lblDescricaoVaga.Size = new System.Drawing.Size(132, 19);
+            this.lblDescricaoVaga.TabIndex = 0;
+            this.lblDescricaoVaga.Text = "Descrição da vaga:";
+            // 
+            // dgvVagasEmpresa
+            // 
+            this.dgvVagasEmpresa.AllowUserToAddRows = false;
+            this.dgvVagasEmpresa.AllowUserToDeleteRows = false;
+            this.dgvVagasEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVagasEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.vagaId,
+            this.vagaNome,
+            this.vagaDescricao,
+            this.vagaArea,
             this.requisitosVaga,
-            this.cargaVaga,
-            this.verVaga});
-            this.dataGridView1.Location = new System.Drawing.Point(116, 315);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1244, 415);
-            this.dataGridView1.TabIndex = 0;
+            this.cargaVaga});
+            this.dgvVagasEmpresa.Location = new System.Drawing.Point(167, 380);
+            this.dgvVagasEmpresa.Name = "dgvVagasEmpresa";
+            this.dgvVagasEmpresa.ReadOnly = true;
+            this.dgvVagasEmpresa.Size = new System.Drawing.Size(1190, 406);
+            this.dgvVagasEmpresa.TabIndex = 0;
             // 
-            // idVaga
+            // vagaId
             // 
-            this.idVaga.HeaderText = "ID";
-            this.idVaga.Name = "idVaga";
+            this.vagaId.HeaderText = "ID";
+            this.vagaId.Name = "vagaId";
+            this.vagaId.ReadOnly = true;
             // 
-            // descricaoVaga
+            // vagaNome
             // 
-            this.descricaoVaga.HeaderText = "Descricao";
-            this.descricaoVaga.Name = "descricaoVaga";
+            this.vagaNome.HeaderText = "Nome";
+            this.vagaNome.Name = "vagaNome";
+            this.vagaNome.ReadOnly = true;
             // 
-            // areaVaga
+            // vagaDescricao
             // 
-            this.areaVaga.HeaderText = "Area de Atuação";
-            this.areaVaga.Name = "areaVaga";
+            this.vagaDescricao.HeaderText = "Descrição da vaga";
+            this.vagaDescricao.Name = "vagaDescricao";
+            this.vagaDescricao.ReadOnly = true;
+            // 
+            // vagaArea
+            // 
+            this.vagaArea.HeaderText = "Área de especialização procurada";
+            this.vagaArea.Name = "vagaArea";
+            this.vagaArea.ReadOnly = true;
             // 
             // requisitosVaga
             // 
             this.requisitosVaga.HeaderText = "Requisitos";
             this.requisitosVaga.Name = "requisitosVaga";
+            this.requisitosVaga.ReadOnly = true;
             // 
             // cargaVaga
             // 
             this.cargaVaga.HeaderText = "Carga Horária";
             this.cargaVaga.Name = "cargaVaga";
+            this.cargaVaga.ReadOnly = true;
             // 
-            // verVaga
+            // btnCriarVaga
             // 
-            this.verVaga.HeaderText = "";
-            this.verVaga.Name = "verVaga";
-            this.verVaga.Text = "Editar";
+            this.btnCriarVaga.Location = new System.Drawing.Point(1231, 320);
+            this.btnCriarVaga.Name = "btnCriarVaga";
+            this.btnCriarVaga.Size = new System.Drawing.Size(126, 30);
+            this.btnCriarVaga.TabIndex = 2;
+            this.btnCriarVaga.Text = "Criar nova vaga";
+            this.btnCriarVaga.UseVisualStyleBackColor = true;
+            this.btnCriarVaga.Click += new System.EventHandler(this.btnCriarVaga_Click);
+            // 
+            // btnCancelarVaga
+            // 
+            this.btnCancelarVaga.BackColor = System.Drawing.Color.Salmon;
+            this.btnCancelarVaga.Location = new System.Drawing.Point(167, 320);
+            this.btnCancelarVaga.Name = "btnCancelarVaga";
+            this.btnCancelarVaga.Size = new System.Drawing.Size(89, 30);
+            this.btnCancelarVaga.TabIndex = 3;
+            this.btnCancelarVaga.Text = "Cancelar";
+            this.btnCancelarVaga.UseVisualStyleBackColor = false;
+            this.btnCancelarVaga.Click += new System.EventHandler(this.btnCancelarVaga_Click);
+            // 
+            // btnEditarVaga
+            // 
+            this.btnEditarVaga.Location = new System.Drawing.Point(1231, 284);
+            this.btnEditarVaga.Name = "btnEditarVaga";
+            this.btnEditarVaga.Size = new System.Drawing.Size(126, 30);
+            this.btnEditarVaga.TabIndex = 4;
+            this.btnEditarVaga.Text = "Editar Vaga";
+            this.btnEditarVaga.UseVisualStyleBackColor = true;
+            this.btnEditarVaga.Click += new System.EventHandler(this.btnEditarVaga_Click);
+            // 
+            // btnConfirmaEditar
+            // 
+            this.btnConfirmaEditar.BackColor = System.Drawing.Color.LightGreen;
+            this.btnConfirmaEditar.Location = new System.Drawing.Point(1034, 284);
+            this.btnConfirmaEditar.Name = "btnConfirmaEditar";
+            this.btnConfirmaEditar.Size = new System.Drawing.Size(173, 30);
+            this.btnConfirmaEditar.TabIndex = 5;
+            this.btnConfirmaEditar.Text = "Confirmar Alterações";
+            this.btnConfirmaEditar.UseVisualStyleBackColor = false;
+            this.btnConfirmaEditar.Click += new System.EventHandler(this.btnConfirmaEditar_Click);
+            // 
+            // btnConfirmaCriar
+            // 
+            this.btnConfirmaCriar.BackColor = System.Drawing.Color.LightGreen;
+            this.btnConfirmaCriar.Location = new System.Drawing.Point(1106, 320);
+            this.btnConfirmaCriar.Name = "btnConfirmaCriar";
+            this.btnConfirmaCriar.Size = new System.Drawing.Size(101, 30);
+            this.btnConfirmaCriar.TabIndex = 6;
+            this.btnConfirmaCriar.Text = "Confirmar";
+            this.btnConfirmaCriar.UseVisualStyleBackColor = false;
+            this.btnConfirmaCriar.Click += new System.EventHandler(this.btnConfirmaCriar_Click);
+            // 
+            // lblIdVaga
+            // 
+            this.lblIdVaga.AutoSize = true;
+            this.lblIdVaga.Location = new System.Drawing.Point(1105, 13);
+            this.lblIdVaga.Name = "lblIdVaga";
+            this.lblIdVaga.Size = new System.Drawing.Size(17, 19);
+            this.lblIdVaga.TabIndex = 20;
+            this.lblIdVaga.Text = "#";
+            // 
+            // btnExcluirVaga
+            // 
+            this.btnExcluirVaga.BackColor = System.Drawing.Color.Salmon;
+            this.btnExcluirVaga.Location = new System.Drawing.Point(167, 284);
+            this.btnExcluirVaga.Name = "btnExcluirVaga";
+            this.btnExcluirVaga.Size = new System.Drawing.Size(141, 30);
+            this.btnExcluirVaga.TabIndex = 7;
+            this.btnExcluirVaga.Text = "Excluir Vaga";
+            this.btnExcluirVaga.UseVisualStyleBackColor = false;
+            // 
+            // btnAlunosInteressados
+            // 
+            this.btnAlunosInteressados.Location = new System.Drawing.Point(656, 284);
+            this.btnAlunosInteressados.Name = "btnAlunosInteressados";
+            this.btnAlunosInteressados.Size = new System.Drawing.Size(218, 30);
+            this.btnAlunosInteressados.TabIndex = 8;
+            this.btnAlunosInteressados.Text = "Vizualizar Alunos Interessados";
+            this.btnAlunosInteressados.UseVisualStyleBackColor = true;
             // 
             // FormPerfilEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1505, 907);
+            this.ClientSize = new System.Drawing.Size(1505, 1016);
             this.Controls.Add(this.tabCtrlPerfilEmpresa);
             this.Name = "FormPerfilEmpresa";
             this.Text = "FormPerfilEmpresa";
@@ -581,13 +809,15 @@
             this.tabCtrlPerfilEmpresa.ResumeLayout(false);
             this.tabPgPerfil.ResumeLayout(false);
             this.tabPgPerfil.PerformLayout();
-            this.tabPgVagas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.gpbInfoContato.ResumeLayout(false);
             this.gpbInfoContato.PerformLayout();
             this.gpbEndereco.ResumeLayout(false);
             this.gpbEndereco.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.gpbInfoVaga.ResumeLayout(false);
+            this.gpbInfoVaga.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVagasEmpresa)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -596,7 +826,7 @@
 
         private System.Windows.Forms.TabControl tabCtrlPerfilEmpresa;
         private System.Windows.Forms.TabPage tabPgPerfil;
-        private System.Windows.Forms.TabPage tabPgVagas;
+        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label lblNomeEmpresa;
         private System.Windows.Forms.PictureBox picFoto;
         private System.Windows.Forms.Label lblFoto;
@@ -632,12 +862,31 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idVaga;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descricaoVaga;
-        private System.Windows.Forms.DataGridViewTextBoxColumn areaVaga;
+        private System.Windows.Forms.DataGridView dgvVagasEmpresa;
+        private System.Windows.Forms.GroupBox gpbInfoVaga;
+        private System.Windows.Forms.Label lblDescricaoVaga;
+        private System.Windows.Forms.Label lblRequisitos;
+        private System.Windows.Forms.Label lblCarga;
+        private System.Windows.Forms.Label lblEspecializacao;
+        private System.Windows.Forms.TextBox txtDescricaoVaga;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vagaId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vagaNome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vagaDescricao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vagaArea;
         private System.Windows.Forms.DataGridViewTextBoxColumn requisitosVaga;
         private System.Windows.Forms.DataGridViewTextBoxColumn cargaVaga;
-        private System.Windows.Forms.DataGridViewButtonColumn verVaga;
+        private System.Windows.Forms.TextBox txtRequisitos;
+        private System.Windows.Forms.Label lblNomeVaga;
+        private System.Windows.Forms.TextBox txtCarga;
+        private System.Windows.Forms.ComboBox cbxEspecializacao;
+        private System.Windows.Forms.TextBox txtNomeVaga;
+        private System.Windows.Forms.Button btnEditarVaga;
+        private System.Windows.Forms.Button btnCancelarVaga;
+        private System.Windows.Forms.Button btnCriarVaga;
+        private System.Windows.Forms.Button btnConfirmaCriar;
+        private System.Windows.Forms.Button btnConfirmaEditar;
+        private System.Windows.Forms.Label lblIdVaga;
+        private System.Windows.Forms.Button btnExcluirVaga;
+        private System.Windows.Forms.Button btnAlunosInteressados;
     }
 }
