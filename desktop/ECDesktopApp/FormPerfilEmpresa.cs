@@ -12,6 +12,10 @@ namespace ECDesktopApp
 {
     public partial class FormPerfilEmpresa : Form
     {
+        int tipo = 1;
+
+        public int Tipo { get => tipo; set => tipo = value; }
+
         public FormPerfilEmpresa()
         {
             InitializeComponent();
@@ -57,6 +61,15 @@ namespace ECDesktopApp
             //coloca a foto default (se nao tiver foto cadastrada no bd)
             picFoto.ImageLocation = "../../img/default_user_empresa.jpg";
             picFoto.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            if(tipo == 0)
+            {
+                btnEditar.Visible = false;
+                btnDelete.Visible = false;
+                btnCriarVaga.Visible = false;
+                btnAlunosInteressados.Text = "Ver detalhes da vaga";
+                tabPage2.Text = "Vagas";
+            }
         }
 
         private void tabPgPerfil_Click(object sender, EventArgs e)
@@ -211,10 +224,17 @@ namespace ECDesktopApp
             FormInfoVagas form = new FormInfoVagas();
             form.MdiParent = this.MdiParent;
             this.Close();
-            form.Show();
+            
+            if(this.tipo == 0)
+            {
+                form.Tipo = 0; //pra nao permitir editar a vaga sem ser o dono dela
+            }
+
+            form.Show(); //lembrar! Se eu fzr o form.Show(); antes de passar os atributos, ele vai iniciar o form com os atributos errados
             try
             {
                 form.VagaId = int.Parse(lblIdVaga.Text.Replace("#", "")); //passa o id da vaga sendo visualizada
+                
             }
             catch(Exception ex)
             {

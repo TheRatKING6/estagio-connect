@@ -104,6 +104,9 @@ namespace ECDesktopApp
                         form.MdiParent = this;
                         form.UserId = userId; //passa o cpf do aluno logando para a propriedade UserId, para poder identificar o aluno logado
                         form.Show();
+
+                        //se for aluno desabilita o 'Alunos interessados' no menuStrip
+                        alunosInteressadosToolStripMenuItem.Visible = false;
                     }
                     else
                     {
@@ -111,7 +114,9 @@ namespace ECDesktopApp
                         form.MdiParent = this;
                         form.Show();
 
-                        inicioToolStripMenuItem.Visible = false; //se for empresa, desabilita o botao 'inicio' no menuStrip
+                        //se for empresa, desabilita alguns botoes no menuStrip
+                        inicioToolStripMenuItem.Visible = false; 
+                        vagasToolStripMenuItem.Visible = false;
                     }
                     
 
@@ -172,6 +177,56 @@ namespace ECDesktopApp
                 form.Show();
                 //lembrar de passar o id do usuario
             }
+        }
+
+        private void alunosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPesquisarAlunos form = new FormPesquisarAlunos();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void empresasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPesquisarEmpresa form = new FormPesquisarEmpresa();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void vagasDeEmpregoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPesquisarVagas form = new FormPesquisarVagas();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void vagasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormVagaInteresseAluno form = new FormVagaInteresseAluno();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void alunosInteressadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAlunosInteressadosVaga form = new FormAlunosInteressadosVaga();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void connectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string userId = msktxtPK.Text;
+
+            FormConnect form = new FormConnect();
+            form.MdiParent = this;
+            
+            if (userId.Replace(".", "").Replace("-", "").Replace("/", "").Length == 14) //verifica se e empresa ou aluno
+            {
+                form.Tipo = 1;
+            }
+
+            form.Show();
         }
     }
 }

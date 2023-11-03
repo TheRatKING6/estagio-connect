@@ -45,6 +45,13 @@
             this.inicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meuPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pesquisarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alunosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.empresasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vagasDeEmpregoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.suasInformaçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vagasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alunosInteressadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpbLogin.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -214,7 +221,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inicioToolStripMenuItem,
             this.meuPerfilToolStripMenuItem,
-            this.pesquisarToolStripMenuItem});
+            this.pesquisarToolStripMenuItem,
+            this.suasInformaçõesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1662, 24);
@@ -237,9 +245,65 @@
             // 
             // pesquisarToolStripMenuItem
             // 
+            this.pesquisarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.alunosToolStripMenuItem,
+            this.empresasToolStripMenuItem,
+            this.vagasDeEmpregoToolStripMenuItem});
             this.pesquisarToolStripMenuItem.Name = "pesquisarToolStripMenuItem";
             this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.pesquisarToolStripMenuItem.Text = "Pesquisar";
+            // 
+            // alunosToolStripMenuItem
+            // 
+            this.alunosToolStripMenuItem.Name = "alunosToolStripMenuItem";
+            this.alunosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.alunosToolStripMenuItem.Text = "Alunos";
+            this.alunosToolStripMenuItem.Click += new System.EventHandler(this.alunosToolStripMenuItem_Click);
+            // 
+            // empresasToolStripMenuItem
+            // 
+            this.empresasToolStripMenuItem.Name = "empresasToolStripMenuItem";
+            this.empresasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.empresasToolStripMenuItem.Text = "Empresas";
+            this.empresasToolStripMenuItem.Click += new System.EventHandler(this.empresasToolStripMenuItem_Click);
+            // 
+            // vagasDeEmpregoToolStripMenuItem
+            // 
+            this.vagasDeEmpregoToolStripMenuItem.Name = "vagasDeEmpregoToolStripMenuItem";
+            this.vagasDeEmpregoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vagasDeEmpregoToolStripMenuItem.Text = "Vagas de emprego";
+            this.vagasDeEmpregoToolStripMenuItem.Click += new System.EventHandler(this.vagasDeEmpregoToolStripMenuItem_Click);
+            // 
+            // suasInformaçõesToolStripMenuItem
+            // 
+            this.suasInformaçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vagasToolStripMenuItem,
+            this.alunosInteressadosToolStripMenuItem,
+            this.connectsToolStripMenuItem});
+            this.suasInformaçõesToolStripMenuItem.Name = "suasInformaçõesToolStripMenuItem";
+            this.suasInformaçõesToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.suasInformaçõesToolStripMenuItem.Text = "Suas Informações";
+            // 
+            // vagasToolStripMenuItem
+            // 
+            this.vagasToolStripMenuItem.Name = "vagasToolStripMenuItem";
+            this.vagasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vagasToolStripMenuItem.Text = "Vagas Interessadas";
+            this.vagasToolStripMenuItem.Click += new System.EventHandler(this.vagasToolStripMenuItem_Click);
+            // 
+            // alunosInteressadosToolStripMenuItem
+            // 
+            this.alunosInteressadosToolStripMenuItem.Name = "alunosInteressadosToolStripMenuItem";
+            this.alunosInteressadosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.alunosInteressadosToolStripMenuItem.Text = "Alunos Interessados";
+            this.alunosInteressadosToolStripMenuItem.Click += new System.EventHandler(this.alunosInteressadosToolStripMenuItem_Click);
+            // 
+            // connectsToolStripMenuItem
+            // 
+            this.connectsToolStripMenuItem.Name = "connectsToolStripMenuItem";
+            this.connectsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.connectsToolStripMenuItem.Text = "Connects";
+            this.connectsToolStripMenuItem.Click += new System.EventHandler(this.connectsToolStripMenuItem_Click);
             // 
             // FormLogin
             // 
@@ -285,5 +349,12 @@
         private System.Windows.Forms.ToolStripMenuItem inicioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem meuPerfilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pesquisarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alunosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem empresasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vagasDeEmpregoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem suasInformaçõesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vagasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alunosInteressadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem connectsToolStripMenuItem;
     }
 }

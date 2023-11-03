@@ -13,8 +13,10 @@ namespace ECDesktopApp
     public partial class FormPerfilAluno : Form
     {
         int tipo = 0;
+        bool interesse = false;
 
         public int Tipo { get => tipo; set => tipo = value; }
+        public bool Interesse { get => interesse; set => interesse = value; }
 
         public FormPerfilAluno()
         {
@@ -49,7 +51,8 @@ namespace ECDesktopApp
             cbxStatus.Enabled = false;
             msktxtCpf.Enabled = false;
 
-            
+            btnInteresse.Visible = false;
+
 
         }
 
@@ -58,8 +61,14 @@ namespace ECDesktopApp
             picFoto.ImageLocation = "../../img/default_user_empresa.jpg";
             picFoto.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            //se for empresa, some os botao de editar e excluir
+            //se for empresa, some os botao de editar e excluir e aparece o de interesse
             if(tipo == 1)
+            {
+                btnDelete.Visible = false;
+                btnEditar.Visible = false;
+                btnInteresse.Visible = true;
+            }
+            else if(tipo == 2) //se for um aluno vendo o perfil do outro, nao pode editar e o botao de interesse nao aparece
             {
                 btnDelete.Visible = false;
                 btnEditar.Visible = false;
@@ -157,6 +166,25 @@ namespace ECDesktopApp
                 {
                     //apagar a conta
                 }
+            }
+        }
+
+        private void btnInteresse_Click(object sender, EventArgs e)
+        {
+            //se a empresa nao tiver interessado, ao clicar no botao ele muda o texto e seta interessado como true
+            if (!interesse)
+            {
+                btnInteresse.Text = "Retirar o interesse";
+                btnInteresse.BackColor = Color.Salmon;
+                interesse = true;
+
+            }
+            //se a empresa tiver interessado, ao clicar no botao ele muda o texto e seta interessado como false
+            else
+            {
+                btnInteresse.Text = "Demonstrar Interesse";
+                btnInteresse.BackColor = Color.Transparent;
+                interesse = false;
             }
         }
     }

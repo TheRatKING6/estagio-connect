@@ -43,5 +43,13 @@ namespace ECDesktopApp
 
             lblWelcome.Text += nome;
         }
+
+        private void btnVerVaga_Click(object sender, EventArgs e)
+        {
+            FormInfoVagas form = new FormInfoVagas();
+            form.MdiParent = this.MdiParent;
+            form.Tipo = 0;
+            form.Show();
+        }
     }
 }

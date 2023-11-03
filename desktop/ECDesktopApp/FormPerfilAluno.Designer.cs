@@ -73,6 +73,7 @@
             this.lblNome = new System.Windows.Forms.Label();
             this.lblCpf = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnInteresse = new System.Windows.Forms.Button();
             this.gpbInfoContato.SuspendLayout();
             this.gpbEndereco.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
@@ -93,7 +94,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(1114, 969);
+            this.btnCancelar.Location = new System.Drawing.Point(1114, 966);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(117, 38);
             this.btnCancelar.TabIndex = 35;
@@ -104,7 +105,7 @@
             // btnSalvar
             // 
             this.btnSalvar.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(986, 969);
+            this.btnSalvar.Location = new System.Drawing.Point(986, 966);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(109, 38);
             this.btnSalvar.TabIndex = 34;
@@ -115,7 +116,7 @@
             // btnEditar
             // 
             this.btnEditar.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(1295, 969);
+            this.btnEditar.Location = new System.Drawing.Point(1295, 966);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(119, 38);
             this.btnEditar.TabIndex = 33;
@@ -589,11 +590,23 @@
             this.label1.TabIndex = 54;
             this.label1.Text = "nomealuno";
             // 
+            // btnInteresse
+            // 
+            this.btnInteresse.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInteresse.Location = new System.Drawing.Point(106, 1014);
+            this.btnInteresse.Name = "btnInteresse";
+            this.btnInteresse.Size = new System.Drawing.Size(174, 35);
+            this.btnInteresse.TabIndex = 55;
+            this.btnInteresse.Text = "Demonstrar Interesse";
+            this.btnInteresse.UseVisualStyleBackColor = true;
+            this.btnInteresse.Click += new System.EventHandler(this.btnInteresse_Click);
+            // 
             // FormPerfilAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1677, 1061);
+            this.Controls.Add(this.btnInteresse);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtMatricula);
             this.Controls.Add(this.lblMatricula);
@@ -622,6 +635,7 @@
             this.Controls.Add(this.lblFoto);
             this.Controls.Add(this.picFoto);
             this.Name = "FormPerfilAluno";
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
             this.Text = "Meu Perfil";
             this.Load += new System.EventHandler(this.FormPerfilAluno_Load);
             this.gpbInfoContato.ResumeLayout(false);
@@ -681,5 +695,6 @@
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.Label lblCpf;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnInteresse;
     }
 }

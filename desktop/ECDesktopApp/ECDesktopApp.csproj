@@ -59,6 +59,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAlunosInteressadosVaga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAlunosInteressadosVaga.Designer.cs">
+      <DependentUpon>FormAlunosInteressadosVaga.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCadastroAluno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,12 @@
     </Compile>
     <Compile Include="FormCadastroEmpresa.Designer.cs">
       <DependentUpon>FormCadastroEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConnect.Designer.cs">
+      <DependentUpon>FormConnect.cs</DependentUpon>
     </Compile>
     <Compile Include="FormInfoVagas.cs">
       <SubType>Form</SubType>
@@ -101,17 +113,47 @@
     <Compile Include="FormPerfilEmpresa.Designer.cs">
       <DependentUpon>FormPerfilEmpresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPesquisarAlunos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPesquisarAlunos.Designer.cs">
+      <DependentUpon>FormPesquisarAlunos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPesquisarEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPesquisarEmpresa.Designer.cs">
+      <DependentUpon>FormPesquisarEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPesquisarVagas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPesquisarVagas.Designer.cs">
+      <DependentUpon>FormPesquisarVagas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVagaInteresseAluno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVagaInteresseAluno.Designer.cs">
+      <DependentUpon>FormVagaInteresseAluno.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManipulcaoData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAlunosInteressadosVaga.resx">
+      <DependentUpon>FormAlunosInteressadosVaga.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCadastroAluno.resx">
       <DependentUpon>FormCadastroAluno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCadastroEmpresa.resx">
       <DependentUpon>FormCadastroEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConnect.resx">
+      <DependentUpon>FormConnect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInfoVagas.resx">
       <DependentUpon>FormInfoVagas.cs</DependentUpon>
@@ -127,6 +169,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPerfilEmpresa.resx">
       <DependentUpon>FormPerfilEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPesquisarAlunos.resx">
+      <DependentUpon>FormPesquisarAlunos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPesquisarEmpresa.resx">
+      <DependentUpon>FormPesquisarEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPesquisarVagas.resx">
+      <DependentUpon>FormPesquisarVagas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVagaInteresseAluno.resx">
+      <DependentUpon>FormVagaInteresseAluno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

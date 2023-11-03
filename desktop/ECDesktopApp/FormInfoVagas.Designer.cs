@@ -53,6 +53,7 @@
             this.anoAluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.escolaAluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVisualizarAluno = new System.Windows.Forms.Button();
+            this.btnInteressado = new System.Windows.Forms.Button();
             this.gpbInfoVaga.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunosInteressados)).BeginInit();
             this.SuspendLayout();
@@ -284,11 +285,23 @@
             this.btnVisualizarAluno.UseVisualStyleBackColor = true;
             this.btnVisualizarAluno.Click += new System.EventHandler(this.btnVisualizarAluno_Click);
             // 
+            // btnInteressado
+            // 
+            this.btnInteressado.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInteressado.Location = new System.Drawing.Point(216, 405);
+            this.btnInteressado.Name = "btnInteressado";
+            this.btnInteressado.Size = new System.Drawing.Size(169, 36);
+            this.btnInteressado.TabIndex = 7;
+            this.btnInteressado.Text = "Demonstrar Interesse";
+            this.btnInteressado.UseVisualStyleBackColor = true;
+            this.btnInteressado.Click += new System.EventHandler(this.btnInteressado_Click);
+            // 
             // FormInfoVagas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1531, 995);
+            this.Controls.Add(this.btnInteressado);
             this.Controls.Add(this.btnVisualizarAluno);
             this.Controls.Add(this.dgvAlunosInteressados);
             this.Controls.Add(this.label1);
@@ -332,5 +345,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn anoAluno;
         private System.Windows.Forms.DataGridViewTextBoxColumn escolaAluno;
         private System.Windows.Forms.Button btnVisualizarAluno;
+        private System.Windows.Forms.Button btnInteressado;
     }
 }
