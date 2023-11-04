@@ -46,18 +46,20 @@
             this.areaVagaTodas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cargaVagaTodas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVerVaga = new System.Windows.Forms.Button();
+            this.pnlContent = new System.Windows.Forms.Panel();
             this.tabctrlInicoAluno.SuspendLayout();
             this.tabPgRecommended.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVagasRecomendadas)).BeginInit();
             this.tabPgTodas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTodasVagas)).BeginInit();
+            this.pnlContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(357, 44);
+            this.lblWelcome.Location = new System.Drawing.Point(58, 26);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(652, 59);
             this.lblWelcome.TabIndex = 0;
@@ -66,10 +68,10 @@
             // lblVagasTitle
             // 
             this.lblVagasTitle.AutoSize = true;
-            this.lblVagasTitle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVagasTitle.Location = new System.Drawing.Point(685, 155);
+            this.lblVagasTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVagasTitle.Location = new System.Drawing.Point(660, 153);
             this.lblVagasTitle.Name = "lblVagasTitle";
-            this.lblVagasTitle.Size = new System.Drawing.Size(55, 23);
+            this.lblVagasTitle.Size = new System.Drawing.Size(80, 33);
             this.lblVagasTitle.TabIndex = 4;
             this.lblVagasTitle.Text = "Vagas";
             // 
@@ -78,7 +80,7 @@
             this.tabctrlInicoAluno.Controls.Add(this.tabPgRecommended);
             this.tabctrlInicoAluno.Controls.Add(this.tabPgTodas);
             this.tabctrlInicoAluno.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabctrlInicoAluno.Location = new System.Drawing.Point(141, 241);
+            this.tabctrlInicoAluno.Location = new System.Drawing.Point(64, 192);
             this.tabctrlInicoAluno.Name = "tabctrlInicoAluno";
             this.tabctrlInicoAluno.SelectedIndex = 0;
             this.tabctrlInicoAluno.Size = new System.Drawing.Size(1190, 559);
@@ -203,7 +205,7 @@
             // btnVerVaga
             // 
             this.btnVerVaga.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerVaga.Location = new System.Drawing.Point(1148, 205);
+            this.btnVerVaga.Location = new System.Drawing.Point(1071, 156);
             this.btnVerVaga.Name = "btnVerVaga";
             this.btnVerVaga.Size = new System.Drawing.Size(179, 30);
             this.btnVerVaga.TabIndex = 6;
@@ -211,15 +213,24 @@
             this.btnVerVaga.UseVisualStyleBackColor = true;
             this.btnVerVaga.Click += new System.EventHandler(this.btnVerVaga_Click);
             // 
+            // pnlContent
+            // 
+            this.pnlContent.Controls.Add(this.lblWelcome);
+            this.pnlContent.Controls.Add(this.tabctrlInicoAluno);
+            this.pnlContent.Controls.Add(this.btnVerVaga);
+            this.pnlContent.Controls.Add(this.lblVagasTitle);
+            this.pnlContent.Location = new System.Drawing.Point(72, 44);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(1295, 800);
+            this.pnlContent.TabIndex = 7;
+            // 
             // FormInicioAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1834, 1061);
-            this.Controls.Add(this.btnVerVaga);
-            this.Controls.Add(this.tabctrlInicoAluno);
-            this.Controls.Add(this.lblVagasTitle);
-            this.Controls.Add(this.lblWelcome);
+            this.Controls.Add(this.pnlContent);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormInicioAluno";
             this.Text = "Início";
@@ -229,8 +240,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvVagasRecomendadas)).EndInit();
             this.tabPgTodas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTodasVagas)).EndInit();
+            this.pnlContent.ResumeLayout(false);
+            this.pnlContent.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -254,5 +266,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn areaVagaTodas;
         private System.Windows.Forms.DataGridViewTextBoxColumn cargaVagaTodas;
         private System.Windows.Forms.Button btnVerVaga;
+        private System.Windows.Forms.Panel pnlContent;
     }
 }

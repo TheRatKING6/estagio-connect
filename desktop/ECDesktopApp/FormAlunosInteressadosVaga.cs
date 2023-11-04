@@ -38,5 +38,17 @@ namespace ECDesktopApp
             form.MdiParent = this.MdiParent;
             form.Show();
         }
+
+        private void FormAlunosInteressadosVaga_Load(object sender, EventArgs e)
+        {
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
+        }
+
+        private void FormAlunosInteressadosVaga_SizeChanged(object sender, EventArgs e)
+        {
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
+        }
     }
 }

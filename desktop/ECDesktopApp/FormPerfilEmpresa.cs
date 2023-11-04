@@ -27,6 +27,7 @@ namespace ECDesktopApp
             //desabilita tudo do perfil pra deixar como ReadOnly as informacoes --- PERFIL ---
             btnCancelar.Visible = false;
             btnSalvar.Visible = false;
+            btnMudarFoto.Visible = false;
 
             txtEmail.Enabled = false;
             msktxtTelefone.Enabled = false;
@@ -70,6 +71,10 @@ namespace ECDesktopApp
                 btnAlunosInteressados.Text = "Ver detalhes da vaga";
                 tabPage2.Text = "Vagas";
             }
+
+            //centraliza
+            tabCtrlPerfilEmpresa.Left = (this.ClientSize.Width - tabCtrlPerfilEmpresa.Width) / 2;
+            lblNomeEmpresa.Left = (this.ClientSize.Width - lblNomeEmpresa.Width) / 2;
         }
 
         private void tabPgPerfil_Click(object sender, EventArgs e)
@@ -81,6 +86,7 @@ namespace ECDesktopApp
         {
             btnCancelar.Visible = true;
             btnSalvar.Visible = true;
+            btnMudarFoto.Visible = true;
             btnEditar.Visible = false;
 
             //habilita todos os campos para permitir edicao
@@ -104,6 +110,7 @@ namespace ECDesktopApp
         {
             btnCancelar.Visible = false;
             btnSalvar.Visible = false;
+            btnMudarFoto.Visible= false;
             btnEditar.Visible = true;
 
             //desabilita tudo de novo
@@ -127,6 +134,7 @@ namespace ECDesktopApp
         {
             btnCancelar.Visible = false;
             btnSalvar.Visible = false;
+            btnMudarFoto.Visible = false;
             btnEditar.Visible = true;
 
             //desabilita tudo de novo
@@ -240,6 +248,13 @@ namespace ECDesktopApp
             {
                 form.VagaId=0;
             }
+        }
+
+        private void FormPerfilEmpresa_ClientSizeChanged(object sender, EventArgs e)
+        {
+            //centraliza
+            tabCtrlPerfilEmpresa.Left = (this.ClientSize.Width - tabCtrlPerfilEmpresa.Width) / 2;
+            lblNomeEmpresa.Left = (this.ClientSize.Width - lblNomeEmpresa.Width) / 2;
         }
     }
 }

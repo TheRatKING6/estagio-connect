@@ -21,7 +21,9 @@ namespace ECDesktopApp
 
         private void FormVagaInteresseAluno_Load(object sender, EventArgs e)
         {
-
+            //centraliza
+            lblVagas.Left = (this.ClientSize.Width - lblVagas.Width) / 2;
+            tabCtrlVagasInteressadas.Left = (this.ClientSize.Width - tabCtrlVagasInteressadas.Width) / 2;
         }
 
         private void btnVerVagaSeuInteresse_Click(object sender, EventArgs e)
@@ -41,6 +43,13 @@ namespace ECDesktopApp
             form.MdiParent = this.MdiParent;
             form.Tipo = 0;
             form.Show();
+        }
+
+        private void FormVagaInteresseAluno_SizeChanged(object sender, EventArgs e)
+        {
+            //centraliza
+            lblVagas.Left = (this.ClientSize.Width - lblVagas.Width) / 2;
+            tabCtrlVagasInteressadas.Left = (this.ClientSize.Width - tabCtrlVagasInteressadas.Width) / 2;
         }
     }
 }

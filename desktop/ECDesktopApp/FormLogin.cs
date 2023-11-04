@@ -34,6 +34,26 @@ namespace ECDesktopApp
             //inicia a maskedBox como formato de cnpj pq o radiobutton do cnpj é carregado já checkado
             lblPK.Text = "CNPJ:";
             msktxtPK.Mask = "00,000,000/0000-00";
+
+            //coloca a logo na pictureBox
+            picBoxLogo.ImageLocation = "../../img/logo2.png";
+            picBoxLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            //centraliza tudo do jeito que eu quero (nem eu entendi como isso funciona tbh)
+            lblDescricao.Left = (this.ClientSize.Width - lblDescricao.Width) / 2;
+            lblDescricao.Top = (this.ClientSize.Height - lblDescricao.Height) / 5;
+
+            lblLogin.Left = (this.ClientSize.Width - lblLogin.Width) / 2;
+            lblLogin.Top = 6*(this.ClientSize.Height - lblLogin.Height) / 20;
+
+            lblSemCadastro.Left = (this.ClientSize.Width - lblSemCadastro.Width) / 2;
+            lblSemCadastro.Top = 8 *(this.ClientSize.Height - lblSemCadastro.Height) / 11;
+
+            picBoxLogo.Left = (this.ClientSize.Width -  picBoxLogo.Width) / 2;
+            picBoxLogo.Top = (this.ClientSize.Height - picBoxLogo.Height) / 64;
+            
+            gpbLogin.Left = (this.ClientSize.Width - gpbLogin.Width) / 2;
+            gpbLogin.Top = (this.ClientSize.Height - gpbLogin.Height) / 2;
         }
 
         private void lblSenha_Click(object sender, EventArgs e)
@@ -90,9 +110,9 @@ namespace ECDesktopApp
                     //Deixa tudo invisivel
                     lblDescricao.Visible = false;
                     lblLogin.Visible = false;
-                    lblTitulo.Visible = false;
+                    
                     lblSemCadastro.Visible = false;
-
+                    picBoxLogo.Visible = false;
                     gpbLogin.Visible = false;
 
                     menuStrip1.Visible = true;
@@ -227,6 +247,70 @@ namespace ECDesktopApp
             }
 
             form.Show();
+        }
+
+        private void FormLogin_ResizeEnd(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void FormLogin_SizeChanged(object sender, EventArgs e)
+        {
+            //centraliza tudo do jeito que eu quero; nao altera os valores do top pq se nao ia um ficar em cima do outro, assim ele so desce tudo junto
+            lblDescricao.Left = (this.ClientSize.Width - lblDescricao.Width) / 2;
+            //lblDescricao.Top = (this.ClientSize.Height - lblDescricao.Height) / 5;
+
+            lblLogin.Left = (this.ClientSize.Width - lblLogin.Width) / 2;
+            //lblLogin.Top = 6 * (this.ClientSize.Height - lblLogin.Height) / 20;
+
+            lblSemCadastro.Left = (this.ClientSize.Width - lblSemCadastro.Width) / 2;
+            //lblSemCadastro.Top = 8 * (this.ClientSize.Height - lblSemCadastro.Height) / 11;
+
+            picBoxLogo.Left = (this.ClientSize.Width - picBoxLogo.Width) / 2;
+            //picBoxLogo.Top = (this.ClientSize.Height - picBoxLogo.Height) / 64;
+
+            gpbLogin.Left = (this.ClientSize.Width - gpbLogin.Width) / 2;
+            //gpbLogin.Top = (this.ClientSize.Height - gpbLogin.Height) / 2;
+        }
+
+        //esse metodo e uma especie de log out, ele volta pro FormLogin e etc
+        public void FormGoBack()
+        {
+            //desTransforma em MdiContainer
+            this.IsMdiContainer = false;
+
+            //Deixa tudo visivel
+            lblDescricao.Visible = true;
+            lblLogin.Visible = true;
+
+            lblSemCadastro.Visible = true;
+            picBoxLogo.Visible = true;
+            gpbLogin.Visible = true;
+
+            menuStrip1.Visible = false;
+
+            msktxtPK.Text = string.Empty;
+            txtSenha.Text = string.Empty;
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult pergunta = MessageBox.Show("Tem certeza que deseja fazer log out?", "Log Out", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(pergunta == DialogResult.Yes)
+            {
+                FormGoBack();
+            }
+            
+        }
+
+        private void fecharToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult pergunta = MessageBox.Show("Tem certeza que deseja fechar o programa?", "Fechar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (pergunta == DialogResult.Yes)
+            {
+                Close();
+            }
+                
         }
     }
 }

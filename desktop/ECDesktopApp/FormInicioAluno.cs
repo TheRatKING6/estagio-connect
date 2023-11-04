@@ -42,6 +42,9 @@ namespace ECDesktopApp
             nome = nome.Substring(0, nome.IndexOf(" "));
 
             lblWelcome.Text += nome;
+
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
+            pnlContent.Top = (this.ClientSize.Height - pnlContent.Height) / 2;
         }
 
         private void btnVerVaga_Click(object sender, EventArgs e)

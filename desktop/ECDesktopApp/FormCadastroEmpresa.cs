@@ -28,16 +28,19 @@ namespace ECDesktopApp
 
         private void FormCadastroEmpresa_Load(object sender, EventArgs e)
         {
+            cbbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
 
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
             //Verifica se tudo foi preenchido corretamente
             string stringCnpj = msktxtCnpj.Text;
-            stringCnpj = stringCnpj.Replace(".", "").Replace("/", "").Replace("-", "");
+            stringCnpj = stringCnpj.Replace(".", "").Replace("/", "").Replace("-", "").Trim();
 
-            if (stringCnpj.Length != 14 || String.IsNullOrEmpty(txtNumero.Text) || msktxtCep.Text.Length != 9)
+            if (stringCnpj.Length != 14 || String.IsNullOrEmpty(txtNumero.Text) || msktxtCep.Text.Replace("-", "").Trim().Length != 8)
             {
                 MessageBox.Show("Preencha completamente os campos de CNPJ, Número e CEP para prosseguir", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -175,6 +178,12 @@ namespace ECDesktopApp
                 }
             }
 
+        }
+
+        private void FormCadastroEmpresa_ClientSizeChanged(object sender, EventArgs e)
+        {
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
         }
     }
 }

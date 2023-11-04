@@ -25,23 +25,29 @@ namespace ECDesktopApp
             btnVoltar.Visible = false;
             gpbSenha.Visible = false;
             btnCadastro.Visible = false;
+            
+            //o txt do nome do arqiov sempre vai ser impossivel de editar
+            txtArquivoCurriculo.Enabled = false;
         }
 
         private void FormCadastroAluno_Load(object sender, EventArgs e)
         {
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
 
+            
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
             string cpfstring = msktxtCpf.Text;
-            cpfstring = cpfstring.Replace(".", "").Replace("-", "");
+            cpfstring = cpfstring.Replace(".", "").Replace("-", "").Trim();
 
             //pega a data selecionada no DateTimePicker e transfroma em um objeto DateTIme
             DateTime selecionado = ManipulcaoData.getDataNascimento(dateNascimento.Text.ToString()); 
 
             //faz as verificacoes em busca de campos vazios
-            if(cpfstring.Length < 11 || msktxtCep.Text.Length < 9 || String.IsNullOrEmpty(txtNumero.Text))
+            if(cpfstring.Length < 11 || msktxtCep.Text.Trim().Length < 9 || String.IsNullOrEmpty(txtNumero.Text))
             {
                 MessageBox.Show("Preencha completamente os campos de CPF, CEP e Número para prosseguir.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -94,6 +100,8 @@ namespace ECDesktopApp
                     cbxStatus.Enabled = false;
 
                     dateNascimento.Enabled = false;
+
+                    btnEscolherCurriculo.Enabled = false;
                 }
                 catch(Exception ex)
                 {
@@ -133,6 +141,8 @@ namespace ECDesktopApp
             cbxStatus.Enabled = true;
 
             dateNascimento.Enabled = true;
+
+            btnEscolherCurriculo.Enabled = true;
 
             //Limpa os campos de senha
             txtSenha.Text = null;
@@ -210,6 +220,12 @@ namespace ECDesktopApp
             }
 
             
+        }
+
+        private void FormCadastroAluno_ClientSizeChanged(object sender, EventArgs e)
+        {
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
         }
     }
 }

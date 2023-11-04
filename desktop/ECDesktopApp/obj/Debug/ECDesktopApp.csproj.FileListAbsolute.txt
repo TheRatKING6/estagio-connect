@@ -28,3 +28,4 @@ C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopA
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormAlunosInteressadosVaga.resources
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormVagaInteresseAluno.resources
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormConnect.resources
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormVisualizarCurriculo.resources

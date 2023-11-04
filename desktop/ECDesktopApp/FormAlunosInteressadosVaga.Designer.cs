@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.dgvAlunosInteressadosVaga = new System.Windows.Forms.DataGridView();
-            this.btnVerAluno = new System.Windows.Forms.Button();
-            this.btnVerVaga = new System.Windows.Forms.Button();
-            this.lblAlunosInteresse = new System.Windows.Forms.Label();
             this.idVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.especializacaoVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,7 +37,12 @@
             this.especializacaoAluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.escolaAluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nascimentoAluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnVerAluno = new System.Windows.Forms.Button();
+            this.btnVerVaga = new System.Windows.Forms.Button();
+            this.lblAlunosInteresse = new System.Windows.Forms.Label();
+            this.pnlContent = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunosInteressadosVaga)).BeginInit();
+            this.pnlContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvAlunosInteressadosVaga
@@ -57,43 +59,11 @@
             this.especializacaoAluno,
             this.escolaAluno,
             this.nascimentoAluno});
-            this.dgvAlunosInteressadosVaga.Location = new System.Drawing.Point(90, 184);
+            this.dgvAlunosInteressadosVaga.Location = new System.Drawing.Point(15, 170);
             this.dgvAlunosInteressadosVaga.Name = "dgvAlunosInteressadosVaga";
             this.dgvAlunosInteressadosVaga.ReadOnly = true;
             this.dgvAlunosInteressadosVaga.Size = new System.Drawing.Size(1311, 382);
             this.dgvAlunosInteressadosVaga.TabIndex = 0;
-            // 
-            // btnVerAluno
-            // 
-            this.btnVerAluno.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerAluno.Location = new System.Drawing.Point(91, 136);
-            this.btnVerAluno.Name = "btnVerAluno";
-            this.btnVerAluno.Size = new System.Drawing.Size(155, 27);
-            this.btnVerAluno.TabIndex = 1;
-            this.btnVerAluno.Text = "Ver Perfil do Aluno";
-            this.btnVerAluno.UseVisualStyleBackColor = true;
-            this.btnVerAluno.Click += new System.EventHandler(this.btnVerAluno_Click);
-            // 
-            // btnVerVaga
-            // 
-            this.btnVerVaga.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerVaga.Location = new System.Drawing.Point(278, 136);
-            this.btnVerVaga.Name = "btnVerVaga";
-            this.btnVerVaga.Size = new System.Drawing.Size(202, 27);
-            this.btnVerVaga.TabIndex = 2;
-            this.btnVerVaga.Text = "Ver Informações da Vaga";
-            this.btnVerVaga.UseVisualStyleBackColor = true;
-            this.btnVerVaga.Click += new System.EventHandler(this.btnVerVaga_Click);
-            // 
-            // lblAlunosInteresse
-            // 
-            this.lblAlunosInteresse.AutoSize = true;
-            this.lblAlunosInteresse.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAlunosInteresse.Location = new System.Drawing.Point(520, 42);
-            this.lblAlunosInteresse.Name = "lblAlunosInteresse";
-            this.lblAlunosInteresse.Size = new System.Drawing.Size(445, 36);
-            this.lblAlunosInteresse.TabIndex = 3;
-            this.lblAlunosInteresse.Text = "Alunos Interessados em suas vagas";
             // 
             // idVaga
             // 
@@ -143,20 +113,64 @@
             this.nascimentoAluno.Name = "nascimentoAluno";
             this.nascimentoAluno.ReadOnly = true;
             // 
+            // btnVerAluno
+            // 
+            this.btnVerAluno.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerAluno.Location = new System.Drawing.Point(16, 122);
+            this.btnVerAluno.Name = "btnVerAluno";
+            this.btnVerAluno.Size = new System.Drawing.Size(155, 27);
+            this.btnVerAluno.TabIndex = 1;
+            this.btnVerAluno.Text = "Ver Perfil do Aluno";
+            this.btnVerAluno.UseVisualStyleBackColor = true;
+            this.btnVerAluno.Click += new System.EventHandler(this.btnVerAluno_Click);
+            // 
+            // btnVerVaga
+            // 
+            this.btnVerVaga.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerVaga.Location = new System.Drawing.Point(203, 122);
+            this.btnVerVaga.Name = "btnVerVaga";
+            this.btnVerVaga.Size = new System.Drawing.Size(202, 27);
+            this.btnVerVaga.TabIndex = 2;
+            this.btnVerVaga.Text = "Ver Informações da Vaga";
+            this.btnVerVaga.UseVisualStyleBackColor = true;
+            this.btnVerVaga.Click += new System.EventHandler(this.btnVerVaga_Click);
+            // 
+            // lblAlunosInteresse
+            // 
+            this.lblAlunosInteresse.AutoSize = true;
+            this.lblAlunosInteresse.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlunosInteresse.Location = new System.Drawing.Point(445, 28);
+            this.lblAlunosInteresse.Name = "lblAlunosInteresse";
+            this.lblAlunosInteresse.Size = new System.Drawing.Size(445, 36);
+            this.lblAlunosInteresse.TabIndex = 3;
+            this.lblAlunosInteresse.Text = "Alunos Interessados em suas vagas";
+            // 
+            // pnlContent
+            // 
+            this.pnlContent.Controls.Add(this.btnVerAluno);
+            this.pnlContent.Controls.Add(this.lblAlunosInteresse);
+            this.pnlContent.Controls.Add(this.dgvAlunosInteressadosVaga);
+            this.pnlContent.Controls.Add(this.btnVerVaga);
+            this.pnlContent.Location = new System.Drawing.Point(71, 12);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(1343, 639);
+            this.pnlContent.TabIndex = 4;
+            // 
             // FormAlunosInteressadosVaga
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1576, 698);
-            this.Controls.Add(this.lblAlunosInteresse);
-            this.Controls.Add(this.btnVerVaga);
-            this.Controls.Add(this.btnVerAluno);
-            this.Controls.Add(this.dgvAlunosInteressadosVaga);
+            this.Controls.Add(this.pnlContent);
             this.Name = "FormAlunosInteressadosVaga";
             this.Text = "Alunos Interessados";
+            this.Load += new System.EventHandler(this.FormAlunosInteressadosVaga_Load);
+            this.SizeChanged += new System.EventHandler(this.FormAlunosInteressadosVaga_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunosInteressadosVaga)).EndInit();
+            this.pnlContent.ResumeLayout(false);
+            this.pnlContent.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -174,5 +188,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn especializacaoAluno;
         private System.Windows.Forms.DataGridViewTextBoxColumn escolaAluno;
         private System.Windows.Forms.DataGridViewTextBoxColumn nascimentoAluno;
+        private System.Windows.Forms.Panel pnlContent;
     }
 }

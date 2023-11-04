@@ -27,7 +27,8 @@ namespace ECDesktopApp
 
         private void FormPesquisarEmpresa_Load(object sender, EventArgs e)
         {
-
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -48,6 +49,12 @@ namespace ECDesktopApp
             form.MdiParent = this.MdiParent;
             form.Tipo = 0;
             form.Show();
+        }
+
+        private void FormPesquisarEmpresa_SizeChanged(object sender, EventArgs e)
+        {
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
         }
     }
 }

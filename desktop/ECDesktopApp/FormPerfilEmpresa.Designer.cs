@@ -66,7 +66,15 @@
             this.picFoto = new System.Windows.Forms.PictureBox();
             this.lblNomeEmpresa = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnAlunosInteressados = new System.Windows.Forms.Button();
+            this.btnExcluirVaga = new System.Windows.Forms.Button();
+            this.btnConfirmaCriar = new System.Windows.Forms.Button();
+            this.btnConfirmaEditar = new System.Windows.Forms.Button();
+            this.btnEditarVaga = new System.Windows.Forms.Button();
+            this.btnCancelarVaga = new System.Windows.Forms.Button();
+            this.btnCriarVaga = new System.Windows.Forms.Button();
             this.gpbInfoVaga = new System.Windows.Forms.GroupBox();
+            this.lblIdVaga = new System.Windows.Forms.Label();
             this.txtNomeVaga = new System.Windows.Forms.TextBox();
             this.lblNomeVaga = new System.Windows.Forms.Label();
             this.txtCarga = new System.Windows.Forms.TextBox();
@@ -84,14 +92,7 @@
             this.vagaArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requisitosVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cargaVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCriarVaga = new System.Windows.Forms.Button();
-            this.btnCancelarVaga = new System.Windows.Forms.Button();
-            this.btnEditarVaga = new System.Windows.Forms.Button();
-            this.btnConfirmaEditar = new System.Windows.Forms.Button();
-            this.btnConfirmaCriar = new System.Windows.Forms.Button();
-            this.lblIdVaga = new System.Windows.Forms.Label();
-            this.btnExcluirVaga = new System.Windows.Forms.Button();
-            this.btnAlunosInteressados = new System.Windows.Forms.Button();
+            this.btnMudarFoto = new System.Windows.Forms.Button();
             this.tabCtrlPerfilEmpresa.SuspendLayout();
             this.tabPgPerfil.SuspendLayout();
             this.gpbInfoContato.SuspendLayout();
@@ -115,6 +116,7 @@
             // 
             // tabPgPerfil
             // 
+            this.tabPgPerfil.Controls.Add(this.btnMudarFoto);
             this.tabPgPerfil.Controls.Add(this.btnDelete);
             this.tabPgPerfil.Controls.Add(this.btnCancelar);
             this.tabPgPerfil.Controls.Add(this.btnSalvar);
@@ -131,7 +133,6 @@
             this.tabPgPerfil.Controls.Add(this.lblCnpj);
             this.tabPgPerfil.Controls.Add(this.lblFoto);
             this.tabPgPerfil.Controls.Add(this.picFoto);
-            this.tabPgPerfil.Controls.Add(this.lblNomeEmpresa);
             this.tabPgPerfil.Location = new System.Drawing.Point(4, 28);
             this.tabPgPerfil.Name = "tabPgPerfil";
             this.tabPgPerfil.Padding = new System.Windows.Forms.Padding(3);
@@ -166,13 +167,14 @@
             // 
             // btnSalvar
             // 
+            this.btnSalvar.BackColor = System.Drawing.Color.LightGreen;
             this.btnSalvar.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.Location = new System.Drawing.Point(945, 716);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(109, 38);
             this.btnSalvar.TabIndex = 25;
             this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnEditar
@@ -526,7 +528,7 @@
             // 
             this.lblNomeEmpresa.AutoSize = true;
             this.lblNomeEmpresa.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeEmpresa.Location = new System.Drawing.Point(562, 12);
+            this.lblNomeEmpresa.Location = new System.Drawing.Point(605, 17);
             this.lblNomeEmpresa.Name = "lblNomeEmpresa";
             this.lblNomeEmpresa.Size = new System.Drawing.Size(306, 59);
             this.lblNomeEmpresa.TabIndex = 0;
@@ -551,6 +553,79 @@
             this.tabPage2.Text = "Minhas Vagas";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnAlunosInteressados
+            // 
+            this.btnAlunosInteressados.Location = new System.Drawing.Point(656, 284);
+            this.btnAlunosInteressados.Name = "btnAlunosInteressados";
+            this.btnAlunosInteressados.Size = new System.Drawing.Size(218, 30);
+            this.btnAlunosInteressados.TabIndex = 8;
+            this.btnAlunosInteressados.Text = "Vizualizar Alunos Interessados";
+            this.btnAlunosInteressados.UseVisualStyleBackColor = true;
+            this.btnAlunosInteressados.Click += new System.EventHandler(this.btnAlunosInteressados_Click);
+            // 
+            // btnExcluirVaga
+            // 
+            this.btnExcluirVaga.BackColor = System.Drawing.Color.Salmon;
+            this.btnExcluirVaga.Location = new System.Drawing.Point(167, 284);
+            this.btnExcluirVaga.Name = "btnExcluirVaga";
+            this.btnExcluirVaga.Size = new System.Drawing.Size(141, 30);
+            this.btnExcluirVaga.TabIndex = 7;
+            this.btnExcluirVaga.Text = "Excluir Vaga";
+            this.btnExcluirVaga.UseVisualStyleBackColor = false;
+            // 
+            // btnConfirmaCriar
+            // 
+            this.btnConfirmaCriar.BackColor = System.Drawing.Color.LightGreen;
+            this.btnConfirmaCriar.Location = new System.Drawing.Point(1106, 320);
+            this.btnConfirmaCriar.Name = "btnConfirmaCriar";
+            this.btnConfirmaCriar.Size = new System.Drawing.Size(101, 30);
+            this.btnConfirmaCriar.TabIndex = 6;
+            this.btnConfirmaCriar.Text = "Confirmar";
+            this.btnConfirmaCriar.UseVisualStyleBackColor = false;
+            this.btnConfirmaCriar.Click += new System.EventHandler(this.btnConfirmaCriar_Click);
+            // 
+            // btnConfirmaEditar
+            // 
+            this.btnConfirmaEditar.BackColor = System.Drawing.Color.LightGreen;
+            this.btnConfirmaEditar.Location = new System.Drawing.Point(1034, 284);
+            this.btnConfirmaEditar.Name = "btnConfirmaEditar";
+            this.btnConfirmaEditar.Size = new System.Drawing.Size(173, 30);
+            this.btnConfirmaEditar.TabIndex = 5;
+            this.btnConfirmaEditar.Text = "Confirmar Alterações";
+            this.btnConfirmaEditar.UseVisualStyleBackColor = false;
+            this.btnConfirmaEditar.Click += new System.EventHandler(this.btnConfirmaEditar_Click);
+            // 
+            // btnEditarVaga
+            // 
+            this.btnEditarVaga.Location = new System.Drawing.Point(1231, 284);
+            this.btnEditarVaga.Name = "btnEditarVaga";
+            this.btnEditarVaga.Size = new System.Drawing.Size(126, 30);
+            this.btnEditarVaga.TabIndex = 4;
+            this.btnEditarVaga.Text = "Editar Vaga";
+            this.btnEditarVaga.UseVisualStyleBackColor = true;
+            this.btnEditarVaga.Click += new System.EventHandler(this.btnEditarVaga_Click);
+            // 
+            // btnCancelarVaga
+            // 
+            this.btnCancelarVaga.BackColor = System.Drawing.Color.Salmon;
+            this.btnCancelarVaga.Location = new System.Drawing.Point(167, 320);
+            this.btnCancelarVaga.Name = "btnCancelarVaga";
+            this.btnCancelarVaga.Size = new System.Drawing.Size(89, 30);
+            this.btnCancelarVaga.TabIndex = 3;
+            this.btnCancelarVaga.Text = "Cancelar";
+            this.btnCancelarVaga.UseVisualStyleBackColor = false;
+            this.btnCancelarVaga.Click += new System.EventHandler(this.btnCancelarVaga_Click);
+            // 
+            // btnCriarVaga
+            // 
+            this.btnCriarVaga.Location = new System.Drawing.Point(1231, 320);
+            this.btnCriarVaga.Name = "btnCriarVaga";
+            this.btnCriarVaga.Size = new System.Drawing.Size(126, 30);
+            this.btnCriarVaga.TabIndex = 2;
+            this.btnCriarVaga.Text = "Criar nova vaga";
+            this.btnCriarVaga.UseVisualStyleBackColor = true;
+            this.btnCriarVaga.Click += new System.EventHandler(this.btnCriarVaga_Click);
+            // 
             // gpbInfoVaga
             // 
             this.gpbInfoVaga.Controls.Add(this.lblIdVaga);
@@ -570,6 +645,15 @@
             this.gpbInfoVaga.TabIndex = 1;
             this.gpbInfoVaga.TabStop = false;
             this.gpbInfoVaga.Text = "Informações da Vaga";
+            // 
+            // lblIdVaga
+            // 
+            this.lblIdVaga.AutoSize = true;
+            this.lblIdVaga.Location = new System.Drawing.Point(1105, 13);
+            this.lblIdVaga.Name = "lblIdVaga";
+            this.lblIdVaga.Size = new System.Drawing.Size(17, 19);
+            this.lblIdVaga.TabIndex = 20;
+            this.lblIdVaga.Text = "#";
             // 
             // txtNomeVaga
             // 
@@ -716,97 +800,27 @@
             this.cargaVaga.Name = "cargaVaga";
             this.cargaVaga.ReadOnly = true;
             // 
-            // btnCriarVaga
+            // btnMudarFoto
             // 
-            this.btnCriarVaga.Location = new System.Drawing.Point(1231, 320);
-            this.btnCriarVaga.Name = "btnCriarVaga";
-            this.btnCriarVaga.Size = new System.Drawing.Size(126, 30);
-            this.btnCriarVaga.TabIndex = 2;
-            this.btnCriarVaga.Text = "Criar nova vaga";
-            this.btnCriarVaga.UseVisualStyleBackColor = true;
-            this.btnCriarVaga.Click += new System.EventHandler(this.btnCriarVaga_Click);
-            // 
-            // btnCancelarVaga
-            // 
-            this.btnCancelarVaga.BackColor = System.Drawing.Color.Salmon;
-            this.btnCancelarVaga.Location = new System.Drawing.Point(167, 320);
-            this.btnCancelarVaga.Name = "btnCancelarVaga";
-            this.btnCancelarVaga.Size = new System.Drawing.Size(89, 30);
-            this.btnCancelarVaga.TabIndex = 3;
-            this.btnCancelarVaga.Text = "Cancelar";
-            this.btnCancelarVaga.UseVisualStyleBackColor = false;
-            this.btnCancelarVaga.Click += new System.EventHandler(this.btnCancelarVaga_Click);
-            // 
-            // btnEditarVaga
-            // 
-            this.btnEditarVaga.Location = new System.Drawing.Point(1231, 284);
-            this.btnEditarVaga.Name = "btnEditarVaga";
-            this.btnEditarVaga.Size = new System.Drawing.Size(126, 30);
-            this.btnEditarVaga.TabIndex = 4;
-            this.btnEditarVaga.Text = "Editar Vaga";
-            this.btnEditarVaga.UseVisualStyleBackColor = true;
-            this.btnEditarVaga.Click += new System.EventHandler(this.btnEditarVaga_Click);
-            // 
-            // btnConfirmaEditar
-            // 
-            this.btnConfirmaEditar.BackColor = System.Drawing.Color.LightGreen;
-            this.btnConfirmaEditar.Location = new System.Drawing.Point(1034, 284);
-            this.btnConfirmaEditar.Name = "btnConfirmaEditar";
-            this.btnConfirmaEditar.Size = new System.Drawing.Size(173, 30);
-            this.btnConfirmaEditar.TabIndex = 5;
-            this.btnConfirmaEditar.Text = "Confirmar Alterações";
-            this.btnConfirmaEditar.UseVisualStyleBackColor = false;
-            this.btnConfirmaEditar.Click += new System.EventHandler(this.btnConfirmaEditar_Click);
-            // 
-            // btnConfirmaCriar
-            // 
-            this.btnConfirmaCriar.BackColor = System.Drawing.Color.LightGreen;
-            this.btnConfirmaCriar.Location = new System.Drawing.Point(1106, 320);
-            this.btnConfirmaCriar.Name = "btnConfirmaCriar";
-            this.btnConfirmaCriar.Size = new System.Drawing.Size(101, 30);
-            this.btnConfirmaCriar.TabIndex = 6;
-            this.btnConfirmaCriar.Text = "Confirmar";
-            this.btnConfirmaCriar.UseVisualStyleBackColor = false;
-            this.btnConfirmaCriar.Click += new System.EventHandler(this.btnConfirmaCriar_Click);
-            // 
-            // lblIdVaga
-            // 
-            this.lblIdVaga.AutoSize = true;
-            this.lblIdVaga.Location = new System.Drawing.Point(1105, 13);
-            this.lblIdVaga.Name = "lblIdVaga";
-            this.lblIdVaga.Size = new System.Drawing.Size(17, 19);
-            this.lblIdVaga.TabIndex = 20;
-            this.lblIdVaga.Text = "#";
-            // 
-            // btnExcluirVaga
-            // 
-            this.btnExcluirVaga.BackColor = System.Drawing.Color.Salmon;
-            this.btnExcluirVaga.Location = new System.Drawing.Point(167, 284);
-            this.btnExcluirVaga.Name = "btnExcluirVaga";
-            this.btnExcluirVaga.Size = new System.Drawing.Size(141, 30);
-            this.btnExcluirVaga.TabIndex = 7;
-            this.btnExcluirVaga.Text = "Excluir Vaga";
-            this.btnExcluirVaga.UseVisualStyleBackColor = false;
-            // 
-            // btnAlunosInteressados
-            // 
-            this.btnAlunosInteressados.Location = new System.Drawing.Point(656, 284);
-            this.btnAlunosInteressados.Name = "btnAlunosInteressados";
-            this.btnAlunosInteressados.Size = new System.Drawing.Size(218, 30);
-            this.btnAlunosInteressados.TabIndex = 8;
-            this.btnAlunosInteressados.Text = "Vizualizar Alunos Interessados";
-            this.btnAlunosInteressados.UseVisualStyleBackColor = true;
-            this.btnAlunosInteressados.Click += new System.EventHandler(this.btnAlunosInteressados_Click);
+            this.btnMudarFoto.Location = new System.Drawing.Point(1195, 373);
+            this.btnMudarFoto.Name = "btnMudarFoto";
+            this.btnMudarFoto.Size = new System.Drawing.Size(161, 29);
+            this.btnMudarFoto.TabIndex = 57;
+            this.btnMudarFoto.Text = "Mudar Foto de Perfil";
+            this.btnMudarFoto.UseVisualStyleBackColor = true;
             // 
             // FormPerfilEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1505, 1016);
             this.Controls.Add(this.tabCtrlPerfilEmpresa);
+            this.Controls.Add(this.lblNomeEmpresa);
             this.Name = "FormPerfilEmpresa";
             this.Text = "Seu Perfil";
             this.Load += new System.EventHandler(this.FormPerfilEmpresa_Load);
+            this.ClientSizeChanged += new System.EventHandler(this.FormPerfilEmpresa_ClientSizeChanged);
             this.tabCtrlPerfilEmpresa.ResumeLayout(false);
             this.tabPgPerfil.ResumeLayout(false);
             this.tabPgPerfil.PerformLayout();
@@ -820,6 +834,7 @@
             this.gpbInfoVaga.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVagasEmpresa)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -889,5 +904,6 @@
         private System.Windows.Forms.Label lblIdVaga;
         private System.Windows.Forms.Button btnExcluirVaga;
         private System.Windows.Forms.Button btnAlunosInteressados;
+        private System.Windows.Forms.Button btnMudarFoto;
     }
 }

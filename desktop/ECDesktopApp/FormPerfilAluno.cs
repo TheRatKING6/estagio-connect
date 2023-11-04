@@ -29,6 +29,7 @@ namespace ECDesktopApp
             //desabilita tudo pra nao modificar
             btnCancelar.Visible = false;
             btnSalvar.Visible = false;
+            btnMudarFoto.Visible = false;
 
             txtEmail.Enabled = false;
             msktxtTelefone.Enabled = false;
@@ -50,6 +51,8 @@ namespace ECDesktopApp
             dateNascimento.Enabled = false;
             cbxStatus.Enabled = false;
             msktxtCpf.Enabled = false;
+
+            txtArquivoCurriculo.Enabled = false;
 
             btnInteresse.Visible = false;
 
@@ -73,6 +76,18 @@ namespace ECDesktopApp
                 btnDelete.Visible = false;
                 btnEditar.Visible = false;
             }
+
+            if (interesse)
+            {
+                btnInteresse.Text = "Retirar o interesse";
+                btnInteresse.BackColor = Color.Salmon;
+            }
+
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
+
+            btnCurriculo.Text = "Ver currículo";
+
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -82,6 +97,7 @@ namespace ECDesktopApp
 
             btnCancelar.Visible = true;
             btnSalvar.Visible = true;
+            btnMudarFoto.Visible = true;
 
             txtEmail.Enabled = true;
             msktxtTelefone.Enabled = true;
@@ -100,6 +116,8 @@ namespace ECDesktopApp
             txtEscola.Enabled = true;
             txtMatricula.Enabled = true;
             cbxStatus.Enabled = true;
+
+            btnCurriculo.Text = "Trocar currículo";
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -108,6 +126,7 @@ namespace ECDesktopApp
 
             btnCancelar.Visible = false;
             btnSalvar.Visible = false;
+            btnMudarFoto .Visible = false;
 
             txtEmail.Enabled = false;
             msktxtTelefone.Enabled = false;
@@ -126,6 +145,8 @@ namespace ECDesktopApp
             txtEscola.Enabled = false;
             txtMatricula.Enabled = false;
             cbxStatus.Enabled = false;
+
+            btnCurriculo.Text = "Ver currículo";
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -134,6 +155,7 @@ namespace ECDesktopApp
 
             btnCancelar.Visible = false;
             btnSalvar.Visible = false;
+            btnMudarFoto.Visible = false;
 
             txtEmail.Enabled = false;
             msktxtTelefone.Enabled = false;
@@ -152,6 +174,8 @@ namespace ECDesktopApp
             txtEscola.Enabled = false;
             txtMatricula.Enabled = false;
             cbxStatus.Enabled = false;
+
+            btnCurriculo.Text = "Ver currículo";
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -185,6 +209,26 @@ namespace ECDesktopApp
                 btnInteresse.Text = "Demonstrar Interesse";
                 btnInteresse.BackColor = Color.Transparent;
                 interesse = false;
+            }
+        }
+
+        private void FormPerfilAluno_ClientSizeChanged(object sender, EventArgs e)
+        {
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
+        }
+
+        private void btnCurriculo_Click(object sender, EventArgs e)
+        {
+            if(btnCurriculo.Text.Equals("Trocar currículo"))
+            {
+                //abrir o menu de arquivo e fzr upload
+            }
+            else
+            {
+                FormVisualizarCurriculo form = new FormVisualizarCurriculo();
+                form.MdiParent = this.MdiParent;
+                form.Show();
             }
         }
     }

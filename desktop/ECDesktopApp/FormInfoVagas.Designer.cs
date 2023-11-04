@@ -54,12 +54,15 @@
             this.escolaAluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVisualizarAluno = new System.Windows.Forms.Button();
             this.btnInteressado = new System.Windows.Forms.Button();
+            this.pnlContent = new System.Windows.Forms.Panel();
             this.gpbInfoVaga.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunosInteressados)).BeginInit();
+            this.pnlContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpbInfoVaga
             // 
+            this.gpbInfoVaga.BackColor = System.Drawing.SystemColors.Control;
             this.gpbInfoVaga.Controls.Add(this.lblIdVaga);
             this.gpbInfoVaga.Controls.Add(this.txtNomeVaga);
             this.gpbInfoVaga.Controls.Add(this.lblNomeVaga);
@@ -72,7 +75,7 @@
             this.gpbInfoVaga.Controls.Add(this.txtDescricaoVaga);
             this.gpbInfoVaga.Controls.Add(this.lblDescricaoVaga);
             this.gpbInfoVaga.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbInfoVaga.Location = new System.Drawing.Point(216, 111);
+            this.gpbInfoVaga.Location = new System.Drawing.Point(30, 87);
             this.gpbInfoVaga.Name = "gpbInfoVaga";
             this.gpbInfoVaga.Size = new System.Drawing.Size(1190, 223);
             this.gpbInfoVaga.TabIndex = 2;
@@ -183,7 +186,7 @@
             // 
             this.lblVaga.AutoSize = true;
             this.lblVaga.Font = new System.Drawing.Font("Calibri", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVaga.Location = new System.Drawing.Point(760, 51);
+            this.lblVaga.Location = new System.Drawing.Point(574, 27);
             this.lblVaga.Name = "lblVaga";
             this.lblVaga.Size = new System.Drawing.Size(97, 42);
             this.lblVaga.TabIndex = 3;
@@ -193,7 +196,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(624, 480);
+            this.label1.Location = new System.Drawing.Point(438, 456);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(341, 29);
             this.label1.TabIndex = 4;
@@ -214,7 +217,7 @@
             this.statusAluno,
             this.anoAluno,
             this.escolaAluno});
-            this.dgvAlunosInteressados.Location = new System.Drawing.Point(211, 520);
+            this.dgvAlunosInteressados.Location = new System.Drawing.Point(25, 496);
             this.dgvAlunosInteressados.Name = "dgvAlunosInteressados";
             this.dgvAlunosInteressados.ReadOnly = true;
             this.dgvAlunosInteressados.Size = new System.Drawing.Size(1195, 410);
@@ -277,7 +280,7 @@
             // btnVisualizarAluno
             // 
             this.btnVisualizarAluno.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVisualizarAluno.Location = new System.Drawing.Point(1113, 405);
+            this.btnVisualizarAluno.Location = new System.Drawing.Point(927, 381);
             this.btnVisualizarAluno.Name = "btnVisualizarAluno";
             this.btnVisualizarAluno.Size = new System.Drawing.Size(293, 36);
             this.btnVisualizarAluno.TabIndex = 6;
@@ -288,7 +291,7 @@
             // btnInteressado
             // 
             this.btnInteressado.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInteressado.Location = new System.Drawing.Point(216, 405);
+            this.btnInteressado.Location = new System.Drawing.Point(30, 381);
             this.btnInteressado.Name = "btnInteressado";
             this.btnInteressado.Size = new System.Drawing.Size(169, 36);
             this.btnInteressado.TabIndex = 7;
@@ -296,25 +299,36 @@
             this.btnInteressado.UseVisualStyleBackColor = true;
             this.btnInteressado.Click += new System.EventHandler(this.btnInteressado_Click);
             // 
+            // pnlContent
+            // 
+            this.pnlContent.Controls.Add(this.gpbInfoVaga);
+            this.pnlContent.Controls.Add(this.btnInteressado);
+            this.pnlContent.Controls.Add(this.lblVaga);
+            this.pnlContent.Controls.Add(this.btnVisualizarAluno);
+            this.pnlContent.Controls.Add(this.label1);
+            this.pnlContent.Controls.Add(this.dgvAlunosInteressados);
+            this.pnlContent.Location = new System.Drawing.Point(123, 12);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(1257, 958);
+            this.pnlContent.TabIndex = 8;
+            // 
             // FormInfoVagas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1531, 995);
-            this.Controls.Add(this.btnInteressado);
-            this.Controls.Add(this.btnVisualizarAluno);
-            this.Controls.Add(this.dgvAlunosInteressados);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblVaga);
-            this.Controls.Add(this.gpbInfoVaga);
+            this.Controls.Add(this.pnlContent);
             this.Name = "FormInfoVagas";
             this.Text = "Informações da Vaga";
             this.Load += new System.EventHandler(this.FormInfoVagas_Load);
+            this.ClientSizeChanged += new System.EventHandler(this.FormInfoVagas_ClientSizeChanged);
             this.gpbInfoVaga.ResumeLayout(false);
             this.gpbInfoVaga.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunosInteressados)).EndInit();
+            this.pnlContent.ResumeLayout(false);
+            this.pnlContent.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -346,5 +360,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn escolaAluno;
         private System.Windows.Forms.Button btnVisualizarAluno;
         private System.Windows.Forms.Button btnInteressado;
+        private System.Windows.Forms.Panel pnlContent;
     }
 }

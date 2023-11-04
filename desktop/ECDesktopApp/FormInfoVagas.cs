@@ -53,6 +53,9 @@ namespace ECDesktopApp
                     btnInteressado.BackColor = Color.Salmon;
                 }
             }
+
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
         }
 
         private void btnVisualizarAluno_Click(object sender, EventArgs e)
@@ -84,6 +87,12 @@ namespace ECDesktopApp
                 btnInteressado.BackColor = Color.Transparent;
                 interessado = false;
             }
+        }
+
+        private void FormInfoVagas_ClientSizeChanged(object sender, EventArgs e)
+        {
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
         }
     }
 }

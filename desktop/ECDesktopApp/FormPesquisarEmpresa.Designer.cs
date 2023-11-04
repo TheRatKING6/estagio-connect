@@ -36,20 +36,22 @@
             this.cidadeEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblBuscaEmpresa = new System.Windows.Forms.Label();
             this.gpbBuscaAluno = new System.Windows.Forms.GroupBox();
+            this.txtRamo = new System.Windows.Forms.TextBox();
+            this.lblRamo = new System.Windows.Forms.Label();
             this.txtCidade = new System.Windows.Forms.TextBox();
             this.lblCidade = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
-            this.lblRamo = new System.Windows.Forms.Label();
-            this.txtRamo = new System.Windows.Forms.TextBox();
             this.lblOrganizar = new System.Windows.Forms.Label();
             this.cbxOrganizar = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnVerEmpresa = new System.Windows.Forms.Button();
+            this.pnlContent = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaEmpresa)).BeginInit();
             this.gpbBuscaAluno.SuspendLayout();
+            this.pnlContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvBuscaEmpresa
@@ -63,7 +65,7 @@
             this.emailEmpresa,
             this.ramoEmpresa,
             this.cidadeEmpresa});
-            this.dgvBuscaEmpresa.Location = new System.Drawing.Point(111, 378);
+            this.dgvBuscaEmpresa.Location = new System.Drawing.Point(15, 365);
             this.dgvBuscaEmpresa.Name = "dgvBuscaEmpresa";
             this.dgvBuscaEmpresa.ReadOnly = true;
             this.dgvBuscaEmpresa.Size = new System.Drawing.Size(1290, 296);
@@ -102,15 +104,16 @@
             // lblBuscaEmpresa
             // 
             this.lblBuscaEmpresa.AutoSize = true;
-            this.lblBuscaEmpresa.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscaEmpresa.Location = new System.Drawing.Point(677, 9);
+            this.lblBuscaEmpresa.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuscaEmpresa.Location = new System.Drawing.Point(581, 4);
             this.lblBuscaEmpresa.Name = "lblBuscaEmpresa";
-            this.lblBuscaEmpresa.Size = new System.Drawing.Size(212, 36);
+            this.lblBuscaEmpresa.Size = new System.Drawing.Size(219, 36);
             this.lblBuscaEmpresa.TabIndex = 3;
             this.lblBuscaEmpresa.Text = "Buscar Empresas";
             // 
             // gpbBuscaAluno
             // 
+            this.gpbBuscaAluno.BackColor = System.Drawing.SystemColors.Control;
             this.gpbBuscaAluno.Controls.Add(this.txtRamo);
             this.gpbBuscaAluno.Controls.Add(this.lblRamo);
             this.gpbBuscaAluno.Controls.Add(this.txtCidade);
@@ -120,12 +123,28 @@
             this.gpbBuscaAluno.Controls.Add(this.lblEmail);
             this.gpbBuscaAluno.Controls.Add(this.lblNome);
             this.gpbBuscaAluno.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbBuscaAluno.Location = new System.Drawing.Point(111, 73);
+            this.gpbBuscaAluno.Location = new System.Drawing.Point(15, 60);
             this.gpbBuscaAluno.Name = "gpbBuscaAluno";
             this.gpbBuscaAluno.Size = new System.Drawing.Size(1010, 252);
             this.gpbBuscaAluno.TabIndex = 4;
             this.gpbBuscaAluno.TabStop = false;
             this.gpbBuscaAluno.Text = "Buscar";
+            // 
+            // txtRamo
+            // 
+            this.txtRamo.Location = new System.Drawing.Point(641, 48);
+            this.txtRamo.Name = "txtRamo";
+            this.txtRamo.Size = new System.Drawing.Size(350, 27);
+            this.txtRamo.TabIndex = 50;
+            // 
+            // lblRamo
+            // 
+            this.lblRamo.AutoSize = true;
+            this.lblRamo.Location = new System.Drawing.Point(580, 51);
+            this.lblRamo.Name = "lblRamo";
+            this.lblRamo.Size = new System.Drawing.Size(50, 19);
+            this.lblRamo.TabIndex = 49;
+            this.lblRamo.Text = "Ramo:";
             // 
             // txtCidade
             // 
@@ -175,27 +194,11 @@
             this.lblNome.TabIndex = 0;
             this.lblNome.Text = "Nome:";
             // 
-            // lblRamo
-            // 
-            this.lblRamo.AutoSize = true;
-            this.lblRamo.Location = new System.Drawing.Point(580, 51);
-            this.lblRamo.Name = "lblRamo";
-            this.lblRamo.Size = new System.Drawing.Size(50, 19);
-            this.lblRamo.TabIndex = 49;
-            this.lblRamo.Text = "Ramo:";
-            // 
-            // txtRamo
-            // 
-            this.txtRamo.Location = new System.Drawing.Point(641, 48);
-            this.txtRamo.Name = "txtRamo";
-            this.txtRamo.Size = new System.Drawing.Size(350, 27);
-            this.txtRamo.TabIndex = 50;
-            // 
             // lblOrganizar
             // 
             this.lblOrganizar.AutoSize = true;
             this.lblOrganizar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrganizar.Location = new System.Drawing.Point(1186, 308);
+            this.lblOrganizar.Location = new System.Drawing.Point(1090, 295);
             this.lblOrganizar.Name = "lblOrganizar";
             this.lblOrganizar.Size = new System.Drawing.Size(149, 15);
             this.lblOrganizar.TabIndex = 10;
@@ -212,7 +215,7 @@
             "Cidade (Alfabético Decrescente)",
             "Ramo (Alfabético Crescente)",
             "Ramo (Alfabético Decrescente)"});
-            this.cbxOrganizar.Location = new System.Drawing.Point(1189, 326);
+            this.cbxOrganizar.Location = new System.Drawing.Point(1093, 313);
             this.cbxOrganizar.Name = "cbxOrganizar";
             this.cbxOrganizar.Size = new System.Drawing.Size(212, 27);
             this.cbxOrganizar.TabIndex = 9;
@@ -220,7 +223,7 @@
             // btnBuscar
             // 
             this.btnBuscar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.Location = new System.Drawing.Point(1189, 181);
+            this.btnBuscar.Location = new System.Drawing.Point(1093, 168);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(212, 35);
             this.btnBuscar.TabIndex = 8;
@@ -231,7 +234,7 @@
             // btnVerEmpresa
             // 
             this.btnVerEmpresa.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerEmpresa.Location = new System.Drawing.Point(1189, 222);
+            this.btnVerEmpresa.Location = new System.Drawing.Point(1093, 209);
             this.btnVerEmpresa.Name = "btnVerEmpresa";
             this.btnVerEmpresa.Size = new System.Drawing.Size(212, 30);
             this.btnVerEmpresa.TabIndex = 7;
@@ -239,26 +242,37 @@
             this.btnVerEmpresa.UseVisualStyleBackColor = true;
             this.btnVerEmpresa.Click += new System.EventHandler(this.btnVerEmpresa_Click);
             // 
+            // pnlContent
+            // 
+            this.pnlContent.Controls.Add(this.gpbBuscaAluno);
+            this.pnlContent.Controls.Add(this.lblOrganizar);
+            this.pnlContent.Controls.Add(this.dgvBuscaEmpresa);
+            this.pnlContent.Controls.Add(this.cbxOrganizar);
+            this.pnlContent.Controls.Add(this.lblBuscaEmpresa);
+            this.pnlContent.Controls.Add(this.btnBuscar);
+            this.pnlContent.Controls.Add(this.btnVerEmpresa);
+            this.pnlContent.Location = new System.Drawing.Point(69, 12);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(1336, 702);
+            this.pnlContent.TabIndex = 11;
+            // 
             // FormPesquisarEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1526, 707);
-            this.Controls.Add(this.lblOrganizar);
-            this.Controls.Add(this.cbxOrganizar);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.btnVerEmpresa);
-            this.Controls.Add(this.gpbBuscaAluno);
-            this.Controls.Add(this.lblBuscaEmpresa);
-            this.Controls.Add(this.dgvBuscaEmpresa);
+            this.Controls.Add(this.pnlContent);
             this.Name = "FormPesquisarEmpresa";
             this.Text = "Pesquisar";
             this.Load += new System.EventHandler(this.FormPesquisarEmpresa_Load);
+            this.SizeChanged += new System.EventHandler(this.FormPesquisarEmpresa_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaEmpresa)).EndInit();
             this.gpbBuscaAluno.ResumeLayout(false);
             this.gpbBuscaAluno.PerformLayout();
+            this.pnlContent.ResumeLayout(false);
+            this.pnlContent.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -284,5 +298,6 @@
         private System.Windows.Forms.ComboBox cbxOrganizar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnVerEmpresa;
+        private System.Windows.Forms.Panel pnlContent;
     }
 }

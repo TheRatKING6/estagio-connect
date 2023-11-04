@@ -68,16 +68,21 @@
             this.lblSenha = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnCadastro = new System.Windows.Forms.Button();
+            this.picFotoEmpresa = new System.Windows.Forms.PictureBox();
+            this.btnSelectImg = new System.Windows.Forms.Button();
+            this.pnlContent = new System.Windows.Forms.Panel();
             this.gpbEndereco.SuspendLayout();
             this.gpbInfoContato.SuspendLayout();
             this.gpbSenha.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFotoEmpresa)).BeginInit();
+            this.pnlContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblCadastroEmpresa
             // 
             this.lblCadastroEmpresa.AutoSize = true;
             this.lblCadastroEmpresa.Font = new System.Drawing.Font("Calibri", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCadastroEmpresa.Location = new System.Drawing.Point(312, 23);
+            this.lblCadastroEmpresa.Location = new System.Drawing.Point(101, 13);
             this.lblCadastroEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCadastroEmpresa.Name = "lblCadastroEmpresa";
             this.lblCadastroEmpresa.Size = new System.Drawing.Size(371, 46);
@@ -88,7 +93,7 @@
             // 
             this.lblDescricaoCadEmpresa.AutoSize = true;
             this.lblDescricaoCadEmpresa.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescricaoCadEmpresa.Location = new System.Drawing.Point(247, 70);
+            this.lblDescricaoCadEmpresa.Location = new System.Drawing.Point(36, 60);
             this.lblDescricaoCadEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDescricaoCadEmpresa.Name = "lblDescricaoCadEmpresa";
             this.lblDescricaoCadEmpresa.Size = new System.Drawing.Size(525, 19);
@@ -98,7 +103,7 @@
             // lblCnpj
             // 
             this.lblCnpj.AutoSize = true;
-            this.lblCnpj.Location = new System.Drawing.Point(230, 154);
+            this.lblCnpj.Location = new System.Drawing.Point(19, 144);
             this.lblCnpj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCnpj.Name = "lblCnpj";
             this.lblCnpj.Size = new System.Drawing.Size(37, 13);
@@ -108,7 +113,7 @@
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(232, 187);
+            this.lblNome.Location = new System.Drawing.Point(21, 177);
             this.lblNome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(81, 13);
@@ -117,6 +122,7 @@
             // 
             // gpbEndereco
             // 
+            this.gpbEndereco.BackColor = System.Drawing.SystemColors.Control;
             this.gpbEndereco.Controls.Add(this.cbbEstado);
             this.gpbEndereco.Controls.Add(this.msktxtCep);
             this.gpbEndereco.Controls.Add(this.txtCidade);
@@ -131,10 +137,10 @@
             this.gpbEndereco.Controls.Add(this.lblNum);
             this.gpbEndereco.Controls.Add(this.lblBairro);
             this.gpbEndereco.Controls.Add(this.lblRua);
-            this.gpbEndereco.Location = new System.Drawing.Point(232, 262);
-            this.gpbEndereco.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpbEndereco.Location = new System.Drawing.Point(21, 252);
+            this.gpbEndereco.Margin = new System.Windows.Forms.Padding(2);
             this.gpbEndereco.Name = "gpbEndereco";
-            this.gpbEndereco.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpbEndereco.Padding = new System.Windows.Forms.Padding(2);
             this.gpbEndereco.Size = new System.Drawing.Size(518, 181);
             this.gpbEndereco.TabIndex = 4;
             this.gpbEndereco.TabStop = false;
@@ -172,7 +178,7 @@
             "TO",
             "DF"});
             this.cbbEstado.Location = new System.Drawing.Point(63, 143);
-            this.cbbEstado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbbEstado.Margin = new System.Windows.Forms.Padding(2);
             this.cbbEstado.Name = "cbbEstado";
             this.cbbEstado.Size = new System.Drawing.Size(92, 21);
             this.cbbEstado.TabIndex = 13;
@@ -180,7 +186,7 @@
             // msktxtCep
             // 
             this.msktxtCep.Location = new System.Drawing.Point(421, 109);
-            this.msktxtCep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.msktxtCep.Margin = new System.Windows.Forms.Padding(2);
             this.msktxtCep.Mask = "00000-000";
             this.msktxtCep.Name = "msktxtCep";
             this.msktxtCep.Size = new System.Drawing.Size(78, 20);
@@ -189,7 +195,7 @@
             // txtCidade
             // 
             this.txtCidade.Location = new System.Drawing.Point(63, 109);
-            this.txtCidade.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCidade.Margin = new System.Windows.Forms.Padding(2);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(322, 20);
             this.txtCidade.TabIndex = 11;
@@ -197,7 +203,7 @@
             // txtNumero
             // 
             this.txtNumero.Location = new System.Drawing.Point(436, 36);
-            this.txtNumero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNumero.Margin = new System.Windows.Forms.Padding(2);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(78, 20);
             this.txtNumero.TabIndex = 10;
@@ -205,7 +211,7 @@
             // txtComplmento
             // 
             this.txtComplmento.Location = new System.Drawing.Point(370, 76);
-            this.txtComplmento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtComplmento.Margin = new System.Windows.Forms.Padding(2);
             this.txtComplmento.Name = "txtComplmento";
             this.txtComplmento.Size = new System.Drawing.Size(144, 20);
             this.txtComplmento.TabIndex = 9;
@@ -213,7 +219,7 @@
             // txtBairro
             // 
             this.txtBairro.Location = new System.Drawing.Point(57, 76);
-            this.txtBairro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBairro.Margin = new System.Windows.Forms.Padding(2);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(236, 20);
             this.txtBairro.TabIndex = 8;
@@ -221,7 +227,7 @@
             // txtRua
             // 
             this.txtRua.Location = new System.Drawing.Point(49, 36);
-            this.txtRua.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRua.Margin = new System.Windows.Forms.Padding(2);
             this.txtRua.Name = "txtRua";
             this.txtRua.Size = new System.Drawing.Size(336, 20);
             this.txtRua.TabIndex = 7;
@@ -298,8 +304,8 @@
             // 
             // msktxtCnpj
             // 
-            this.msktxtCnpj.Location = new System.Drawing.Point(278, 152);
-            this.msktxtCnpj.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.msktxtCnpj.Location = new System.Drawing.Point(67, 142);
+            this.msktxtCnpj.Margin = new System.Windows.Forms.Padding(2);
             this.msktxtCnpj.Mask = "00,000,000/0000-00";
             this.msktxtCnpj.Name = "msktxtCnpj";
             this.msktxtCnpj.Size = new System.Drawing.Size(119, 20);
@@ -307,10 +313,10 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(314, 184);
-            this.txtNome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNome.Location = new System.Drawing.Point(103, 174);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(2);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(437, 20);
+            this.txtNome.Size = new System.Drawing.Size(350, 20);
             this.txtNome.TabIndex = 6;
             // 
             // lblEmail
@@ -335,15 +341,16 @@
             // 
             // gpbInfoContato
             // 
+            this.gpbInfoContato.BackColor = System.Drawing.SystemColors.Control;
             this.gpbInfoContato.Controls.Add(this.lblTelOpcional);
             this.gpbInfoContato.Controls.Add(this.msktxtTelefone);
             this.gpbInfoContato.Controls.Add(this.txtEmail);
             this.gpbInfoContato.Controls.Add(this.lblEmail);
             this.gpbInfoContato.Controls.Add(this.lblTelefone);
-            this.gpbInfoContato.Location = new System.Drawing.Point(232, 466);
-            this.gpbInfoContato.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpbInfoContato.Location = new System.Drawing.Point(21, 456);
+            this.gpbInfoContato.Margin = new System.Windows.Forms.Padding(2);
             this.gpbInfoContato.Name = "gpbInfoContato";
-            this.gpbInfoContato.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpbInfoContato.Padding = new System.Windows.Forms.Padding(2);
             this.gpbInfoContato.Size = new System.Drawing.Size(518, 101);
             this.gpbInfoContato.TabIndex = 9;
             this.gpbInfoContato.TabStop = false;
@@ -362,7 +369,7 @@
             // msktxtTelefone
             // 
             this.msktxtTelefone.Location = new System.Drawing.Point(130, 67);
-            this.msktxtTelefone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.msktxtTelefone.Margin = new System.Windows.Forms.Padding(2);
             this.msktxtTelefone.Mask = "(00) 0000-0000";
             this.msktxtTelefone.Name = "msktxtTelefone";
             this.msktxtTelefone.Size = new System.Drawing.Size(121, 20);
@@ -371,7 +378,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(118, 31);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(344, 20);
             this.txtEmail.TabIndex = 9;
@@ -379,7 +386,7 @@
             // lblRamo
             // 
             this.lblRamo.AutoSize = true;
-            this.lblRamo.Location = new System.Drawing.Point(234, 220);
+            this.lblRamo.Location = new System.Drawing.Point(23, 210);
             this.lblRamo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRamo.Name = "lblRamo";
             this.lblRamo.Size = new System.Drawing.Size(167, 13);
@@ -388,16 +395,16 @@
             // 
             // txtRamo
             // 
-            this.txtRamo.Location = new System.Drawing.Point(405, 218);
-            this.txtRamo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRamo.Location = new System.Drawing.Point(194, 208);
+            this.txtRamo.Margin = new System.Windows.Forms.Padding(2);
             this.txtRamo.Name = "txtRamo";
-            this.txtRamo.Size = new System.Drawing.Size(345, 20);
+            this.txtRamo.Size = new System.Drawing.Size(259, 20);
             this.txtRamo.TabIndex = 11;
             // 
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
-            this.lblDescricao.Location = new System.Drawing.Point(236, 596);
+            this.lblDescricao.Location = new System.Drawing.Point(25, 586);
             this.lblDescricao.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(107, 13);
@@ -406,8 +413,8 @@
             // 
             // txtDescricao
             // 
-            this.txtDescricao.Location = new System.Drawing.Point(238, 623);
-            this.txtDescricao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDescricao.Location = new System.Drawing.Point(27, 613);
+            this.txtDescricao.Margin = new System.Windows.Forms.Padding(2);
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(426, 90);
@@ -416,8 +423,8 @@
             // btnNext
             // 
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.btnNext.Location = new System.Drawing.Point(652, 748);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNext.Location = new System.Drawing.Point(457, 739);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(97, 24);
             this.btnNext.TabIndex = 14;
@@ -428,7 +435,7 @@
             // lblQuaseLa
             // 
             this.lblQuaseLa.AutoSize = true;
-            this.lblQuaseLa.Location = new System.Drawing.Point(230, 753);
+            this.lblQuaseLa.Location = new System.Drawing.Point(19, 743);
             this.lblQuaseLa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblQuaseLa.Name = "lblQuaseLa";
             this.lblQuaseLa.Size = new System.Drawing.Size(449, 13);
@@ -438,14 +445,15 @@
             // 
             // gpbSenha
             // 
+            this.gpbSenha.BackColor = System.Drawing.SystemColors.Control;
             this.gpbSenha.Controls.Add(this.txtConfirmaSenha);
             this.gpbSenha.Controls.Add(this.txtSenha);
             this.gpbSenha.Controls.Add(this.lblConfirmaSenha);
             this.gpbSenha.Controls.Add(this.lblSenha);
-            this.gpbSenha.Location = new System.Drawing.Point(232, 800);
-            this.gpbSenha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpbSenha.Location = new System.Drawing.Point(21, 790);
+            this.gpbSenha.Margin = new System.Windows.Forms.Padding(2);
             this.gpbSenha.Name = "gpbSenha";
-            this.gpbSenha.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpbSenha.Padding = new System.Windows.Forms.Padding(2);
             this.gpbSenha.Size = new System.Drawing.Size(418, 145);
             this.gpbSenha.TabIndex = 16;
             this.gpbSenha.TabStop = false;
@@ -454,7 +462,7 @@
             // txtConfirmaSenha
             // 
             this.txtConfirmaSenha.Location = new System.Drawing.Point(18, 99);
-            this.txtConfirmaSenha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtConfirmaSenha.Margin = new System.Windows.Forms.Padding(2);
             this.txtConfirmaSenha.Name = "txtConfirmaSenha";
             this.txtConfirmaSenha.Size = new System.Drawing.Size(367, 20);
             this.txtConfirmaSenha.TabIndex = 3;
@@ -462,7 +470,7 @@
             // txtSenha
             // 
             this.txtSenha.Location = new System.Drawing.Point(57, 32);
-            this.txtSenha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtSenha.Margin = new System.Windows.Forms.Padding(2);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(328, 20);
             this.txtSenha.TabIndex = 2;
@@ -490,8 +498,8 @@
             // btnVoltar
             // 
             this.btnVoltar.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnVoltar.Location = new System.Drawing.Point(652, 777);
-            this.btnVoltar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnVoltar.Location = new System.Drawing.Point(457, 767);
+            this.btnVoltar.Margin = new System.Windows.Forms.Padding(2);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(97, 19);
             this.btnVoltar.TabIndex = 17;
@@ -502,7 +510,7 @@
             // btnCadastro
             // 
             this.btnCadastro.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.btnCadastro.Location = new System.Drawing.Point(268, 973);
+            this.btnCadastro.Location = new System.Drawing.Point(135, 953);
             this.btnCadastro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 24);
             this.btnCadastro.Name = "btnCadastro";
             this.btnCadastro.Size = new System.Drawing.Size(348, 34);
@@ -511,40 +519,72 @@
             this.btnCadastro.UseVisualStyleBackColor = true;
             this.btnCadastro.Click += new System.EventHandler(this.btnCadastro_Click);
             // 
+            // picFotoEmpresa
+            // 
+            this.picFotoEmpresa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picFotoEmpresa.Location = new System.Drawing.Point(471, 97);
+            this.picFotoEmpresa.Name = "picFotoEmpresa";
+            this.picFotoEmpresa.Size = new System.Drawing.Size(150, 150);
+            this.picFotoEmpresa.TabIndex = 19;
+            this.picFotoEmpresa.TabStop = false;
+            // 
+            // btnSelectImg
+            // 
+            this.btnSelectImg.Location = new System.Drawing.Point(544, 252);
+            this.btnSelectImg.Name = "btnSelectImg";
+            this.btnSelectImg.Size = new System.Drawing.Size(114, 27);
+            this.btnSelectImg.TabIndex = 20;
+            this.btnSelectImg.Text = "Escolher foto...";
+            this.btnSelectImg.UseVisualStyleBackColor = true;
+            // 
+            // pnlContent
+            // 
+            this.pnlContent.Controls.Add(this.lblCadastroEmpresa);
+            this.pnlContent.Controls.Add(this.btnCadastro);
+            this.pnlContent.Controls.Add(this.btnSelectImg);
+            this.pnlContent.Controls.Add(this.lblDescricaoCadEmpresa);
+            this.pnlContent.Controls.Add(this.picFotoEmpresa);
+            this.pnlContent.Controls.Add(this.lblCnpj);
+            this.pnlContent.Controls.Add(this.lblNome);
+            this.pnlContent.Controls.Add(this.btnVoltar);
+            this.pnlContent.Controls.Add(this.gpbEndereco);
+            this.pnlContent.Controls.Add(this.gpbSenha);
+            this.pnlContent.Controls.Add(this.msktxtCnpj);
+            this.pnlContent.Controls.Add(this.lblQuaseLa);
+            this.pnlContent.Controls.Add(this.txtNome);
+            this.pnlContent.Controls.Add(this.btnNext);
+            this.pnlContent.Controls.Add(this.gpbInfoContato);
+            this.pnlContent.Controls.Add(this.txtDescricao);
+            this.pnlContent.Controls.Add(this.lblRamo);
+            this.pnlContent.Controls.Add(this.lblDescricao);
+            this.pnlContent.Controls.Add(this.txtRamo);
+            this.pnlContent.Location = new System.Drawing.Point(155, 2);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(672, 1047);
+            this.pnlContent.TabIndex = 21;
+            // 
             // FormCadastroEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 1059);
-            this.Controls.Add(this.btnCadastro);
-            this.Controls.Add(this.btnVoltar);
-            this.Controls.Add(this.gpbSenha);
-            this.Controls.Add(this.lblQuaseLa);
-            this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.txtDescricao);
-            this.Controls.Add(this.lblDescricao);
-            this.Controls.Add(this.txtRamo);
-            this.Controls.Add(this.lblRamo);
-            this.Controls.Add(this.gpbInfoContato);
-            this.Controls.Add(this.txtNome);
-            this.Controls.Add(this.msktxtCnpj);
-            this.Controls.Add(this.gpbEndereco);
-            this.Controls.Add(this.lblNome);
-            this.Controls.Add(this.lblCnpj);
-            this.Controls.Add(this.lblDescricaoCadEmpresa);
-            this.Controls.Add(this.lblCadastroEmpresa);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(992, 1061);
+            this.Controls.Add(this.pnlContent);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormCadastroEmpresa";
             this.Text = "Cadastrar-se";
             this.Load += new System.EventHandler(this.FormCadastroEmpresa_Load);
+            this.ClientSizeChanged += new System.EventHandler(this.FormCadastroEmpresa_ClientSizeChanged);
             this.gpbEndereco.ResumeLayout(false);
             this.gpbEndereco.PerformLayout();
             this.gpbInfoContato.ResumeLayout(false);
             this.gpbInfoContato.PerformLayout();
             this.gpbSenha.ResumeLayout(false);
             this.gpbSenha.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFotoEmpresa)).EndInit();
+            this.pnlContent.ResumeLayout(false);
+            this.pnlContent.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -590,5 +630,8 @@
         private System.Windows.Forms.Label lblConfirmaSenha;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Button btnCadastro;
+        private System.Windows.Forms.PictureBox picFotoEmpresa;
+        private System.Windows.Forms.Button btnSelectImg;
+        private System.Windows.Forms.Panel pnlContent;
     }
 }

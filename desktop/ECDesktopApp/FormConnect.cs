@@ -27,6 +27,7 @@ namespace ECDesktopApp
 
         private void FormConnect_Load(object sender, EventArgs e)
         {
+            //coloca as colunas no DataGridView (muda dependendo se for empresa ou aluno)
             if(Tipo == 0)
             {
                 btnVerAluno.Visible = false;
@@ -36,6 +37,7 @@ namespace ECDesktopApp
                 dgvConnect.Columns.Add("empresaVaga", "Empresa");
                 dgvConnect.Columns.Add("epecializacaoVaga", "Área de Especialização");
                 dgvConnect.Columns.Add("cargaVaga", "Carga Horária");
+                dgvConnect.Columns.Add("emailEmpresa", "Email de Contato");
             }
             else if(tipo == 1)
             {
@@ -47,7 +49,11 @@ namespace ECDesktopApp
                 dgvConnect.Columns.Add("especializacaoAluno", "Área de Especialização do Aluno");
                 dgvConnect.Columns.Add("escolaAluno", "Escola do Aluno");
                 dgvConnect.Columns.Add("nascimentoAluno", "Data de Nascimento");
+                dgvConnect.Columns.Add("emailAluno", "Email de Contato");
             }
+
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
         }
 
         private void btnVerVaga_Click(object sender, EventArgs e)
@@ -69,7 +75,14 @@ namespace ECDesktopApp
             FormPerfilAluno form = new FormPerfilAluno();
             form.MdiParent = this.MdiParent;
             form.Tipo = 1;
+            form.Interesse = true;
             form.Show();
+        }
+
+        private void FormConnect_SizeChanged(object sender, EventArgs e)
+        {
+            //centraliza
+            pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
         }
     }
 }
