@@ -1,0 +1,80 @@
+ .centralizaCont{
+    text-align: center;
+  }
+
+  .icones{
+      color: #4FD8D3;
+   }
+
+   .estConne{
+      color: #26D7BD;
+      text-decoration: none;
+   }
+
+  
+   .alturaCardsNos{
+    height: 20vh;
+  }
+
+  .btncolor{
+   color: #006E8F;
+  }
+
+  .containerCad{
+      padding-right: 10px;
+      padding-left: 10px;
+      margin-right: 20px auto;
+      margin-left: 20px auto;
+      width: 70%;
+  }
+
+.fimForm{
+   margin-bottom: 50px;
+  }
+
+  .botaoAluno{
+   margin-right: 30px;
+    width: 40%;
+   position: relative;
+  }
+
+.botaoEmpresa{
+ 
+   width: 40%;
+   position: relative;
+  }
+
+.btn{
+   background-color: #279388;
+   color: lightcyan;
+   border-color: white;
+}
+.btn:hover{
+   color: white;
+   background-color: #005D54;
+   border-color: #256660;
+}
+
+.linkcolor{
+          color:darkcyan;
+          text-decoration: none;
+        }
+
+.card-header{
+        text-align: center;
+       }
+       .card{
+        border-bottom-left-radius:0px ;
+        border-bottom-right-radius:0px ;
+        margin-top: 160px;
+       }
+
+.toast{
+   background-color: #279388;
+   color: white;
+
+}
+
+.toast-body{
+   color: white;
+}
