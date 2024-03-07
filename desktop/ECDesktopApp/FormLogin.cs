@@ -33,7 +33,7 @@ namespace ECDesktopApp
         {
             //inicia a maskedBox como formato de cnpj pq o radiobutton do cnpj é carregado já checkado
             lblPK.Text = "CNPJ:";
-            msktxtPK.Mask = "00,000,000/0000-00";
+            msktxtPK.Mask = "00.000.000/0000-00";
 
             //coloca a logo na pictureBox
             picBoxLogo.ImageLocation = "../../img/logo2.png";
@@ -75,12 +75,12 @@ namespace ECDesktopApp
             if (rdbAluno.Checked)
             {
                 lblPK.Text = "CPF:";
-                msktxtPK.Mask = "000,000,000-00";
+                msktxtPK.Mask = "000.000.000-00";
             }
             else if (rdbEmpresa.Checked)
             {
                 lblPK.Text = "CNPJ:";
-                msktxtPK.Mask = "00,000,000/0000-00";
+                msktxtPK.Mask = "00.000.000/0000-00";
             }
         }
 
@@ -127,16 +127,26 @@ namespace ECDesktopApp
 
                         //se for aluno desabilita o 'Alunos interessados' no menuStrip
                         alunosInteressadosToolStripMenuItem.Visible = false;
+
+                        vagasToolStripMenuItem.Visible = true;
+
                     }
                     else
                     {
                         FormPerfilEmpresa form = new FormPerfilEmpresa();
                         form.MdiParent = this;
+                        //passa o cnpj da empresa para o formPerfilEmpresa.cs
+                        form.Cnpj_empresa1 = msktxtPK.Text;
+                        
                         form.Show();
 
                         //se for empresa, desabilita alguns botoes no menuStrip
                         inicioToolStripMenuItem.Visible = false; 
                         vagasToolStripMenuItem.Visible = false;
+
+                        alunosInteressadosToolStripMenuItem.Visible = true;
+
+                        
                     }
                     
 
@@ -187,6 +197,9 @@ namespace ECDesktopApp
                 //abre o form do perfil da empresa
                 FormPerfilEmpresa form = new FormPerfilEmpresa();
                 form.MdiParent = this;
+                //passa o cnpj da empresa para o formPerfilEmpresa.cs
+                form.Cnpj_empresa1 = msktxtPK.Text;
+
                 form.Show();
                 //lembra de passar o id do usuario
             }

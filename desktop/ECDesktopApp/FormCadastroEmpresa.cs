@@ -49,6 +49,10 @@ namespace ECDesktopApp
             {
                 MessageBox.Show("Todos os campos não opcionais devem ser preenchidos para que seu cadastro seja efetuado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (!(Validacao.ValidarEmail(txtEmail.Text)))
+            {
+                MessageBox.Show("Preencha corretamente o campo de e-mail", "Campo preenchido incorretamente!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else 
             {
                 //try catch pra verificarse alguem pos letra no campo numero

@@ -28,6 +28,12 @@ namespace ECDesktopApp
             
             //o txt do nome do arqiov sempre vai ser impossivel de editar
             txtArquivoCurriculo.Enabled = false;
+
+            //faz com que o usuario so possa selecionar uma das opcoes dadas a ele
+            cbxAno.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxEspecializacao.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void FormCadastroAluno_Load(object sender, EventArgs e)
@@ -56,6 +62,10 @@ namespace ECDesktopApp
                 String.IsNullOrEmpty(txtBairro.Text) || String.IsNullOrEmpty(txtCidade.Text) || String.IsNullOrEmpty(cbbEstado.Text) || String.IsNullOrEmpty(txtNome.Text))
             {
                 MessageBox.Show("Você precisa preencher todos os campos não opcionais.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning );
+            }
+            else if (!(Validacao.ValidarEmail(txtEmail.Text)))
+            {
+                MessageBox.Show("Preencha corretamente o campo de e-mail", "Campo preenchido incorretamente!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             //se o aluno tiver menos de 15 anos rejeita o cadastro
             else if(ManipulcaoData.verificaMaiorIdade(selecionado))

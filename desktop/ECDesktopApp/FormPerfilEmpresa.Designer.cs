@@ -30,6 +30,7 @@
         {
             this.tabCtrlPerfilEmpresa = new System.Windows.Forms.TabControl();
             this.tabPgPerfil = new System.Windows.Forms.TabPage();
+            this.btnMudarFoto = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
             this.lblCnpj = new System.Windows.Forms.Label();
             this.lblFoto = new System.Windows.Forms.Label();
             this.picFoto = new System.Windows.Forms.PictureBox();
-            this.lblNomeEmpresa = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnAlunosInteressados = new System.Windows.Forms.Button();
             this.btnExcluirVaga = new System.Windows.Forms.Button();
@@ -92,7 +92,7 @@
             this.vagaArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requisitosVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cargaVaga = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnMudarFoto = new System.Windows.Forms.Button();
+            this.lblNomeEmpresa = new System.Windows.Forms.Label();
             this.tabCtrlPerfilEmpresa.SuspendLayout();
             this.tabPgPerfil.SuspendLayout();
             this.gpbInfoContato.SuspendLayout();
@@ -141,6 +141,15 @@
             this.tabPgPerfil.Text = "Meu Perfil";
             this.tabPgPerfil.UseVisualStyleBackColor = true;
             this.tabPgPerfil.Click += new System.EventHandler(this.tabPgPerfil_Click);
+            // 
+            // btnMudarFoto
+            // 
+            this.btnMudarFoto.Location = new System.Drawing.Point(1195, 373);
+            this.btnMudarFoto.Name = "btnMudarFoto";
+            this.btnMudarFoto.Size = new System.Drawing.Size(161, 29);
+            this.btnMudarFoto.TabIndex = 57;
+            this.btnMudarFoto.Text = "Mudar Foto de Perfil";
+            this.btnMudarFoto.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
@@ -296,7 +305,7 @@
             this.msktxtCnpj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.msktxtCnpj.Location = new System.Drawing.Point(92, 97);
             this.msktxtCnpj.Margin = new System.Windows.Forms.Padding(2);
-            this.msktxtCnpj.Mask = "00,000,000/0000-00";
+            this.msktxtCnpj.Mask = "00.000.000/0000-00";
             this.msktxtCnpj.Name = "msktxtCnpj";
             this.msktxtCnpj.Size = new System.Drawing.Size(193, 26);
             this.msktxtCnpj.TabIndex = 17;
@@ -524,16 +533,6 @@
             this.picFoto.TabIndex = 1;
             this.picFoto.TabStop = false;
             // 
-            // lblNomeEmpresa
-            // 
-            this.lblNomeEmpresa.AutoSize = true;
-            this.lblNomeEmpresa.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeEmpresa.Location = new System.Drawing.Point(605, 17);
-            this.lblNomeEmpresa.Name = "lblNomeEmpresa";
-            this.lblNomeEmpresa.Size = new System.Drawing.Size(306, 59);
-            this.lblNomeEmpresa.TabIndex = 0;
-            this.lblNomeEmpresa.Text = "nomeempresa";
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btnAlunosInteressados);
@@ -572,6 +571,7 @@
             this.btnExcluirVaga.TabIndex = 7;
             this.btnExcluirVaga.Text = "Excluir Vaga";
             this.btnExcluirVaga.UseVisualStyleBackColor = false;
+            this.btnExcluirVaga.Click += new System.EventHandler(this.btnExcluirVaga_Click);
             // 
             // btnConfirmaCriar
             // 
@@ -761,60 +761,75 @@
             this.dgvVagasEmpresa.Location = new System.Drawing.Point(167, 380);
             this.dgvVagasEmpresa.Name = "dgvVagasEmpresa";
             this.dgvVagasEmpresa.ReadOnly = true;
+            this.dgvVagasEmpresa.RowHeadersWidth = 51;
             this.dgvVagasEmpresa.Size = new System.Drawing.Size(1190, 406);
             this.dgvVagasEmpresa.TabIndex = 0;
+            this.dgvVagasEmpresa.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvVagasEmpresa_CellMouseDoubleClick);
             // 
             // vagaId
             // 
             this.vagaId.HeaderText = "ID";
+            this.vagaId.MinimumWidth = 6;
             this.vagaId.Name = "vagaId";
             this.vagaId.ReadOnly = true;
+            this.vagaId.Width = 125;
             // 
             // vagaNome
             // 
             this.vagaNome.HeaderText = "Nome";
+            this.vagaNome.MinimumWidth = 6;
             this.vagaNome.Name = "vagaNome";
             this.vagaNome.ReadOnly = true;
+            this.vagaNome.Width = 125;
             // 
             // vagaDescricao
             // 
             this.vagaDescricao.HeaderText = "Descrição da vaga";
+            this.vagaDescricao.MinimumWidth = 6;
             this.vagaDescricao.Name = "vagaDescricao";
             this.vagaDescricao.ReadOnly = true;
+            this.vagaDescricao.Width = 125;
             // 
             // vagaArea
             // 
             this.vagaArea.HeaderText = "Área de especialização procurada";
+            this.vagaArea.MinimumWidth = 6;
             this.vagaArea.Name = "vagaArea";
             this.vagaArea.ReadOnly = true;
+            this.vagaArea.Width = 125;
             // 
             // requisitosVaga
             // 
             this.requisitosVaga.HeaderText = "Requisitos";
+            this.requisitosVaga.MinimumWidth = 6;
             this.requisitosVaga.Name = "requisitosVaga";
             this.requisitosVaga.ReadOnly = true;
+            this.requisitosVaga.Width = 125;
             // 
             // cargaVaga
             // 
             this.cargaVaga.HeaderText = "Carga Horária";
+            this.cargaVaga.MinimumWidth = 6;
             this.cargaVaga.Name = "cargaVaga";
             this.cargaVaga.ReadOnly = true;
+            this.cargaVaga.Width = 125;
             // 
-            // btnMudarFoto
+            // lblNomeEmpresa
             // 
-            this.btnMudarFoto.Location = new System.Drawing.Point(1195, 373);
-            this.btnMudarFoto.Name = "btnMudarFoto";
-            this.btnMudarFoto.Size = new System.Drawing.Size(161, 29);
-            this.btnMudarFoto.TabIndex = 57;
-            this.btnMudarFoto.Text = "Mudar Foto de Perfil";
-            this.btnMudarFoto.UseVisualStyleBackColor = true;
+            this.lblNomeEmpresa.AutoSize = true;
+            this.lblNomeEmpresa.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeEmpresa.Location = new System.Drawing.Point(605, 17);
+            this.lblNomeEmpresa.Name = "lblNomeEmpresa";
+            this.lblNomeEmpresa.Size = new System.Drawing.Size(306, 59);
+            this.lblNomeEmpresa.TabIndex = 0;
+            this.lblNomeEmpresa.Text = "nomeempresa";
             // 
             // FormPerfilEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1505, 1016);
+            this.ClientSize = new System.Drawing.Size(1505, 862);
             this.Controls.Add(this.tabCtrlPerfilEmpresa);
             this.Controls.Add(this.lblNomeEmpresa);
             this.Name = "FormPerfilEmpresa";
