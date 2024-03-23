@@ -207,6 +207,7 @@ namespace ECDesktopApp
             {
                 FormPerfilAluno form = new FormPerfilAluno();
                 form.MdiParent = this;
+                form.UserId1 = userId;
                 form.Show();
                 //lembrar de passar o id do usuario
             }

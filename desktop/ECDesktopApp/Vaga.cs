@@ -199,5 +199,224 @@ namespace ECDesktopApp
             return excluir;
         }
 
+        public MySqlDataReader getEmpresasVagas()
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select *, Connect_Empresa.Nome as NomeEmpresa from Connect_Vagas, Connect_Empresa where Connect_Vagas.idEmpresa = Connect_Empresa.idEmpresa", DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public MySqlDataReader getEmpresasVagasById(int id)
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select *, Connect_Empresa.Nome as NomeEmpresa, Connect_Empresa.Descricao as DescricaoEmpresa, " +
+                    "Connect_Vagas.Descricao as DescricaoVaga from Connect_Vagas, Connect_Empresa where Connect_Vagas.idEmpresa = Connect_Empresa.idEmpresa " +
+                    "and Connect_Vagas.Codigo = " + id, DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public bool insertAlunoInteressado(int idAluno, int idVaga)
+        {
+            bool cadastro = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand insert = new MySqlCommand("insert into Connect_Aluno_Vaga (idAluno, Codigo_Vaga) values (" + idAluno + ", " + idVaga + ")", DAO_Conexao.con);
+
+                insert.ExecuteNonQuery();
+
+                cadastro = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return cadastro;
+        }
+
+        public bool deleteAlunoInteressado(int idAluno, int idVaga)
+        {
+            bool excluido = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand delete = new MySqlCommand("delete from Connect_Aluno_Vaga where idAluno=" + idAluno + " and Codigo_Vaga=" + idVaga, DAO_Conexao.con);
+
+                delete.ExecuteNonQuery();
+                excluido = true;
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return excluido;
+        }
+
+        public MySqlDataReader getAlunosInteressados(int idVaga)
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand get = new MySqlCommand("select * from Connect_Aluno_Vaga, Connect_Aluno where Connect_Aluno_Vaga.idAluno = Connect_Aluno.idAluno " +
+                    "and Connect_Aluno_Vaga.Codigo_Vaga=" + idVaga, DAO_Conexao.con);
+
+                reader = get.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public bool setInteresseVaga(int idVaga, int idAluno)
+        {
+            bool interessado = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand insert = new MySqlCommand("insert into Connect_Vaga_Aluno (Codigo_Vaga, idAluno) values (" + idVaga + ", " + idAluno + ")", DAO_Conexao.con);
+
+                insert.ExecuteNonQuery();
+
+                interessado = true;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return interessado;
+        }
+
+        public bool deleteInteresseVaga(int idVaga, int idAluno)
+        {
+            bool excluir = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand delete = new MySqlCommand("delete from Connect_Vaga_Aluno where Codigo_Vaga = " + idVaga + " and " +
+                    "idAluno = " + idAluno, DAO_Conexao.con);
+
+                delete.ExecuteNonQuery();
+
+                excluir = true;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return excluir;
+        }
+
+        public MySqlDataReader getAlunosInteressantes(int idVaga)
+        {
+            MySqlDataReader alunos = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand get = new MySqlCommand("select * from Connect_Vaga_Aluno where Codigo_Vaga = " + idVaga, DAO_Conexao.con);
+
+                alunos = get.ExecuteReader();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return alunos;
+        }
+
+        public bool connectCheck(int idVaga, int idAluno)
+        {
+            bool conectado = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select * from Connect_Vaga_Aluno, Connect_Aluno_Vaga where " +
+                    "Connect_Vaga_Aluno.idAluno = Connect_Aluno_Vaga.idAluno and " +
+                    "Connect_Vaga_Aluno.Codigo_Vaga = Connect_Aluno_Vaga.Codigo_Vaga and Connect_Aluno_Vaga.idAluno = "+idAluno +
+                    " and Connect_Aluno_Vaga.Codigo_Vaga = "+idVaga, DAO_Conexao.con);
+
+                MySqlDataReader reader = select.ExecuteReader();
+
+                if(reader.Read())
+                {
+                    conectado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return conectado;
+        }
+
     }
 }

@@ -243,7 +243,8 @@ namespace ECDesktopApp
             //verifica se tudo foi preenchido corretamente
             if(String.IsNullOrEmpty(txtNome.Text) || String.IsNullOrEmpty(txtRamo.Text) || String.IsNullOrEmpty(txtRua.Text)
                 || String.IsNullOrEmpty(txtBairro.Text) || String.IsNullOrEmpty(txtCidade.Text)
-                || String.IsNullOrEmpty(cbbEstado.Text) || String.IsNullOrEmpty(txtNumero.Text) || String.IsNullOrEmpty(txtEmail.Text))
+                || String.IsNullOrEmpty(cbbEstado.Text) || String.IsNullOrEmpty(txtNumero.Text) || String.IsNullOrEmpty(txtEmail.Text)
+                || msktxtCep.Text.Trim().Length != 9)
             {
                 MessageBox.Show("Preencha corretamente todas as informações obrigatórias para cadastro (nome fantasia, ramo, rua, bairro, cidade, estado, numero e email de contato)", "Atenção, preencha os dados corretamente!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -278,7 +279,9 @@ namespace ECDesktopApp
                         if (empresa.editarEmpresa())
                         {
                             MessageBox.Show("Informações de cadastro atualizadas com sucesso!", "Dados Atualizados!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
+
+                            refreshInfoEmpresa(); //da refresh nas infos
+                            
                         }
                         else
                         {
@@ -507,23 +510,20 @@ namespace ECDesktopApp
             //abre o form de informacoes sobre a vaga selecionada como MdiChild do MdiParent do form atual
             FormInfoVagas form = new FormInfoVagas();
             form.MdiParent = this.MdiParent;
-            this.Close();
             
-            if(this.tipo == 0)
-            {
-                form.Tipo = 0; //pra nao permitir editar a vaga sem ser o dono dela
-            }
-
-            form.Show(); //lembrar! Se eu fzr o form.Show(); antes de passar os atributos, ele vai iniciar o form com os atributos errados
+             //lembrar! Se eu fzr o form.Show(); antes de passar os atributos, ele vai iniciar o form com os atributos errados
             try
             {
                 form.VagaId = int.Parse(lblIdVaga.Text.Replace("#", "")); //passa o id da vaga sendo visualizada
+                form.Tipo = 1;
                 
             }
             catch(Exception ex)
             {
                 form.VagaId=0;
             }
+            
+            form.Show();
         }
 
         private void FormPerfilEmpresa_ClientSizeChanged(object sender, EventArgs e)
@@ -659,6 +659,7 @@ namespace ECDesktopApp
             while (reader.Read())
             {
                 //colocar as info nos campos
+                lblNomeEmpresa.Text = reader["Nome"].ToString();
                 msktxtCnpj.Text = reader["CNPJ"].ToString();
                 txtNome.Text = reader["Nome"].ToString();
                 txtRua.Text = reader["Rua"].ToString();

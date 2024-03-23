@@ -24,6 +24,9 @@ namespace ECDesktopApp
             btnVoltar.Visible = false;
             gpbSenha.Visible = false;
             btnCadastro.Visible = false;
+
+            //formata a mask do msktxtCnpj
+            msktxtCnpj.Mask = "00.000.000/0000-00";
         }
 
         private void FormCadastroEmpresa_Load(object sender, EventArgs e)

@@ -197,5 +197,170 @@ namespace ECDesktopApp
             
             return reader;
         }
+
+        public int getIdAluno()
+        {
+            int id = -1;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select idAluno from Connect_Aluno where CPF='" + cpf + "'", DAO_Conexao.con);
+
+                MySqlDataReader reader = select.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    id = int.Parse(reader["idAluno"].ToString());
+                }
+            } 
+            catch(Exception ex) 
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return id;
+        }
+
+        public string getEspecializacaoAluno()
+        {
+            string area = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select Especialidade from Connect_Aluno where CPF='" + cpf + "'", DAO_Conexao.con);
+
+                MySqlDataReader reader = select.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    area = reader["Especialidade"].ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return area;
+        }
+
+        public MySqlDataReader getVagasInteressantes(int idAluno)
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select * from Connect_Aluno_Vaga where idAluno=" + idAluno, DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch(Exception ex) 
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public string getCpfById(int id)
+        {
+            string cpf = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select CPF from Connect_Aluno where idAluno =" + id, DAO_Conexao.con);
+
+                MySqlDataReader reader = select.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cpf = reader["CPF"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close( );
+            }
+
+            return cpf;
+        }
+
+        public bool deleteAluno(int idAluno) //deleta tudo relacionado ao aluno da base de dados
+        {
+            bool excluido = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand deleteAluno = new MySqlCommand("delete from Connect_Aluno where CPF= '" + cpf + "'", DAO_Conexao.con);
+                MySqlCommand deleteInteresses = new MySqlCommand("delete from Connect_Aluno_Vaga where idAluno="+idAluno, DAO_Conexao.con);
+                MySqlCommand deleteInteressados = new MySqlCommand("delete from Connect_Vaga_Aluno where idAluno=" + idAluno, DAO_Conexao.con);
+
+                deleteInteresses.ExecuteNonQuery();
+                deleteInteressados.ExecuteNonQuery();
+                deleteAluno.ExecuteNonQuery(); //apagar o aluno no Connect_Aluno tem que ser o ultimo a ser executado por causa das foreign key
+
+                excluido = true;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return excluido;
+        }
+
+        public bool editarInfosAluno()
+        {
+            bool editar = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand update = new MySqlCommand("update Connect_Aluno set Matricula='" + matricula + "', Email='" + email + "', Telefone='" + telefone + "', Especialidade='" + especialidade + "'," +
+                    " Descricao='" + descricao + "', Rua='" + rua + "', Numero=" + numero + ", Bairro='" + bairro + "', Complemento='" + complemento + "', Cidade='" + cidade + "', Estado='" + estado + "'," +
+                    " CEP='" + cep + "', Status='" + status + "', Ano_Letivo='" + ano + "', Escola='" + escola + "' where CPF='" + cpf + "'", DAO_Conexao.con);
+
+                update.ExecuteNonQuery();
+
+                editar = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return editar;
+        }
     }
 }

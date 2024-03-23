@@ -273,7 +273,29 @@ namespace ECDesktopApp
 
             return editar;
         }
+
+        public MySqlDataReader getAllEmpresas()
+        {
+            MySqlDataReader empresa = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select * from Connect_Empresa", DAO_Conexao.con);
+
+                empresa = select.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return empresa;
+        }
+
         
+
     }
 
     

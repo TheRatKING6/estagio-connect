@@ -34,6 +34,14 @@ namespace ECDesktopApp
             cbxEspecializacao.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cbbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            //Faz com que o formato da data no DateTimePicker seja dd/MM/yyyy, assim, independente se o computador da pessoa está em ingles ou portugues,
+            //a data sempre terá o msm formato, assim o código nao buga :)
+            dateNascimento.Format = DateTimePickerFormat.Custom;
+            dateNascimento.CustomFormat = "dd/MM/yyyy";
+
+            //formata a mask do msktxtCpf
+            msktxtCpf.Mask = "000.000.000-00";
         }
 
         private void FormCadastroAluno_Load(object sender, EventArgs e)
@@ -49,7 +57,7 @@ namespace ECDesktopApp
             string cpfstring = msktxtCpf.Text;
             cpfstring = cpfstring.Replace(".", "").Replace("-", "").Trim();
 
-            //pega a data selecionada no DateTimePicker e transfroma em um objeto DateTIme
+            //pega a data selecionada no DateTimePicker e transfroma em um objeto DateTime
             DateTime selecionado = ManipulcaoData.getDataNascimento(dateNascimento.Text.ToString()); 
 
             //faz as verificacoes em busca de campos vazios
