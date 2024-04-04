@@ -39,6 +39,15 @@ namespace ECDesktopApp
             this.senha = senha;
         }
 
+        public Empresa(string cnpj, string nome, string ramo, string email, string cidade)
+        {
+            this.cnpj = cnpj;
+            this.nome = nome;
+            this.ramo = ramo;
+            this.email = email;
+            this.cidade = cidade;
+        }
+
         public Empresa(string cnpj, string nome, string rua, int numero, string bairro, string complemento, string cidade, string estado, string cep, string email,
             string telefone, string ramo, string descricao, string senha)
         {
@@ -294,7 +303,73 @@ namespace ECDesktopApp
             return empresa;
         }
 
-        
+        public MySqlDataReader seearchEmpresas()
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                string query = "select * from Connect_Empresa where 1=1 ";
+
+                if (!(String.IsNullOrEmpty(nome)))
+                {
+                    query += " and Nome = '" + nome + "' ";
+                }
+                if (!(String.IsNullOrEmpty(ramo)))
+                {
+                    query += " and Ramo = '" + ramo + "' ";
+                }
+                if (!(String.IsNullOrEmpty(email)))
+                {
+                    query += " and Email = '" + email + "' ";
+                }
+                if(!(String.IsNullOrEmpty(cidade)))
+                {
+                    query += " and Cidade = '" + cidade + "' ";
+                }
+
+                MySqlCommand select = new MySqlCommand(query, DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public string getCnpjById(int idEmpresa)
+        {
+            string cnpj = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select * from Connect_Empresa where idEmpresa = " + idEmpresa, DAO_Conexao.con);
+
+                MySqlDataReader reader = select.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cnpj = reader["CNPJ"].ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return cnpj;
+        }
 
     }
 

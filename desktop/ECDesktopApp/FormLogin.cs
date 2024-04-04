@@ -231,6 +231,8 @@ namespace ECDesktopApp
         {
             FormPesquisarVagas form = new FormPesquisarVagas();
             form.MdiParent = this;
+            form.UserId = msktxtPK.Text;
+
             form.Show();
         }
 
@@ -238,6 +240,8 @@ namespace ECDesktopApp
         {
             FormVagaInteresseAluno form = new FormVagaInteresseAluno();
             form.MdiParent = this;
+            form.UserId = msktxtPK.Text;
+
             form.Show();
         }
 
@@ -245,6 +249,7 @@ namespace ECDesktopApp
         {
             FormAlunosInteressadosVaga form = new FormAlunosInteressadosVaga();
             form.MdiParent = this;
+            form.Cnpj = msktxtPK.Text;
             form.Show();
         }
 
@@ -254,6 +259,7 @@ namespace ECDesktopApp
 
             FormConnect form = new FormConnect();
             form.MdiParent = this;
+            form.UserId = userId;
             
             if (userId.Replace(".", "").Replace("-", "").Replace("/", "").Length == 14) //verifica se e empresa ou aluno
             {

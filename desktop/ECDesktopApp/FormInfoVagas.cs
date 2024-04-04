@@ -13,10 +13,10 @@ namespace ECDesktopApp
 {
     public partial class FormInfoVagas : Form
     {
-        int vagaId;
-        int tipo = 1;
-        bool interessado = false;
-        string userId;
+        private int vagaId;
+        private int tipo = 1;
+        private bool interessado = false;
+        private string userId;
 
         public int VagaId { get => vagaId; set => vagaId = value; }
         public int Tipo { get => tipo; set => tipo = value; }
@@ -75,6 +75,12 @@ namespace ECDesktopApp
             else if(tipo == 1)
             {
                 refreshAlunosInteressado();
+            }
+            else
+            {
+                label1.Visible = false;
+                dgvAlunosInteressados.Visible = false;
+                btnVisualizarAluno.Visible = false;
             }
 
             //centraliza

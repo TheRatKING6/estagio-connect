@@ -41,6 +41,13 @@ namespace ECDesktopApp
             this.Id_empresa = id_empresa;
         }
 
+        public Vaga(string nome, string area, string carga_horaria)
+        {
+            this.nome = nome;
+            this.area = area;
+            this.carga_horaria = carga_horaria;
+        }
+
         public Vaga(string nome, string descricao, string area, string requisitos, string carga_horaria)
         {
             this.nome = nome;
@@ -416,6 +423,93 @@ namespace ECDesktopApp
             }
 
             return conectado;
+        }
+
+        public MySqlDataReader getConnects()
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select *, Connect_Vagas.Nome as NomeVaga, Connect_Empresa.Nome as NomeEmpresa, Connect_Empresa.Email as EmailEmpresa, " +
+                    "Connect_Aluno.Nome as NomeAluno, Connect_Aluno.Email as EmailAluno" +
+                    " from Connect_Aluno_Vaga, Connect_Vaga_Aluno, Connect_Aluno, Connect_Empresa, Connect_Vagas where " +
+                    "Connect_Aluno_Vaga.idAluno = Connect_Vaga_Aluno.idAluno and Connect_Aluno_Vaga.Codigo_Vaga = Connect_Vaga_Aluno.Codigo_Vaga and " +
+                    "Connect_Aluno_Vaga.idAluno = Connect_Aluno.idAluno and Connect_Aluno_Vaga.Codigo_Vaga = Connect_Vagas.Codigo and " +
+                    "Connect_Vagas.idEmpresa = Connect_Empresa.idEmpresa", DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public MySqlDataReader getAllAlunosInteressados()
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select *, Connect_Aluno.Nome as NomeAluno, Connect_Vagas.Nome as NomeVaga " +
+                    "from Connect_Vagas, Connect_Aluno_Vaga, Connect_Aluno where " +
+                    "Connect_Vagas.Codigo = Connect_Aluno_Vaga.Codigo_Vaga and Connect_Aluno.idAluno = Connect_Aluno_Vaga.idAluno", DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch( Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public MySqlDataReader searchVagas(string nomeEmpresa)
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                string query = "select *, Connect_Vagas.Nome as NomeVaga, Connect_Empresa.Nome as NomeEmpresa" +
+                    " from Connect_Vagas, Connect_Empresa where Connect_Vagas.idEmpresa = Connect_Empresa.idEmpresa ";
+
+                if (!(String.IsNullOrEmpty(nome)))
+                {
+                    query += " and Connect_Vagas.Nome = '" + nome + "' ";
+                }
+                if (!(String.IsNullOrEmpty(area)))
+                {
+                    query += " and Connect_Vagas.Area = '" + area + "' ";
+                }
+                if(!(String.IsNullOrEmpty(carga_horaria)))
+                {
+                    query += " and Connect_Vagas.Carga_Horaria = '" + carga_horaria + "' ";
+                }
+                if (!(String.IsNullOrEmpty(nomeEmpresa)))
+                {
+                    query += " and Connect_Empresa.Nome = '" + nomeEmpresa + "' ";
+                }
+
+                MySqlCommand select = new MySqlCommand(query, DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch( Exception ex )
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
         }
 
     }

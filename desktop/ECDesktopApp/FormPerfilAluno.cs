@@ -311,7 +311,7 @@ namespace ECDesktopApp
                     btnInteresse.BackColor = Color.Salmon;
                     interesse = true;
 
-                    if(vaga.connectCheck(vagaId, idAluno))
+                    if(vaga.connectCheck(vagaId, idAluno)) //verifica se o aluno ja esta interessado na vaga e cria o connect, brabo
                     {
                         MessageBox.Show("Parabéns, você acabou de criar um Connect, olhe a aba de connects no aplicativo para saber mais!", "Connect!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }

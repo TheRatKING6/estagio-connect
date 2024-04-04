@@ -70,6 +70,7 @@
             this.dgvBuscaEmpresa.ReadOnly = true;
             this.dgvBuscaEmpresa.Size = new System.Drawing.Size(1290, 296);
             this.dgvBuscaEmpresa.TabIndex = 0;
+            this.dgvBuscaEmpresa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBuscaEmpresa_CellClick);
             // 
             // idEmpresa
             // 
