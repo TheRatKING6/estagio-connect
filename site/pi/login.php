@@ -1,3 +1,42 @@
+<?php
+  if ($_SERVER["REQUEST_METHOD"] === 'GET') {
+    
+    $pagina = "";
+
+  } else if ($_SERVER["REQUEST_METHOD"] === 'POST'){
+
+    $pagina = "";
+
+    $login = $_POST["login"];
+    $senha = $_POST["senha"];
+
+    if ((trim($login) != "") && (trim($senha) != "")) {
+
+      if (($login == "11223344") && ($senha == "1234")) {
+        session_start();
+        $_SESSION["login"] = $login;
+        header('Location: loginA.php');
+
+
+      } else if ( ($login == "55667788") && ($senha == "5678")) {
+        session_start();
+        $_SESSION["login"] = $login;
+        header('Location: loginB.php');
+        
+      } else{
+
+        echo "Login e/ou senha inválido(s)!";
+
+      }
+    } else{
+      echo "Informe seu login e sua senha";
+    }
+
+  }
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +55,14 @@
        }
        .boxInfo{
 
-            position: relative;
+           
             background-color: white;
             border-radius: 15px;
             padding: 30px;
-            width: 90%;
             margin-bottom: 20px;
+
         }
+        
   </style>
 
 </head>
@@ -78,214 +118,75 @@
 </nav>
 <!--fim navbar-->
 
-<!--container do Empresa-->
+<!--container Login-->
 
   <br><br>
   <div class="container md-3">
-  <div class="row" style="color:white;">
-   <h6 class="display-6 "><b>Cadastro<a class="estConne"> -</a> Empresa</b></h6>
-  <p class="lead">Cadastre a sua empresa no Estágio Connect </p>
+  <div class="row" style="color:white; text-align: center;">
+   <h6 class="display-6 "><b>Login</b></h6>
+  <p class="lead">Entre com sua conta </p>
 
   <div>
     <div class="col-12" ><hr class="estConne" style="color:white;"></div>    
   </div>
 </div>
 </div>
+<div style="padding: 15px;">
+<div class="container  boxInfo col-md-4 col-sm-12">
 
-<div class="container containerCad boxInfo">
-
-<form class="needs-validation" novalidate>
+<form class="needs-validation" novalidate method="post">
 <br>
 
   <div class="row">
-    <div class="col-sm-12 mb-3">
-      <label class="form-label">CNPJ: </label><br>
-      <input type="text" class="form-control" required>
+    <div class="col-sm-12 ">
+      <label class="form-label">CPF/CNPJ: </label><br>
+      <input type="text" class="form-control" name="login" required>
       <div class="invalid-feedback">
         Campo obrigatório.
       </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-sm-12 mb-3">
-      <label class="form-label">Nome: </label><br>
-      <input type="text" class="form-control" required>
-      <div class="invalid-feedback">
-        Campo obrigatório.
-      </div>
-    </div>
-  </div>
-
-  <br>
-    
-    <div class="row">
-    <div class="col-md-5 col-sm-12 mb-3">
-      <label class="form-label">Rua:</label>
-      <input type="text" class="form-control" required>
-      <div class="invalid-feedback">
-        Campo obrigatório.
-      </div>
-    </div>
-
-     <div class="col-md-1 col-sm-12 mb-3">
-      <label class="form-label">Número:</label>
-      <input type="text" class="form-control" required>
-      <div class="invalid-feedback">
-        Campo obrigatório.
-      </div>
-    </div>
-
-    <div class="col-md-4 col-sm-12 mb-3">
-      <label class="form-label">Bairro:</label>
-      <input type="text" class="form-control" required>
-      <div class="invalid-feedback">
-        Campo obrigatório.
-      </div>
-    </div>
-
-   
- 
- 
-    <div class="col-md-2 col-sm-12 mb-3">
-        <label class="form-label">Complemento:</label>
-        <input type="text" class="form-control" required>
-        <div class="invalid-feedback">
-        Campo obrigatório.
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6 col-sm-12 mb-3">
-      <label class="form-label">Cidade:</label>
-      <input type="text" class="form-control" required>
-      <div class="invalid-feedback">
-        Campo obrigatório.
-      </div>
-    </div>
-
-    <div class="col-md-3 col-sm-12 mb-3">
-      <label class="form-label">Estado:</label>
-      <select class="form-select" required>
-        <option></option>
-        <option>AC</option>
-        <option>AL</option>
-        <option>AP</option>
-        <option>AM</option>
-        <option>BA</option>
-        <option>CE</option>
-        <option>ES</option>
-        <option>GO</option>
-        <option>MA</option>
-        <option>MT</option>
-        <option>MS</option>
-        <option>MG</option>
-        <option>PA</option>
-        <option>PB</option>
-        <option>PR</option>
-        <option>PE</option>
-        <option>PI</option>
-        <option>RJ</option>
-        <option>RN</option>
-        <option>RS</option>
-        <option>RO</option>
-        <option>RR</option>
-        <option>SC</option>
-        <option>SP</option>
-        <option>SE</option>
-        <option>TO</option>
-        <option>DF</option>
-        <div class="invalid-feedback">
-        Campo obrigatório.
-      </div>
-      </select>
-    </div>
  
   
-    <div class="col-md-3 col-sm-12 mb-3">
-        <label class="form-label">CEP:</label>
-        <input type="text" class="form-control" required>
-        <div class="invalid-feedback">
-        Campo obrigatório.
-      </div>
-    </div>
-  </div>
+  
+
   <br>
 
   <div class="row">
-  <div class="col-md-6 col-sm-12 mb-3">
-      <label class="form-label">Email de Contato: </label>
-      <input type="email"  class="form-control" required>
-      <div class="invalid-feedback">
-        Campo obrigatório.
-      </div>
-    </div>
-    <div class="col-md-3 col-sm-12 mb-3">
-      <label class="form-label">Telefone de Contato: </label>
-      <input type="tel"  class="form-control">
-    </div>
-    <div class="col-md-3 col-sm-12 mb-3">
-      <label class="form-label">Ramo de Atividade: </label>
-      <input type="text"  class="form-control" required>
-    </div>
-
-  </div>
-
-<br>
-
-  <div class="row">
-  <div class="col-md-6 col-sm-12 mb-3">
+  <div class="col-12">
       <label class="form-label">Senha: </label><br>
-      <input type="password"  class="form-control" id="password" required>
+      <input type="password"  class="form-control" id="password" name="senha" required>
       <div class="invalid-feedback">
         Campo obrigatório.
       </div>
     </div>
 
-  <div class="col-md-6 col-sm-12 mb-3">
-      <label class="form-label">Confirmar senha: </label><br>
-      <input type="password"  class="form-control" id="confirm_password" required>
-      <div class="invalid-feedback">
-        Campo inválido ou senha não corresponde.
-      </div>
-    </div>
-
   </div>
+
+
 
 <br>
     
 <!--botao envio inicio-->
-    <div class="row fimForm">
-      <div class="col-12 ">
-        <button type="submit" class="btn btn-info btncolor">
-           <i class="bi bi-send"></i> Cadastrar
+    <div style="text-align: center; margin-bottom: 20px;">
+
+        <button type="submit" class="btn btn-info btncolor" style=" width: 90%; margin-top: 10px; " >
+           Entrar
 
         </button>
 
-         <button type="reset" class="btn btn-info btncolor" id="liveToastBtn">
-          <i class="bi bi-x-circle"></i> Limpar
-        </button>
 
-          <!--toast limpar inicio-->
-          <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                  <div id="liveToast" class="toast align-items-center  border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                      <div class="d-flex">
-                        <div class="toast-body">
-                          Formulário limpo com sucesso!
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                      </div>
-                    </div>
-                </div>
-                <!--toast limpar fim-->
-    </div>
+
+    
 <!--botao envio fim-->
+</div>
+</div>
 </div>
 </form>
 </div>
+</div>
 
-<!--fim container Empresa-->
+<!--fim container Login-->
 
 <!-- Footer -->
 <div class="card">
@@ -366,5 +267,10 @@
   </script>-->
 
   <script src="scriptCadastro.js"></script>
+  <?php
+      if ($pagina != "") {
+        include $pagina;
+      }
+    ?>
 </body>
 </html>
