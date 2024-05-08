@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,21 @@ namespace ECDesktopApp
 {
     public partial class FormVagaInteresseAluno : Form
     {
+        private string userId;
+
+        public string UserId { get => userId; set => userId = value; }
+
         public FormVagaInteresseAluno()
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             AutoScroll = true;
+
+            //muda o mod de selecao dos DGVs
+            dgvSeuInteresse.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSeuInteresse.MultiSelect = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
         }
 
         private void FormVagaInteresseAluno_Load(object sender, EventArgs e)
@@ -24,6 +35,9 @@ namespace ECDesktopApp
             //centraliza
             lblVagas.Left = (this.ClientSize.Width - lblVagas.Width) / 2;
             tabCtrlVagasInteressadas.Left = (this.ClientSize.Width - tabCtrlVagasInteressadas.Width) / 2;
+
+            //carrega as infos nos dgv's
+            refreshVagas();
         }
 
         private void btnVerVagaSeuInteresse_Click(object sender, EventArgs e)
@@ -32,7 +46,9 @@ namespace ECDesktopApp
             FormInfoVagas form = new FormInfoVagas();
             form.MdiParent = this.MdiParent;
             form.Tipo = 0;
-            form.Interessado = true;
+            form.UserId = userId;
+            form.VagaId = int.Parse(dgvSeuInteresse.SelectedCells[0].Value.ToString());
+            //form.Interessado = true;
             form.Show();
         }
 
@@ -42,6 +58,9 @@ namespace ECDesktopApp
             FormInfoVagas form = new FormInfoVagas();
             form.MdiParent = this.MdiParent;
             form.Tipo = 0;
+            form.UserId = userId;
+            form.VagaId = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            form.Tipo = 0;
             form.Show();
         }
 
@@ -50,6 +69,42 @@ namespace ECDesktopApp
             //centraliza
             lblVagas.Left = (this.ClientSize.Width - lblVagas.Width) / 2;
             tabCtrlVagasInteressadas.Left = (this.ClientSize.Width - tabCtrlVagasInteressadas.Width) / 2;
+        }
+
+        public void refreshVagas()
+        {
+            //obj aluno usado para obter o id do usuario
+            Aluno aluno = new Aluno(userId);
+            int idAluno = aluno.getIdAluno();
+
+            //pega as infos das vagas que o aluno esta interessado e das que estao interessadas nele e joga nos dgv's
+            MySqlDataReader reader = aluno.getInfosVagasInteressantes(idAluno);
+
+            while(reader.Read())
+            {
+                int idVaga = int.Parse(reader["Codigo"].ToString());
+                string nomeVaga = reader["NomeVaga"].ToString();
+                string nomeEmpresa = reader["NomeEmpresa"].ToString();
+                string area = reader["Area"].ToString();
+                string carga = reader["Carga_Horaria"].ToString();
+
+                dgvSeuInteresse.Rows.Add(idVaga, nomeVaga, nomeEmpresa, area, carga);
+            }
+            DAO_Conexao.con.Close();
+
+            reader = aluno.getInfosVagasInteressadas(idAluno);
+
+            while(reader.Read())
+            {
+                int idVaga = int.Parse(reader["Codigo"].ToString());
+                string nomeVaga = reader["NomeVaga"].ToString();
+                string nomeEmpresa = reader["NomeEmpresa"].ToString();
+                string area = reader["Area"].ToString();
+                string carga = reader["Carga_Horaria"].ToString();
+
+                dataGridView1.Rows.Add(idVaga, nomeVaga, nomeEmpresa, area, carga);
+            }
+            DAO_Conexao.con.Close();
         }
     }
 }

@@ -70,6 +70,7 @@
             this.dgvBuscaVaga.ReadOnly = true;
             this.dgvBuscaVaga.Size = new System.Drawing.Size(1297, 341);
             this.dgvBuscaVaga.TabIndex = 0;
+            this.dgvBuscaVaga.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBuscaVaga_CellClick);
             // 
             // idVaga
             // 

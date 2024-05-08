@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,17 +14,23 @@ namespace ECDesktopApp
     public partial class FormConnect : Form
     {
         int tipo = 0;
+        string userId;
+
+        public int Tipo { get => tipo; set => tipo = value; }
+        public string UserId { get => userId; set => userId = value; }
+        
         public FormConnect()
         {
             InitializeComponent();
 
+            //deixa em fullScreen e habilita scroll
             WindowState = FormWindowState.Maximized;
             AutoScroll = true;
 
-
+            //concerta a forma de selecao do dgv (seleciona uma row por vez e ela inteira)
+            dgvConnect.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvConnect.MultiSelect = false;
         }
-
-        public int Tipo { get => tipo; set => tipo = value; }
 
         private void FormConnect_Load(object sender, EventArgs e)
         {
@@ -54,17 +61,23 @@ namespace ECDesktopApp
 
             //centraliza
             pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
+
+            //coloca todos os connects no dgv
+            refreshConnects();
         }
 
         private void btnVerVaga_Click(object sender, EventArgs e)
         {
+            //passa o id da vaga e o id do usuário pro formInfoVagas e dps mostra
             FormInfoVagas form = new FormInfoVagas();
             form.MdiParent = this.MdiParent;
+            form.VagaId = int.Parse(dgvConnect.SelectedCells[0].Value.ToString());
+            form.UserId = userId;
 
             if(tipo == 0)
             {
                 form.Tipo = 0;
-                form.Interessado = true;
+                //form.Interessado = true;
             }
 
             form.Show();
@@ -72,10 +85,19 @@ namespace ECDesktopApp
 
         private void btnVerAluno_Click(object sender, EventArgs e)
         {
+            //pega o CPF do aluno de acordo com o ID mostrado na tabela
+            Aluno aluno = new Aluno();
+            int idAluno = int.Parse(dgvConnect.SelectedCells[3].Value.ToString());
+            string cpfAluno = aluno.getCpfById(idAluno);
+
+            //cria um FormPerfilAluno e coloca todas as infos necessarias
             FormPerfilAluno form = new FormPerfilAluno();
             form.MdiParent = this.MdiParent;
             form.Tipo = 1;
-            form.Interesse = true;
+            form.VagaId = int.Parse(dgvConnect.SelectedCells[0].Value.ToString());
+            form.UserId1 = cpfAluno;
+
+            //form.Interesse = true;
             form.Show();
         }
 
@@ -83,6 +105,46 @@ namespace ECDesktopApp
         {
             //centraliza
             pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
+        }
+
+        public void refreshConnects()
+        {
+            //cria o obj vaga e pega todos os connects
+            Vaga vaga = new Vaga();
+            MySqlDataReader reader = vaga.getConnects();
+            
+            while(reader.Read())
+            {
+                if(tipo == 0 && reader["CPF"].ToString().Equals(userId)) //se for um aluno e o cpf for o msm
+                {
+                    
+                    int idVaga = int.Parse(reader["Codigo"].ToString());
+                    string nomeVaga = reader["NomeVaga"].ToString();
+                    string empresa = reader["NomeEmpresa"].ToString();
+                    string area = reader["Area"].ToString();
+                    string carga = reader["Carga_Horaria"].ToString();
+                    string emailEmpresa = reader["EmailEmpresa"].ToString();
+
+                    dgvConnect.Rows.Add(idVaga, nomeVaga, empresa, area, carga, emailEmpresa); //coloca tudo no dgv
+                    
+                }
+                else if(tipo == 1 && reader["CNPJ"].ToString().Equals(userId)) //se for uma empresa e o cnpj for o msm
+                {
+                    
+                    int idVaga = int.Parse(reader["Codigo"].ToString());
+                    string nomeVaga = reader["NomeVaga"].ToString();
+                    string area = reader["Area"].ToString();
+                    int idAluno = int.Parse(reader["idAluno"].ToString());
+                    string nomeAluno = reader["NomeAluno"].ToString();
+                    string especializacaoAluno = reader["Especialidade"].ToString();
+                    string escola = reader["Escola"].ToString();
+                    string nascimento = ManipulcaoData.formataData(reader["Nascimento"].ToString());
+                    string emailAluno = reader["EmailAluno"].ToString();
+
+                    dgvConnect.Rows.Add(idVaga, nomeVaga, area, idAluno, nomeAluno, especializacaoAluno, escola, nascimento, emailAluno); //coloca tudo no dgv
+                }
+            }
+            DAO_Conexao.con.Close();
         }
     }
 }

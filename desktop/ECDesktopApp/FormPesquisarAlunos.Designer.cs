@@ -76,6 +76,7 @@
             this.dgvBuscaAlunos.ReadOnly = true;
             this.dgvBuscaAlunos.Size = new System.Drawing.Size(1299, 316);
             this.dgvBuscaAlunos.TabIndex = 0;
+            this.dgvBuscaAlunos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBuscaAlunos_CellClick);
             // 
             // idAluno
             // 

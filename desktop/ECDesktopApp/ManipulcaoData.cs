@@ -11,6 +11,8 @@ namespace ECDesktopApp
         public static DateTime getDataNascimento(string dataNascimento) //pega uma data em string e transforma ela em DateTime
         {
             DateTime nascimento = DateTime.Now; //o padrão (caso de erro) e a data atual
+            //Console.WriteLine("\n\n\nInformado: " + dataNascimento + "\n\n\nAtual: "+nascimento+"\n\n\n");
+
 
             try
             {
@@ -26,9 +28,10 @@ namespace ECDesktopApp
 
                 int dia = int.Parse(data.Substring(0, 2));
 
-                Console.WriteLine("\n\ndia: "+dia+"\nMes: "+mes+"\nAno: "+ano+"\n\n");
+                //Console.WriteLine("\n\ndia: "+dia+"\nMes: "+mes+"\nAno: "+ano+"\n\n");
 
                 nascimento = new DateTime(ano, mes, dia);
+                //Console.WriteLine("\n\nConvertido: "+nascimento.ToString()+"\n\n");
             }
             catch (Exception ex)
             {
@@ -57,6 +60,22 @@ namespace ECDesktopApp
             }
 
             return menorIdade;
+        }
+
+        public static String formataData(string data) //pega uma data no formato dedata americano e transforma no formato de data normal
+        {
+            string nascimento = data.Substring(0, data.IndexOf(" "));
+            //Console.WriteLine("\n\n" + nascimento + "\n\n");
+            string ano = nascimento.Substring(nascimento.LastIndexOf("/")+1);
+            string mes = nascimento.Substring(0, 2);
+            //Console.WriteLine("\n\n" + nascimento + "\n\n");
+            string dia = nascimento.Substring(nascimento.IndexOf("/")+1, 2);
+
+            //Console.WriteLine("\n\nFormata data: \ndia: " + dia + "\nmes: " + mes + "\nano: " + ano + "\n\n");
+                    
+            nascimento = dia + "/" + mes + "/" + ano;
+
+            return nascimento;
         }
     }
 }

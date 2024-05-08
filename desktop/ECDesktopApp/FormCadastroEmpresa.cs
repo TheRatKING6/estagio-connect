@@ -24,6 +24,9 @@ namespace ECDesktopApp
             btnVoltar.Visible = false;
             gpbSenha.Visible = false;
             btnCadastro.Visible = false;
+
+            //formata a mask do msktxtCnpj
+            msktxtCnpj.Mask = "00.000.000/0000-00";
         }
 
         private void FormCadastroEmpresa_Load(object sender, EventArgs e)
@@ -48,6 +51,10 @@ namespace ECDesktopApp
                 String.IsNullOrEmpty(cbbEstado.Text) || String.IsNullOrEmpty(txtEmail.Text) || String.IsNullOrEmpty(txtRamo.Text))
             {
                 MessageBox.Show("Todos os campos não opcionais devem ser preenchidos para que seu cadastro seja efetuado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (!(Validacao.ValidarEmail(txtEmail.Text)))
+            {
+                MessageBox.Show("Preencha corretamente o campo de e-mail", "Campo preenchido incorretamente!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else 
             {

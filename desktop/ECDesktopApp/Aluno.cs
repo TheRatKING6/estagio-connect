@@ -38,6 +38,16 @@ namespace ECDesktopApp
             this.cpf = cpf;
         }
 
+        public Aluno(string cpf, string nome, string escola, string email, string cidade, string especialidade)
+        {
+            this.cpf = cpf;
+            this.nome = nome;
+            this.escola = escola;
+            this.email = email;
+            this.cidade = cidade;
+            this.especialidade = especialidade;
+        }
+
         public Aluno(string cpf, string senha)
         {
             this.cpf = cpf;
@@ -119,7 +129,7 @@ namespace ECDesktopApp
 
         /************************************* metodos *************************************/
 
-        public bool cadastrarAluno()
+        public bool cadastrarAluno() //auto-explicativo
         {
             bool cadastrado = false;
 
@@ -148,7 +158,7 @@ namespace ECDesktopApp
             return cadastrado;
         }
 
-        public bool verificaCpfCadastrado()
+        public bool verificaCpfCadastrado() //verifica se ja existe um aluno cadastrado com o cpf informado
         {
             bool existe = false;
             MySqlDataReader reader = null;
@@ -178,7 +188,7 @@ namespace ECDesktopApp
             return existe;
         }
 
-        public MySqlDataReader getInfoAluno()
+        public MySqlDataReader getInfoAluno() //auto-explicativo
         {
             MySqlDataReader reader = null;
 
@@ -195,6 +205,263 @@ namespace ECDesktopApp
                 Console.WriteLine(ex.ToString());
             }
             
+            return reader;
+        }
+
+        public int getIdAluno() //pega o id do aluno usando o cpf dele
+        {
+            int id = -1;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select idAluno from Connect_Aluno where CPF='" + cpf + "'", DAO_Conexao.con);
+
+                MySqlDataReader reader = select.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    id = int.Parse(reader["idAluno"].ToString());
+                }
+            } 
+            catch(Exception ex) 
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return id;
+        }
+
+        public string getEspecializacaoAluno() //pega a area de especialidade do aluno
+        {
+            string area = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select Especialidade from Connect_Aluno where CPF='" + cpf + "'", DAO_Conexao.con);
+
+                MySqlDataReader reader = select.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    area = reader["Especialidade"].ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return area;
+        }
+
+        public MySqlDataReader getVagasInteressantes(int idAluno) //pega o *id* de todas as vagas que o aluno esta interessado
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select * from Connect_Aluno_Vaga where idAluno=" + idAluno, DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch(Exception ex) 
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public string getCpfById(int id) //auto-explicativo
+        {
+            string cpf = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select CPF from Connect_Aluno where idAluno =" + id, DAO_Conexao.con);
+
+                MySqlDataReader reader = select.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cpf = reader["CPF"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close( );
+            }
+
+            return cpf;
+        }
+
+        public bool deleteAluno(int idAluno) //deleta tudo relacionado ao aluno da base de dados
+        {
+            bool excluido = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand deleteAluno = new MySqlCommand("delete from Connect_Aluno where CPF= '" + cpf + "'", DAO_Conexao.con);
+                MySqlCommand deleteInteresses = new MySqlCommand("delete from Connect_Aluno_Vaga where idAluno="+idAluno, DAO_Conexao.con);
+                MySqlCommand deleteInteressados = new MySqlCommand("delete from Connect_Vaga_Aluno where idAluno=" + idAluno, DAO_Conexao.con);
+
+                deleteInteresses.ExecuteNonQuery();
+                deleteInteressados.ExecuteNonQuery();
+                deleteAluno.ExecuteNonQuery(); //apagar o aluno no Connect_Aluno tem que ser o ultimo a ser executado por causa das foreign key
+
+                excluido = true;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return excluido;
+        }
+
+        public bool editarInfosAluno() //auto-explicativo
+        {
+            bool editar = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand update = new MySqlCommand("update Connect_Aluno set Matricula='" + matricula + "', Email='" + email + "', Telefone='" + telefone + "', Especialidade='" + especialidade + "'," +
+                    " Descricao='" + descricao + "', Rua='" + rua + "', Numero=" + numero + ", Bairro='" + bairro + "', Complemento='" + complemento + "', Cidade='" + cidade + "', Estado='" + estado + "'," +
+                    " CEP='" + cep + "', Status='" + status + "', Ano_Letivo='" + ano + "', Escola='" + escola + "' where CPF='" + cpf + "'", DAO_Conexao.con);
+
+                update.ExecuteNonQuery();
+
+                editar = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return editar;
+        }
+
+        public MySqlDataReader getInfosVagasInteressantes(int idAluno) //pega todas as informacoes sobre as vagas em que o aluno esta interessado, inclusive infos sobre a empresa que criou a vaga
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select *, Connect_Vagas.Nome as NomeVaga, Connect_Empresa.Nome as NomeEmpresa from Connect_Aluno_Vaga, Connect_Vagas, Connect_Empresa where " +
+                    "Connect_Aluno_Vaga.idAluno=" + idAluno + " and Connect_Aluno_Vaga.Codigo_Vaga = Connect_Vagas.Codigo and Connect_Vagas.idEmpresa = Connect_Empresa.idEmpresa", DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public MySqlDataReader getInfosVagasInteressadas(int idAluno) //pega todas as infos sobre as vagas que estao interessadas no aluno, inclusive sobre a empresa por tras dela
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select *, Connect_Vagas.Nome as NomeVaga, Connect_Empresa.Nome as NomeEmpresa from Connect_Vaga_Aluno, Connect_Vagas, Connect_Empresa where " +
+                    "Connect_Vaga_Aluno.idAluno=" + idAluno + " and Connect_Vaga_Aluno.Codigo_Vaga = Connect_Vagas.Codigo and Connect_Vagas.idEmpresa = Connect_Empresa.idEmpresa",
+                    DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public MySqlDataReader searchAlunos()
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                string query = "select * from Connect_Aluno where 1=1 ";
+
+                if (!(String.IsNullOrEmpty(nome)))
+                {
+                    query += " and Nome = '" + nome + "' ";
+                }
+                if(!(String.IsNullOrEmpty(especialidade))) 
+                {
+                    query += " and Especialidade = '" + especialidade + "' ";
+                }
+                if(!(String.IsNullOrEmpty(cidade)))
+                {
+                    query += " and Cidade = '" + cidade + "' ";
+                }
+                if (!(String.IsNullOrEmpty(escola)))
+                {
+                    query += " and Escola = '" + escola + "' ";
+                }
+                if(!(String.IsNullOrEmpty(email)))
+                {
+                    query += " and Email = '" + email + "' ";
+                }
+
+                //MySqlCommand select = new MySqlCommand("select * from Connect_Aluno where ('"+nome+"' is null or Nome = '"+nome+"') " +
+                //    "and ('"+especialidade+"' is null or Especialidade = '"+especialidade+"') " +
+                //    "and ('"+cidade+"' is null or Cidade = '"+cidade+"') " +
+                //    "and ('"+escola+"' is null or Escola = '"+escola+"') " +
+                //    "and ('"+email+"' is null or Email = '"+email+"')", DAO_Conexao.con);
+
+                MySqlCommand select = new MySqlCommand(query, DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch(Exception ex) 
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
             return reader;
         }
     }

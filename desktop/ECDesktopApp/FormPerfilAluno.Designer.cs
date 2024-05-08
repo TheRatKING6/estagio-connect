@@ -134,7 +134,7 @@
             // 
             this.txtDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescricao.Location = new System.Drawing.Point(665, 359);
-            this.txtDescricao.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDescricao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(426, 264);
@@ -149,9 +149,9 @@
             this.gpbInfoContato.Controls.Add(this.lblTelefone);
             this.gpbInfoContato.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpbInfoContato.Location = new System.Drawing.Point(16, 489);
-            this.gpbInfoContato.Margin = new System.Windows.Forms.Padding(2);
+            this.gpbInfoContato.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gpbInfoContato.Name = "gpbInfoContato";
-            this.gpbInfoContato.Padding = new System.Windows.Forms.Padding(2);
+            this.gpbInfoContato.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gpbInfoContato.Size = new System.Drawing.Size(627, 134);
             this.gpbInfoContato.TabIndex = 31;
             this.gpbInfoContato.TabStop = false;
@@ -160,7 +160,7 @@
             // msktxtTelefone
             // 
             this.msktxtTelefone.Location = new System.Drawing.Point(178, 93);
-            this.msktxtTelefone.Margin = new System.Windows.Forms.Padding(2);
+            this.msktxtTelefone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.msktxtTelefone.Mask = "(00) 0000-0000";
             this.msktxtTelefone.Name = "msktxtTelefone";
             this.msktxtTelefone.Size = new System.Drawing.Size(230, 24);
@@ -169,7 +169,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(163, 28);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(460, 24);
             this.txtEmail.TabIndex = 9;
@@ -213,9 +213,9 @@
             this.gpbEndereco.Controls.Add(this.lblRua);
             this.gpbEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpbEndereco.Location = new System.Drawing.Point(16, 674);
-            this.gpbEndereco.Margin = new System.Windows.Forms.Padding(2);
+            this.gpbEndereco.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gpbEndereco.Name = "gpbEndereco";
-            this.gpbEndereco.Padding = new System.Windows.Forms.Padding(2);
+            this.gpbEndereco.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gpbEndereco.Size = new System.Drawing.Size(969, 207);
             this.gpbEndereco.TabIndex = 30;
             this.gpbEndereco.TabStop = false;
@@ -253,7 +253,7 @@
             "TO",
             "DF"});
             this.cbbEstado.Location = new System.Drawing.Point(631, 141);
-            this.cbbEstado.Margin = new System.Windows.Forms.Padding(2);
+            this.cbbEstado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbbEstado.Name = "cbbEstado";
             this.cbbEstado.Size = new System.Drawing.Size(91, 28);
             this.cbbEstado.TabIndex = 13;
@@ -261,7 +261,7 @@
             // msktxtCep
             // 
             this.msktxtCep.Location = new System.Drawing.Point(798, 141);
-            this.msktxtCep.Margin = new System.Windows.Forms.Padding(2);
+            this.msktxtCep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.msktxtCep.Mask = "00000-000";
             this.msktxtCep.Name = "msktxtCep";
             this.msktxtCep.Size = new System.Drawing.Size(142, 26);
@@ -270,7 +270,7 @@
             // txtCidade
             // 
             this.txtCidade.Location = new System.Drawing.Point(98, 141);
-            this.txtCidade.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCidade.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(403, 26);
             this.txtCidade.TabIndex = 11;
@@ -278,7 +278,7 @@
             // txtNumero
             // 
             this.txtNumero.Location = new System.Drawing.Point(818, 36);
-            this.txtNumero.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNumero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(122, 26);
             this.txtNumero.TabIndex = 10;
@@ -286,7 +286,7 @@
             // txtComplmento
             // 
             this.txtComplmento.Location = new System.Drawing.Point(716, 79);
-            this.txtComplmento.Margin = new System.Windows.Forms.Padding(2);
+            this.txtComplmento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtComplmento.Name = "txtComplmento";
             this.txtComplmento.Size = new System.Drawing.Size(224, 26);
             this.txtComplmento.TabIndex = 9;
@@ -294,7 +294,7 @@
             // txtBairro
             // 
             this.txtBairro.Location = new System.Drawing.Point(77, 85);
-            this.txtBairro.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBairro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(431, 26);
             this.txtBairro.TabIndex = 8;
@@ -302,7 +302,7 @@
             // txtRua
             // 
             this.txtRua.Location = new System.Drawing.Point(70, 36);
-            this.txtRua.Margin = new System.Windows.Forms.Padding(2);
+            this.txtRua.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtRua.Name = "txtRua";
             this.txtRua.Size = new System.Drawing.Size(630, 26);
             this.txtRua.TabIndex = 7;
@@ -429,7 +429,7 @@
             // 
             this.txtEscola.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEscola.Location = new System.Drawing.Point(76, 385);
-            this.txtEscola.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEscola.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtEscola.Name = "txtEscola";
             this.txtEscola.Size = new System.Drawing.Size(410, 26);
             this.txtEscola.TabIndex = 51;
@@ -444,7 +444,7 @@
             "3",
             "4"});
             this.cbxAno.Location = new System.Drawing.Point(98, 438);
-            this.cbxAno.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxAno.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxAno.Name = "cbxAno";
             this.cbxAno.Size = new System.Drawing.Size(103, 28);
             this.cbxAno.TabIndex = 50;
@@ -459,7 +459,7 @@
             "Empregado",
             "Empregado e Estudando"});
             this.cbxStatus.Location = new System.Drawing.Point(76, 325);
-            this.cbxStatus.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxStatus.Name = "cbxStatus";
             this.cbxStatus.Size = new System.Drawing.Size(297, 28);
             this.cbxStatus.TabIndex = 49;
@@ -509,7 +509,7 @@
             "Enfermagem",
             "Qualidade de produção"});
             this.cbxEspecializacao.Location = new System.Drawing.Point(195, 269);
-            this.cbxEspecializacao.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxEspecializacao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxEspecializacao.Name = "cbxEspecializacao";
             this.cbxEspecializacao.Size = new System.Drawing.Size(270, 28);
             this.cbxEspecializacao.TabIndex = 45;
@@ -531,7 +531,7 @@
             this.dateNascimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateNascimento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNascimento.Location = new System.Drawing.Point(174, 211);
-            this.dateNascimento.Margin = new System.Windows.Forms.Padding(2);
+            this.dateNascimento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dateNascimento.Name = "dateNascimento";
             this.dateNascimento.Size = new System.Drawing.Size(111, 26);
             this.dateNascimento.TabIndex = 43;
@@ -551,7 +551,7 @@
             // 
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(71, 162);
-            this.txtNome.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(572, 26);
             this.txtNome.TabIndex = 41;
@@ -560,8 +560,8 @@
             // 
             this.msktxtCpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.msktxtCpf.Location = new System.Drawing.Point(60, 103);
-            this.msktxtCpf.Margin = new System.Windows.Forms.Padding(2);
-            this.msktxtCpf.Mask = "000,000,000-00";
+            this.msktxtCpf.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.msktxtCpf.Mask = "000.000.000-00";
             this.msktxtCpf.Name = "msktxtCpf";
             this.msktxtCpf.Size = new System.Drawing.Size(165, 26);
             this.msktxtCpf.TabIndex = 40;
@@ -691,7 +691,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1677, 1061);
+            this.ClientSize = new System.Drawing.Size(1495, 1061);
             this.Controls.Add(this.pnlContent);
             this.Name = "FormPerfilAluno";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);

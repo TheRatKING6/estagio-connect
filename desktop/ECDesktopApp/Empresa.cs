@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,8 @@ namespace ECDesktopApp
         private string email;
         private string telefone;
         private string ramo;
-        private byte foto;
         private string descricao;
+        private byte foto;
         private string senha;
 
         public Empresa() { }
@@ -36,6 +37,15 @@ namespace ECDesktopApp
         {
             this.cnpj= cnpj;
             this.senha = senha;
+        }
+
+        public Empresa(string cnpj, string nome, string ramo, string email, string cidade)
+        {
+            this.cnpj = cnpj;
+            this.nome = nome;
+            this.ramo = ramo;
+            this.email = email;
+            this.cidade = cidade;
         }
 
         public Empresa(string cnpj, string nome, string rua, int numero, string bairro, string complemento, string cidade, string estado, string cep, string email,
@@ -75,6 +85,23 @@ namespace ECDesktopApp
             this.foto = foto;
             this.descricao = descricao;
             this.senha = senha;
+        }
+
+        public Empresa(string cnpj, string nome, string rua, int numero, string bairro, string complemento, string cidade, string estado, string cep, string email, string telefone, string ramo, string descricao)
+        {
+            this.cnpj = cnpj;
+            this.nome = nome;
+            this.rua = rua;
+            this.numero = numero;
+            this.bairro = bairro;
+            this.complemento = complemento;
+            this.cidade = cidade;
+            this.estado = estado;
+            this.cep = cep;
+            this.email = email;
+            this.telefone = telefone;
+            this.ramo = ramo;
+            this.descricao = descricao;
         }
 
         public string Cnpj { get => cnpj; set => cnpj = value; }
@@ -153,6 +180,197 @@ namespace ECDesktopApp
 
             return verificacao;
         }
+
+        public int getCodigo_Empresa()
+        {
+            int codigo = -1;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand select = new MySqlCommand("select idEmpresa from Connect_Empresa where CNPJ='" + cnpj + "'", DAO_Conexao.con);
+
+                MySqlDataReader result = select.ExecuteReader();
+
+                while(result.Read())
+                {
+                    codigo = result.GetInt32(0);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine( ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return codigo;
+        }
+
+        public MySqlDataReader getInfosEmpresa()
+        {
+            MySqlDataReader empresa = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select * from Connect_Empresa where CNPJ='" + cnpj + "'", DAO_Conexao.con);
+
+                empresa = select.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine( ex.ToString());
+            }
+
+            return empresa;
+        }
+
+        public bool deleteEmpresa()
+        {
+            bool excluir = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand delete = new MySqlCommand("delete from Connect_Empresa where CNPJ='" + cnpj + "'", DAO_Conexao.con);
+
+                delete.ExecuteNonQuery();
+
+                excluir = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine( ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return excluir;
+        }
+
+        public bool editarEmpresa()
+        {
+            bool editar = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand update = new MySqlCommand("update Connect_Empresa set Nome='" + nome + "', Rua='" + rua + "', Numero=" + numero + ", Bairro='" + bairro + "', " +
+                    "Complemento='" + complemento + "', Cidade='" + cidade + "', Estado='" + estado + "', CEP='" + cep + "', Email='" + email + "', Telefone='" + telefone + "', " +
+                    "Ramo='" + ramo + "', Descricao='" + descricao + "' where CNPJ='" + cnpj + "'", DAO_Conexao.con);
+
+                update.ExecuteNonQuery();
+
+                editar = true;
+            }
+            catch (Exception ex) 
+            { 
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return editar;
+        }
+
+        public MySqlDataReader getAllEmpresas()
+        {
+            MySqlDataReader empresa = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select * from Connect_Empresa", DAO_Conexao.con);
+
+                empresa = select.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return empresa;
+        }
+
+        public MySqlDataReader seearchEmpresas()
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                string query = "select * from Connect_Empresa where 1=1 ";
+
+                if (!(String.IsNullOrEmpty(nome)))
+                {
+                    query += " and Nome = '" + nome + "' ";
+                }
+                if (!(String.IsNullOrEmpty(ramo)))
+                {
+                    query += " and Ramo = '" + ramo + "' ";
+                }
+                if (!(String.IsNullOrEmpty(email)))
+                {
+                    query += " and Email = '" + email + "' ";
+                }
+                if(!(String.IsNullOrEmpty(cidade)))
+                {
+                    query += " and Cidade = '" + cidade + "' ";
+                }
+
+                MySqlCommand select = new MySqlCommand(query, DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public string getCnpjById(int idEmpresa)
+        {
+            string cnpj = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select * from Connect_Empresa where idEmpresa = " + idEmpresa, DAO_Conexao.con);
+
+                MySqlDataReader reader = select.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cnpj = reader["CNPJ"].ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return cnpj;
+        }
+
     }
 
     
