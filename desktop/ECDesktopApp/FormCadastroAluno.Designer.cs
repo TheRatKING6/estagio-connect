@@ -81,9 +81,10 @@
             this.picBoxFotoAluno = new System.Windows.Forms.PictureBox();
             this.btnSelectImg = new System.Windows.Forms.Button();
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.lblCurriculo = new System.Windows.Forms.Label();
-            this.txtArquivoCurriculo = new System.Windows.Forms.TextBox();
             this.btnEscolherCurriculo = new System.Windows.Forms.Button();
+            this.txtArquivoCurriculo = new System.Windows.Forms.TextBox();
+            this.lblCurriculo = new System.Windows.Forms.Label();
+            this.btnLimparCurriculo = new System.Windows.Forms.Button();
             this.gpbInfoContato.SuspendLayout();
             this.gpbEndereco.SuspendLayout();
             this.gpbSenha.SuspendLayout();
@@ -656,9 +657,11 @@
             this.btnSelectImg.TabIndex = 33;
             this.btnSelectImg.Text = "Escolher Foto...";
             this.btnSelectImg.UseVisualStyleBackColor = true;
+            this.btnSelectImg.Click += new System.EventHandler(this.btnSelectImg_Click);
             // 
             // pnlContent
             // 
+            this.pnlContent.Controls.Add(this.btnLimparCurriculo);
             this.pnlContent.Controls.Add(this.btnEscolherCurriculo);
             this.pnlContent.Controls.Add(this.txtArquivoCurriculo);
             this.pnlContent.Controls.Add(this.lblCurriculo);
@@ -696,6 +699,23 @@
             this.pnlContent.Size = new System.Drawing.Size(718, 1080);
             this.pnlContent.TabIndex = 34;
             // 
+            // btnEscolherCurriculo
+            // 
+            this.btnEscolherCurriculo.Location = new System.Drawing.Point(515, 705);
+            this.btnEscolherCurriculo.Name = "btnEscolherCurriculo";
+            this.btnEscolherCurriculo.Size = new System.Drawing.Size(113, 23);
+            this.btnEscolherCurriculo.TabIndex = 36;
+            this.btnEscolherCurriculo.Text = "Escolher Arquivo...";
+            this.btnEscolherCurriculo.UseVisualStyleBackColor = true;
+            this.btnEscolherCurriculo.Click += new System.EventHandler(this.btnEscolherCurriculo_Click);
+            // 
+            // txtArquivoCurriculo
+            // 
+            this.txtArquivoCurriculo.Location = new System.Drawing.Point(515, 679);
+            this.txtArquivoCurriculo.Name = "txtArquivoCurriculo";
+            this.txtArquivoCurriculo.Size = new System.Drawing.Size(187, 20);
+            this.txtArquivoCurriculo.TabIndex = 35;
+            // 
             // lblCurriculo
             // 
             this.lblCurriculo.AutoSize = true;
@@ -705,21 +725,15 @@
             this.lblCurriculo.TabIndex = 34;
             this.lblCurriculo.Text = "Currículo:";
             // 
-            // txtArquivoCurriculo
+            // btnLimparCurriculo
             // 
-            this.txtArquivoCurriculo.Location = new System.Drawing.Point(515, 679);
-            this.txtArquivoCurriculo.Name = "txtArquivoCurriculo";
-            this.txtArquivoCurriculo.Size = new System.Drawing.Size(187, 20);
-            this.txtArquivoCurriculo.TabIndex = 35;
-            // 
-            // btnEscolherCurriculo
-            // 
-            this.btnEscolherCurriculo.Location = new System.Drawing.Point(515, 705);
-            this.btnEscolherCurriculo.Name = "btnEscolherCurriculo";
-            this.btnEscolherCurriculo.Size = new System.Drawing.Size(113, 23);
-            this.btnEscolherCurriculo.TabIndex = 36;
-            this.btnEscolherCurriculo.Text = "Escolher Arquivo...";
-            this.btnEscolherCurriculo.UseVisualStyleBackColor = true;
+            this.btnLimparCurriculo.Location = new System.Drawing.Point(634, 705);
+            this.btnLimparCurriculo.Name = "btnLimparCurriculo";
+            this.btnLimparCurriculo.Size = new System.Drawing.Size(68, 23);
+            this.btnLimparCurriculo.TabIndex = 37;
+            this.btnLimparCurriculo.Text = "Limpar";
+            this.btnLimparCurriculo.UseVisualStyleBackColor = true;
+            this.btnLimparCurriculo.Click += new System.EventHandler(this.btnLimparCurriculo_Click);
             // 
             // FormCadastroAluno
             // 
@@ -804,5 +818,6 @@
         private System.Windows.Forms.Button btnEscolherCurriculo;
         private System.Windows.Forms.TextBox txtArquivoCurriculo;
         private System.Windows.Forms.Label lblCurriculo;
+        private System.Windows.Forms.Button btnLimparCurriculo;
     }
 }

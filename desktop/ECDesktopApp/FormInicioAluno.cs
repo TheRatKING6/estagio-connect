@@ -44,7 +44,11 @@ namespace ECDesktopApp
             }
             DAO_Conexao.con.Close();
 
-            nome = nome.Substring(0, nome.IndexOf(" "));
+            if(nome.Contains(" "))
+            {
+                nome = nome.Substring(0, nome.IndexOf(" "));
+            }
+
 
             lblWelcome.Text += nome;
 

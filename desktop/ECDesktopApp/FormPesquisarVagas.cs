@@ -16,9 +16,11 @@ namespace ECDesktopApp
     {
         private string userId;
         private int tipo;
+        //private byte[] curriculo;
 
         public string UserId { get => userId; set => userId = value; }
         public int Tipo { get => tipo; set => tipo = value; }
+        //public byte[] Curriculo { get => curriculo; set => curriculo = value; }
 
         public FormPesquisarVagas()
         {
@@ -120,6 +122,34 @@ namespace ECDesktopApp
         {
             //deixa o btn de ver a vaga visivel de novo
             btnVerVaga.Visible = true;
+        }
+
+        private void cbxOrganizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbxOrganizar.SelectedIndex == 0)
+            {
+                dgvBuscaVaga.Sort(dgvBuscaVaga.Columns[2], ListSortDirection.Ascending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 1)
+            {
+                dgvBuscaVaga.Sort(dgvBuscaVaga.Columns[2], ListSortDirection.Descending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 2)
+            {
+                dgvBuscaVaga.Sort(dgvBuscaVaga.Columns[1], ListSortDirection.Ascending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 3)
+            {
+                dgvBuscaVaga.Sort(dgvBuscaVaga.Columns[1], ListSortDirection.Descending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 4)
+            {
+                dgvBuscaVaga.Sort(dgvBuscaVaga.Columns[0], ListSortDirection.Ascending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 5)
+            {
+                dgvBuscaVaga.Sort(dgvBuscaVaga.Columns[0], ListSortDirection.Descending);
+            }
         }
     }
 }

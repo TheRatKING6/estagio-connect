@@ -96,6 +96,7 @@ namespace ECDesktopApp
 
             //pega os valores dos campos e efetua login
             string userId = msktxtPK.Text;
+            
             string password = txtSenha.Text;
 
             //Console.WriteLine(userId);
@@ -122,12 +123,13 @@ namespace ECDesktopApp
                         //Abre o FormInicioAluno
                         FormInicioAluno form = new FormInicioAluno();
                         form.MdiParent = this;
-                        form.UserId = userId; //passa o cpf do aluno logando para a propriedade UserId, para poder identificar o aluno logado
+                        form.UserId = userId.Replace(",", "."); //passa o cpf do aluno logando para a propriedade UserId, para poder identificar o aluno logado
                         form.Show();
 
                         //se for aluno desabilita o 'Alunos interessados' no menuStrip
                         alunosInteressadosToolStripMenuItem.Visible = false;
 
+                        inicioToolStripMenuItem.Visible = true;
                         vagasToolStripMenuItem.Visible = true;
 
                     }
@@ -136,7 +138,7 @@ namespace ECDesktopApp
                         FormPerfilEmpresa form = new FormPerfilEmpresa();
                         form.MdiParent = this;
                         //passa o cnpj da empresa para o formPerfilEmpresa.cs
-                        form.Cnpj_empresa1 = msktxtPK.Text;
+                        form.Cnpj_empresa1 = msktxtPK.Text.Replace(",", ".");
                         
                         form.Show();
 
@@ -179,7 +181,7 @@ namespace ECDesktopApp
 
         private void inícioToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            string userId = msktxtPK.Text;
+            string userId = msktxtPK.Text.Replace(",", ".");
 
             
             FormInicioAluno form = new FormInicioAluno();
@@ -190,7 +192,7 @@ namespace ECDesktopApp
 
         private void meuPerfilToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string userId = msktxtPK.Text;
+            string userId = msktxtPK.Text.Replace(",", ".");
 
             if(userId.Replace(".", "").Replace("-", "").Replace("/", "").Length == 14) //verifica se e empresa
             {
@@ -198,7 +200,7 @@ namespace ECDesktopApp
                 FormPerfilEmpresa form = new FormPerfilEmpresa();
                 form.MdiParent = this;
                 //passa o cnpj da empresa para o formPerfilEmpresa.cs
-                form.Cnpj_empresa1 = msktxtPK.Text;
+                form.Cnpj_empresa1 = msktxtPK.Text.Replace(",", ".");
 
                 form.Show();
                 //lembra de passar o id do usuario
@@ -207,7 +209,7 @@ namespace ECDesktopApp
             {
                 FormPerfilAluno form = new FormPerfilAluno();
                 form.MdiParent = this;
-                form.UserId1 = userId;
+                form.UserId1 = userId.Replace(",", ".");
                 form.Show();
                 //lembrar de passar o id do usuario
             }
@@ -231,7 +233,7 @@ namespace ECDesktopApp
         {
             FormPesquisarVagas form = new FormPesquisarVagas();
             form.MdiParent = this;
-            form.UserId = msktxtPK.Text;
+            form.UserId = msktxtPK.Text.Replace(",", ".");
 
             form.Show();
         }
@@ -240,7 +242,7 @@ namespace ECDesktopApp
         {
             FormVagaInteresseAluno form = new FormVagaInteresseAluno();
             form.MdiParent = this;
-            form.UserId = msktxtPK.Text;
+            form.UserId = msktxtPK.Text.Replace(",", ".");
 
             form.Show();
         }
@@ -249,13 +251,13 @@ namespace ECDesktopApp
         {
             FormAlunosInteressadosVaga form = new FormAlunosInteressadosVaga();
             form.MdiParent = this;
-            form.Cnpj = msktxtPK.Text;
+            form.Cnpj = msktxtPK.Text.Replace(",", ".");
             form.Show();
         }
 
         private void connectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string userId = msktxtPK.Text;
+            string userId = msktxtPK.Text.Replace(",", ".");
 
             FormConnect form = new FormConnect();
             form.MdiParent = this;

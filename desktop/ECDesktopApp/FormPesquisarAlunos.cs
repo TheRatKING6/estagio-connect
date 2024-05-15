@@ -112,5 +112,33 @@ namespace ECDesktopApp
             //deixa o botao visivel novamente assim que voce clicar na celula
             btnVerAluno.Visible = true;
         }
+
+        private void cbxOrganizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbxOrganizar.SelectedIndex == 0)
+            {
+                dgvBuscaAlunos.Sort(dgvBuscaAlunos.Columns[0], ListSortDirection.Descending);
+            }
+            else if(cbxOrganizar.SelectedIndex == 1)
+            {
+                dgvBuscaAlunos.Sort(dgvBuscaAlunos.Columns[0], ListSortDirection.Ascending);
+            }
+            else if(cbxOrganizar.SelectedIndex == 2)
+            {
+                dgvBuscaAlunos.Sort(dgvBuscaAlunos.Columns[1], ListSortDirection.Ascending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 3)
+            {
+                dgvBuscaAlunos.Sort(dgvBuscaAlunos.Columns[1], ListSortDirection.Descending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 4)
+            {
+                dgvBuscaAlunos.Sort(dgvBuscaAlunos.Columns[5], ListSortDirection.Ascending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 5)
+            {
+                dgvBuscaAlunos.Sort(dgvBuscaAlunos.Columns[5], ListSortDirection.Descending);
+            }
+        }
     }
 }

@@ -65,13 +65,15 @@ namespace ECDesktopApp
         public static String formataData(string data) //pega uma data no formato dedata americano e transforma no formato de data normal
         {
             string nascimento = data.Substring(0, data.IndexOf(" "));
-            //Console.WriteLine("\n\n" + nascimento + "\n\n");
+            Console.WriteLine("\n\n" + nascimento + "\n\n");
             string ano = nascimento.Substring(nascimento.LastIndexOf("/")+1);
-            string mes = nascimento.Substring(0, 2);
-            //Console.WriteLine("\n\n" + nascimento + "\n\n");
-            string dia = nascimento.Substring(nascimento.IndexOf("/")+1, 2);
+            //string mes = nascimento.Substring(0, 2);
+            string mes = nascimento.Substring(0, nascimento.IndexOf("/"));
+            Console.WriteLine("\n\n" + nascimento + "\n\n");
+            //string dia = nascimento.Substring(nascimento.IndexOf("/")+1, 2);
+            string dia = nascimento.Substring(nascimento.IndexOf("/")+1, nascimento.LastIndexOf("/") - nascimento.IndexOf("/") - 1);
 
-            //Console.WriteLine("\n\nFormata data: \ndia: " + dia + "\nmes: " + mes + "\nano: " + ano + "\n\n");
+            Console.WriteLine("\n\nFormata data: \ndia: " + dia + "\nmes: " + mes + "\nano: " + ano + "\n\n");
                     
             nascimento = dia + "/" + mes + "/" + ano;
 

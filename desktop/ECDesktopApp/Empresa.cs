@@ -23,7 +23,7 @@ namespace ECDesktopApp
         private string telefone;
         private string ramo;
         private string descricao;
-        private byte foto;
+        private byte[] foto;
         private string senha;
 
         public Empresa() { }
@@ -68,7 +68,7 @@ namespace ECDesktopApp
         }
 
         public Empresa(string cnpj, string nome, string rua, int numero, string bairro, string complemento, string cidade, string estado, string cep, string email, 
-            string telefone, string ramo, byte foto, string descricao, string senha)
+            string telefone, string ramo, byte[] foto, string descricao, string senha)
         {
             this.cnpj = cnpj;
             this.nome = nome;
@@ -116,7 +116,7 @@ namespace ECDesktopApp
         public string Email { get => email; set => email = value; }
         public string Telefone { get => telefone; set => telefone = value; }
         public string Ramo { get => ramo; set => ramo = value; }
-        public byte Foto { get => foto; set => foto = value; }
+        public byte[] Foto { get => foto; set => foto = value; }
         public string Descricao { get => descricao; set => descricao = value; }
         public string Senha { get => senha; set => senha = value; }
 
@@ -132,8 +132,8 @@ namespace ECDesktopApp
                 DAO_Conexao.con.Open();
 
                 MySqlCommand insert = new MySqlCommand("insert into Connect_Empresa (CNPJ, Nome, Rua, Numero, Bairro, Complemento, Cidade, Estado, CEP, Email, Telefone, " +
-                    "Ramo, Descricao, Senha) values('"+cnpj+"', '"+nome+"', '"+rua+"', "+numero+", '"+bairro+"', '"+complemento+"', '"+cidade+"', '"+estado+"'," +
-                    " '"+cep+"', '"+email+"', '"+telefone+"', '"+ramo+"', '"+descricao+"', '"+senha+"')", DAO_Conexao.con); //insert SEM a Foto (ainda n sei como usar foto, priscila nunca ensinou)
+                    "Ramo, Descricao, Senha, Foto) values('" + cnpj + "', '" + nome + "', '" + rua + "', " + numero + ", '" + bairro + "', '" + complemento + "', '" + cidade + "', '" + estado + "'," +
+                    " '" + cep + "', '" + email + "', '" + telefone + "', '" + ramo + "', '" + descricao + "', '" + senha + "', '" + foto + "')", DAO_Conexao.con); //insert SEM a Foto (ainda n sei como usar foto, priscila nunca ensinou)
 
                 insert.ExecuteNonQuery();
 
@@ -315,19 +315,19 @@ namespace ECDesktopApp
 
                 if (!(String.IsNullOrEmpty(nome)))
                 {
-                    query += " and Nome = '" + nome + "' ";
+                    query += " and Nome like '%" + nome + "%' ";
                 }
                 if (!(String.IsNullOrEmpty(ramo)))
                 {
-                    query += " and Ramo = '" + ramo + "' ";
+                    query += " and Ramo like '%" + ramo + "%' ";
                 }
                 if (!(String.IsNullOrEmpty(email)))
                 {
-                    query += " and Email = '" + email + "' ";
+                    query += " and Email like '%" + email + "%' ";
                 }
                 if(!(String.IsNullOrEmpty(cidade)))
                 {
-                    query += " and Cidade = '" + cidade + "' ";
+                    query += " and Cidade like '%" + cidade + "%' ";
                 }
 
                 MySqlCommand select = new MySqlCommand(query, DAO_Conexao.con);
