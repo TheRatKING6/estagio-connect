@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,10 @@ namespace ECDesktopApp
             }
 
             menuStrip1.Visible = false;
+
+            //faz com que o formato de informacoes seja o mesmo independente do formato do sistema (em teoria)
+            var culture = CultureInfo.GetCultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = culture;
         }
 
         private void FormCadastroInicio_Load(object sender, EventArgs e)

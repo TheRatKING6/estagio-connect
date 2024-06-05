@@ -150,7 +150,7 @@ namespace ECDesktopApp
             else
             {
                 //cria um objeto Empresa
-                string cnpj = msktxtCnpj.Text;
+                string cnpj = msktxtCnpj.Text.Replace(",", ".");
                 string nome = txtNome.Text;
                 string rua = txtRua.Text;
                 int numero = int.Parse(txtNumero.Text);

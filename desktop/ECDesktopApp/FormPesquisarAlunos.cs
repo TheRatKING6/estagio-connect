@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,6 +70,7 @@ namespace ECDesktopApp
                 {
                     int idAluno = int.Parse(reader["idAluno"].ToString());
                     string nomeAluno = reader["Nome"].ToString();
+                    //CultureInfo.CurrentCulture.DateTimeFormat = 
                     string nascimento = ManipulcaoData.formataData(reader["Nascimento"].ToString());
                     string emailAluno = reader["email"].ToString();
                     string especialidadeAluno = reader["Especialidade"].ToString();

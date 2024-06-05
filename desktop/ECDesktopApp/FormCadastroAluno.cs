@@ -194,7 +194,7 @@ namespace ECDesktopApp
             {
                 //cria um objeto Aluno
 
-                string cpf = msktxtCpf.Text;
+                string cpf = msktxtCpf.Text.Replace(",", ".");
                 string matricula = txtMatricula.Text;
                 string nome = txtNome.Text;
 
