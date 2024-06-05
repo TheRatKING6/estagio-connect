@@ -7,7 +7,7 @@
   <link rel="icon" href="favicon.ico">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="style1.css">
-	<title>Cadastro - Aluno</title>
+	<title>Cadastro - Empresa</title>
   <style type="text/css">
     body {
           background-image: url("img/backimage.png");
@@ -23,74 +23,33 @@
             width: 90%;
             margin-bottom: 20px;
         }
-
   </style>
 
 </head>
 <body>
+<?php
+  session_start();
+  if (isset($_SESSION["login"])) {
 
-<!--inicio navbar-->
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-       <img src="img/estagioconnect2.png" alt="Estagio connect" width="140px">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="home.html">Home</a>
-        <a class="nav-link" href="sobrenos.html">Sobre Nós</a>
-        <a class="nav-link" href="download.html">Download</a>
-        <a class="nav-link" href="tutorial.html">Tutorial</a>
-        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#Modal">Cadastro</a>
-
-        <!-- Modal -->
-      <div class="modal fade modal-sm" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="ModalLabel">Cadastro</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              Escolha o cadastro que deseja prosseguir:
-            </div>
-          <div class="modal-body centralizaCont">
-          <a href="cadastroAlu.html">
-              <button type="button" class="btn btn-info btncolor botaoAluno" > Aluno </button>
-          </a>
-
-          <a href="cadastroEmp.html">
-              <button type="button" class="btn btn-info btncolor botaoEmpresa" href="cadastroEmp.html"> Empresa </button>
-          </a>
-            </div>
-              <a href="login.html" class="minLog">Já possui cadastro? Faça login...</a>
-            <br>
-          </div>
-        </div>
-      </div>
-    <!--fim modal-->
-
-      </div>
-    </div>
-  </div>
-</nav>
-<!--fim navbar-->
+     require('assets/navbarLogado.html');;
+  }
+  else{
+    
+     require('assets/navbar.html');
+  }
+?>
 
 <!--container do Empresa-->
 
   <br><br>
   <div class="container md-3">
   <div class="row" style="color:white;">
-   <h6 class="display-6 "><b>Cadastro<a class="estConne"> -</a> Aluno</b></h6>
-  <p class="lead">Cadastre-se no Estágio Connect e conheça diversas vagas</p>
+   <h6 class="display-6 "><b>Cadastro<a class="estConne"> -</a> Empresa</b></h6>
+  <p class="lead">Cadastre a sua empresa no Estágio Connect </p>
 
   <div>
     <div class="col-12" ><hr class="estConne" style="color:white;"></div>    
   </div>
-  <br>
 </div>
 </div>
 
@@ -98,18 +57,21 @@
 
 <form class="needs-validation" novalidate>
 <br>
+
   <div class="row">
-    <div class="col-md-9 col-sm-12 mb-3">
-      <label class="form-label">Nome Completo: </label><br>
+    <div class="col-sm-12 mb-3">
+      <label class="form-label">CNPJ: </label><br>
       <input type="text" class="form-control" required>
       <div class="invalid-feedback">
         Campo obrigatório.
       </div>
     </div>
+  </div>
 
-    <div class=" col-md-3 col-sm-12 mb-3">
-      <label class="form-label"  >Data de Nascimento: </label><br>
-      <input type="date" class="form-control" required >
+  <div class="row">
+    <div class="col-sm-12 mb-3">
+      <label class="form-label">Nome: </label><br>
+      <input type="text" class="form-control" required>
       <div class="invalid-feedback">
         Campo obrigatório.
       </div>
@@ -127,7 +89,7 @@
       </div>
     </div>
 
-     <div class="col-md-2 col-sm-12 mb-3">
+     <div class="col-md-1 col-sm-12 mb-3">
       <label class="form-label">Número:</label>
       <input type="text" class="form-control" required>
       <div class="invalid-feedback">
@@ -135,7 +97,7 @@
       </div>
     </div>
 
-    <div class="col-md-3 col-sm-12 mb-3">
+    <div class="col-md-4 col-sm-12 mb-3">
       <label class="form-label">Bairro:</label>
       <input type="text" class="form-control" required>
       <div class="invalid-feedback">
@@ -214,7 +176,7 @@
 
   <div class="row">
   <div class="col-md-6 col-sm-12 mb-3">
-      <label class="form-label">Email de Contato: </label><br>
+      <label class="form-label">Email de Contato: </label>
       <input type="email"  class="form-control" required>
       <div class="invalid-feedback">
         Campo obrigatório.
@@ -224,66 +186,12 @@
       <label class="form-label">Telefone de Contato: </label>
       <input type="tel"  class="form-control">
     </div>
-
     <div class="col-md-3 col-sm-12 mb-3">
-      <label class="form-label">Área de Especialização: </label>
-      <select class="form-select" required>
-      <option></option>
-        <option>Química</option>
-        <option>Desenvolvimento de Sistemas</option>
-        <option>Arquitetura/Engenharia</option>
-        <option>Mecânica Industrial</option>
-        <option>Enfermagem</option>
-        <option>Qualidade de Produção</option>
-      <div class="invalid-feedback">
-        Campo obrigatório.
-      </div>
-      </select>
+      <label class="form-label">Ramo de Atividade: </label>
+      <input type="text"  class="form-control" required>
     </div>
+
   </div>
-
-     <div class="row">
-
-        <div class="col-md-6 col-sm-12 mb-3">
-          <label class="form-label">Escola:</label>
-          <input type="text" class="form-control" required>
-          <div class="invalid-feedback">
-            Campo obrigatório.
-          </div>
-        </div>
-
-
-      <div class="col-md-4 col-sm-12 mb-3">
-            <label class="form-label">Status: </label>
-            <select class="form-select" required>
-            <option></option>
-              <option>Estudando</option>
-              <option>Estudos Concluídos</option>
-              <option>Empregado</option>
-              <option>Empregado e Estudando</option>
-            <div class="invalid-feedback">
-              Campo obrigatório.
-            </div>
-            </select>
-          </div>
-
-          <div class="col-md-2 col-sm-12 mb-3">
-            <label class="form-label">Ano Letivo: </label>
-            <select class="form-select" required>
-            <option></option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            <div class="invalid-feedback">
-              Campo obrigatório.
-            </div>
-            </select>
-          </div>
-
-      
-
-        </div>
 
 <br>
 
@@ -313,9 +221,10 @@
       <div class="col-12 ">
         <button type="submit" class="btn btn-info btncolor">
            <i class="bi bi-send"></i> Cadastrar
+
         </button>
 
-        <button type="reset" class="btn btn-info btncolor" id="liveToastBtn">
+         <button type="reset" class="btn btn-info btncolor" id="liveToastBtn">
           <i class="bi bi-x-circle"></i> Limpar
         </button>
 
@@ -330,46 +239,23 @@
                       </div>
                     </div>
                 </div>
-              
-
-          <!--toast limpar fim-->
-      </div>
+                <!--toast limpar fim-->
     </div>
 <!--botao envio fim-->
+</div>
 </form>
 </div>
 
 <!--fim container Empresa-->
+
+<?php
+  require('assets/footer.html');
+?>
+
   
-<!-- Footer -->
-<div class="card">
-  <div class="card-header " >
-    Estágio Connect - COTIL
-  </div>
-  <div class="card-body">
-    <h5 class="card-title centralizaCont">Conheça mais</h5>
-    <p class="card-text">
-
-        <div class="row centralizaCont">
-            <a href="sobrenos.html" class="col-md-2 col-sm-12 linkcolor">Sobre nós</a>
-  
-            <a href="download.html" class="col-md-2 col-sm-12 linkcolor">Download</a>
-
-             <a href="Home.html" class="col-md-4 col-sm-12 linkcolor">Home</a>
-                 
-            <a href="tutorial.html" class="col-md-2 col-sm-12 linkcolor">Tutorial</a>
- 
-            <a data-bs-toggle="modal" data-bs-target="#Modal" class="col-md-2 col-sm-12 linkcolor">Cadastro</a>
-          
-      </p>
-
-  </div>
-
-<!-- Footer -->
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
-      <!--<script type="text/javascript">
+  <!--<script type="text/javascript">
                      
             (() => {
               'use strict'
@@ -418,6 +304,6 @@
             }
   </script>-->
 
-   <script src="scriptCadastro.js"></script>
+  <script src="scriptCadastro.js"></script>
 </body>
 </html>
