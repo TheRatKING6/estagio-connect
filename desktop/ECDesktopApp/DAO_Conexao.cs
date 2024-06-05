@@ -36,6 +36,9 @@ namespace ECDesktopApp
             try
             {
                 con.Open();
+                //Console.WriteLine(userId);
+                userId = userId.Replace(",", ".");
+                //Console.WriteLine(userId);
 
                 //se for empresa
                 if(tipo == 1)

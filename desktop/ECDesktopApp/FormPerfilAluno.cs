@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +18,13 @@ namespace ECDesktopApp
         bool interesse = false;
         string UserId;
         int vagaId;
+        byte[] foto = null;
 
         public int Tipo { get => tipo; set => tipo = value; }
         public bool Interesse { get => interesse; set => interesse = value; }
         public string UserId1 { get => UserId; set => UserId = value; }
         public int VagaId { get => vagaId; set => vagaId = value; }
+        public byte[] Foto { get => foto; set => foto = value; }
 
         public FormPerfilAluno()
         {
@@ -75,7 +78,10 @@ namespace ECDesktopApp
 
         private void FormPerfilAluno_Load(object sender, EventArgs e)
         {
-            picFoto.ImageLocation = "../../img/default_user_empresa.jpg";
+            //picFoto.ImageLocation = "../../img/default_user_empresa.jpg"; //jeito errado de se colocar uma img no pictureBox LOL
+
+            //coloca a foto default no picBox e muda o sizeMode pra foto caber perfeitamente dentro dela
+            picFoto.Image = Image.FromFile("../../img/default_user_empresa.jpg");
             picFoto.SizeMode = PictureBoxSizeMode.StretchImage;
 
             //verifica se a vaga ja esta interessada no aluno
@@ -108,7 +114,7 @@ namespace ECDesktopApp
             //coloca as infos do aluno nos campos
             refreshInfosAluno();
 
-            
+            //refreshFoto();
 
         }
 
@@ -383,6 +389,67 @@ namespace ECDesktopApp
                 txtComplmento.Text = reader["Complemento"].ToString();
                 cbbEstado.Text = reader["Estado"].ToString();
                 msktxtCep.Text = reader["CEP"].ToString();
+
+                //TA DANDO ERRO, CACETE EU ODEIO MINHA VIDA, DESGRAÇA, EU LITERALMENTE VOU ME MATAR DIA 09/08/2024
+                //jeito q encontrei na net:
+                //try
+                //{
+                //    foto = (byte[])reader["Foto"];
+                //    if (foto.Length > 0)
+                //    {
+                //        Console.WriteLine("\n\nfoto.Lenght > 0\n\n");
+                //        MemoryStream coisa = new MemoryStream(foto);
+                //        picFoto.Image = new Bitmap(coisa);
+                //        string imagem = Convert.ToString("../../img/" + DateTime.Now.ToFileTime() + ".jpg");
+                //        Console.WriteLine("\n\n" + imagem + "\n\n");
+                //        byte[] bimage = (byte[])reader["Foto"];
+                //        FileStream fs = new FileStream(imagem, FileMode.CreateNew, FileAccess.Write);
+                //        fs.Write(bimage, 0, bimage.Length - 1);
+
+
+                //        picFoto.Image = Image.FromFile(imagem);
+                //        fs.Close();
+
+                //        MemoryStream strm = new MemoryStream(foto);
+                //        picFoto.Image = Image.FromStream(strm);
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    picFoto.Image = Image.FromFile("../../img/default_user_empresa.jpg");
+                //    Console.WriteLine(ex.Message);
+                //    MessageBox.Show("Erro ao carregar sua imagem de perfil", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+
+
+
+
+                //jeito q a priscila ensinou em aula:
+                //try
+                //{
+                //    foto = (byte[])reader["Foto"];
+                //    if (foto.Length > 0)
+                //    {
+                //        picFoto.Image = null;
+                //        string imagem = Convert.ToString(DateTime.Now.ToFileTime());
+                //        FileStream fs = new FileStream(imagem, FileMode.CreateNew, FileAccess.Write);
+                //        fs.Write(foto, 0, foto.Length - 1);
+                //        fs.Close();
+                        
+                //        picFoto.Image = Image.FromFile(imagem);
+                //        reader.Close();
+                //    }
+
+                //}
+                //catch (Exception ex)
+                //{
+                //    picFoto.Image = Image.FromFile("../../img/default_user_empresa.jpg");
+                //    Console.WriteLine(ex.Message);
+                //    MessageBox.Show("Erro ao carregar sua imagem de perfil", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+
+
+                //NEM UM DOS DOIS JEITOS FUNCIONAM, FODASE, EU ODEEEEEEEEEEEEEEEEEEEEIO PROGRAMAR, EU ODEIO MINHA VIDA, E EU ODEIO ESSE CURSO DE MERDA, FODAM-SE VOCES TODOS, MORRAM DE FORMA LENTA E DOLOROSA
             }
             DAO_Conexao.con.Close();
         }
@@ -403,5 +470,14 @@ namespace ECDesktopApp
             }
             DAO_Conexao.con.Close();
         }
+
+        //public void refreshFoto()
+        //{
+        //    Aluno aluno = new Aluno(UserId);
+
+        //    Image fotoAluno = aluno.getFotoAluno();
+
+        //    picFoto.Image = fotoAluno;
+        //}
     }
 }

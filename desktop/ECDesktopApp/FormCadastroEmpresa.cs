@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,10 @@ namespace ECDesktopApp
 {
     public partial class FormCadastroEmpresa : Form
     {
+        private byte[] foto = null;
+
+        public byte[] Foto { get => foto; set => foto = value; }
+
         public FormCadastroEmpresa()
         {
             InitializeComponent();
@@ -27,6 +32,9 @@ namespace ECDesktopApp
 
             //formata a mask do msktxtCnpj
             msktxtCnpj.Mask = "00.000.000/0000-00";
+
+            //faz a imagem caber exatamente na picBox
+            picFotoEmpresa.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void FormCadastroEmpresa_Load(object sender, EventArgs e)
@@ -142,7 +150,7 @@ namespace ECDesktopApp
             else
             {
                 //cria um objeto Empresa
-                string cnpj = msktxtCnpj.Text;
+                string cnpj = msktxtCnpj.Text.Replace(",", ".");
                 string nome = txtNome.Text;
                 string rua = txtRua.Text;
                 int numero = int.Parse(txtNumero.Text);
@@ -162,7 +170,7 @@ namespace ECDesktopApp
                     telefone = null;
                 }
 
-                Empresa empresa = new Empresa(cnpj, nome, rua, numero, bairro, complemento, cidade, estado, cep, email, telefone, ramo, descricao, senha);
+                Empresa empresa = new Empresa(cnpj, nome, rua, numero, bairro, complemento, cidade, estado, cep, email, telefone, ramo, foto, descricao, senha);
 
                 //faz o cadastro no BD
                 if (empresa.verificaCadastroEmpresa())
@@ -191,6 +199,47 @@ namespace ECDesktopApp
         {
             //centraliza
             pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
+        }
+
+        private void btnSelectImg_Click(object sender, EventArgs e)
+        {
+            //nao faco ideia de como isso funssiona, mas funsciona, ent vai ficar por isso msm
+            if (foto == null)
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+
+                ofd.Title = "Abrir arquivo";
+                ofd.Filter = "JPG (*.jpg)|*.jpg";
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        picFotoEmpresa.Image = new Bitmap(ofd.OpenFile());
+
+                        using (var stream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read))
+                        {
+                            using (var reader = new BinaryReader(stream))
+                            {
+                                foto = reader.ReadBytes((int)stream.Length);
+                                btnSelectImg.Text = "Cancelar";
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Aconteceu um erro ao carregar o arquivo selecionado\nErro: " + ex.ToString(), "Erro ao carregar imagem!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+                ofd.Dispose();
+            }
+            else
+            {
+                picFotoEmpresa.Image = null;
+                foto = null;
+                btnSelectImg.Text = "Escolher Foto...";
+            }
         }
     }
 }

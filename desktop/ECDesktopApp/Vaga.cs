@@ -485,7 +485,7 @@ namespace ECDesktopApp
 
                 if (!(String.IsNullOrEmpty(nome)))
                 {
-                    query += " and Connect_Vagas.Nome = '" + nome + "' ";
+                    query += " and Connect_Vagas.Nome like '%" + nome + "%' ";
                 }
                 if (!(String.IsNullOrEmpty(area)))
                 {
@@ -493,11 +493,11 @@ namespace ECDesktopApp
                 }
                 if(!(String.IsNullOrEmpty(carga_horaria)))
                 {
-                    query += " and Connect_Vagas.Carga_Horaria = '" + carga_horaria + "' ";
+                    query += " and Connect_Vagas.Carga_Horaria like '%" + carga_horaria + "%' ";
                 }
                 if (!(String.IsNullOrEmpty(nomeEmpresa)))
                 {
-                    query += " and Connect_Empresa.Nome = '" + nomeEmpresa + "' ";
+                    query += " and Connect_Empresa.Nome like '%" + nomeEmpresa + "%' ";
                 }
 
                 MySqlCommand select = new MySqlCommand(query, DAO_Conexao.con);

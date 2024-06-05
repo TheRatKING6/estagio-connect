@@ -65,50 +65,63 @@
             this.nomeVaga,
             this.areaVaga,
             this.cargaVaga});
-            this.dgvBuscaVaga.Location = new System.Drawing.Point(19, 303);
+            this.dgvBuscaVaga.Location = new System.Drawing.Point(25, 373);
+            this.dgvBuscaVaga.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvBuscaVaga.Name = "dgvBuscaVaga";
             this.dgvBuscaVaga.ReadOnly = true;
-            this.dgvBuscaVaga.Size = new System.Drawing.Size(1297, 341);
+            this.dgvBuscaVaga.RowHeadersWidth = 51;
+            this.dgvBuscaVaga.Size = new System.Drawing.Size(1729, 420);
             this.dgvBuscaVaga.TabIndex = 0;
             this.dgvBuscaVaga.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBuscaVaga_CellClick);
             // 
             // idVaga
             // 
             this.idVaga.HeaderText = "ID";
+            this.idVaga.MinimumWidth = 6;
             this.idVaga.Name = "idVaga";
             this.idVaga.ReadOnly = true;
+            this.idVaga.Width = 125;
             // 
             // empresaVaga
             // 
             this.empresaVaga.HeaderText = "Empresa";
+            this.empresaVaga.MinimumWidth = 6;
             this.empresaVaga.Name = "empresaVaga";
             this.empresaVaga.ReadOnly = true;
+            this.empresaVaga.Width = 125;
             // 
             // nomeVaga
             // 
             this.nomeVaga.HeaderText = "Nome";
+            this.nomeVaga.MinimumWidth = 6;
             this.nomeVaga.Name = "nomeVaga";
             this.nomeVaga.ReadOnly = true;
+            this.nomeVaga.Width = 125;
             // 
             // areaVaga
             // 
             this.areaVaga.HeaderText = "Area de Especialização";
+            this.areaVaga.MinimumWidth = 6;
             this.areaVaga.Name = "areaVaga";
             this.areaVaga.ReadOnly = true;
+            this.areaVaga.Width = 125;
             // 
             // cargaVaga
             // 
             this.cargaVaga.HeaderText = "Carga Horária";
+            this.cargaVaga.MinimumWidth = 6;
             this.cargaVaga.Name = "cargaVaga";
             this.cargaVaga.ReadOnly = true;
+            this.cargaVaga.Width = 125;
             // 
             // lblBuscar
             // 
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscar.Location = new System.Drawing.Point(566, 12);
+            this.lblBuscar.Location = new System.Drawing.Point(755, 15);
+            this.lblBuscar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(307, 36);
+            this.lblBuscar.Size = new System.Drawing.Size(388, 45);
             this.lblBuscar.TabIndex = 1;
             this.lblBuscar.Text = "Burcar Vagas e Emprego";
             // 
@@ -124,9 +137,11 @@
             this.gpbBuscaVaga.Controls.Add(this.lblNome);
             this.gpbBuscaVaga.Controls.Add(this.lblEmpresa);
             this.gpbBuscaVaga.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbBuscaVaga.Location = new System.Drawing.Point(19, 76);
+            this.gpbBuscaVaga.Location = new System.Drawing.Point(25, 94);
+            this.gpbBuscaVaga.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gpbBuscaVaga.Name = "gpbBuscaVaga";
-            this.gpbBuscaVaga.Size = new System.Drawing.Size(1010, 195);
+            this.gpbBuscaVaga.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbBuscaVaga.Size = new System.Drawing.Size(1347, 240);
             this.gpbBuscaVaga.TabIndex = 2;
             this.gpbBuscaVaga.TabStop = false;
             this.gpbBuscaVaga.Text = "Buscar";
@@ -142,66 +157,73 @@
             "Mecânica Industrial",
             "Enfermagem",
             "Qualidade de produção"});
-            this.cbxEspecializacao.Location = new System.Drawing.Point(705, 33);
-            this.cbxEspecializacao.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxEspecializacao.Location = new System.Drawing.Point(940, 41);
+            this.cbxEspecializacao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxEspecializacao.Name = "cbxEspecializacao";
-            this.cbxEspecializacao.Size = new System.Drawing.Size(289, 28);
+            this.cbxEspecializacao.Size = new System.Drawing.Size(384, 33);
             this.cbxEspecializacao.TabIndex = 47;
             // 
             // txtCarga
             // 
-            this.txtCarga.Location = new System.Drawing.Point(701, 130);
+            this.txtCarga.Location = new System.Drawing.Point(935, 160);
+            this.txtCarga.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCarga.Name = "txtCarga";
-            this.txtCarga.Size = new System.Drawing.Size(293, 27);
+            this.txtCarga.Size = new System.Drawing.Size(389, 32);
             this.txtCarga.TabIndex = 6;
             // 
             // txtNomeVaga
             // 
-            this.txtNomeVaga.Location = new System.Drawing.Point(143, 130);
+            this.txtNomeVaga.Location = new System.Drawing.Point(191, 160);
+            this.txtNomeVaga.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNomeVaga.Name = "txtNomeVaga";
-            this.txtNomeVaga.Size = new System.Drawing.Size(414, 27);
+            this.txtNomeVaga.Size = new System.Drawing.Size(551, 32);
             this.txtNomeVaga.TabIndex = 5;
             // 
             // txtEmpresa
             // 
-            this.txtEmpresa.Location = new System.Drawing.Point(105, 34);
+            this.txtEmpresa.Location = new System.Drawing.Point(140, 42);
+            this.txtEmpresa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtEmpresa.Name = "txtEmpresa";
-            this.txtEmpresa.Size = new System.Drawing.Size(452, 27);
+            this.txtEmpresa.Size = new System.Drawing.Size(601, 32);
             this.txtEmpresa.TabIndex = 4;
             // 
             // lblCarga
             // 
             this.lblCarga.AutoSize = true;
-            this.lblCarga.Location = new System.Drawing.Point(592, 133);
+            this.lblCarga.Location = new System.Drawing.Point(789, 164);
+            this.lblCarga.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCarga.Name = "lblCarga";
-            this.lblCarga.Size = new System.Drawing.Size(103, 19);
+            this.lblCarga.Size = new System.Drawing.Size(129, 24);
             this.lblCarga.TabIndex = 3;
             this.lblCarga.Text = "Carga Horária:";
             // 
             // lblEspecializacao
             // 
             this.lblEspecializacao.AutoSize = true;
-            this.lblEspecializacao.Location = new System.Drawing.Point(592, 37);
+            this.lblEspecializacao.Location = new System.Drawing.Point(789, 46);
+            this.lblEspecializacao.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEspecializacao.Name = "lblEspecializacao";
-            this.lblEspecializacao.Size = new System.Drawing.Size(108, 19);
+            this.lblEspecializacao.Size = new System.Drawing.Size(134, 24);
             this.lblEspecializacao.TabIndex = 2;
             this.lblEspecializacao.Text = "Especialização:";
             // 
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(30, 133);
+            this.lblNome.Location = new System.Drawing.Point(40, 164);
+            this.lblNome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(107, 19);
+            this.lblNome.Size = new System.Drawing.Size(135, 24);
             this.lblNome.TabIndex = 1;
             this.lblNome.Text = "Nome da Vaga:";
             // 
             // lblEmpresa
             // 
             this.lblEmpresa.AutoSize = true;
-            this.lblEmpresa.Location = new System.Drawing.Point(30, 37);
+            this.lblEmpresa.Location = new System.Drawing.Point(40, 46);
+            this.lblEmpresa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmpresa.Name = "lblEmpresa";
-            this.lblEmpresa.Size = new System.Drawing.Size(69, 19);
+            this.lblEmpresa.Size = new System.Drawing.Size(87, 24);
             this.lblEmpresa.TabIndex = 0;
             this.lblEmpresa.Text = "Empresa:";
             // 
@@ -209,9 +231,10 @@
             // 
             this.lblOrganizar.AutoSize = true;
             this.lblOrganizar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrganizar.Location = new System.Drawing.Point(1101, 240);
+            this.lblOrganizar.Location = new System.Drawing.Point(1468, 295);
+            this.lblOrganizar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOrganizar.Name = "lblOrganizar";
-            this.lblOrganizar.Size = new System.Drawing.Size(149, 15);
+            this.lblOrganizar.Size = new System.Drawing.Size(187, 21);
             this.lblOrganizar.TabIndex = 10;
             this.lblOrganizar.Text = "Organizar resultados por:";
             // 
@@ -226,17 +249,20 @@
             "Empresa (Alfabético Decrescente)",
             "Mais Antigas",
             "Mais Recentes"});
-            this.cbxOrganizar.Location = new System.Drawing.Point(1104, 258);
+            this.cbxOrganizar.Location = new System.Drawing.Point(1472, 318);
+            this.cbxOrganizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxOrganizar.Name = "cbxOrganizar";
-            this.cbxOrganizar.Size = new System.Drawing.Size(212, 27);
+            this.cbxOrganizar.Size = new System.Drawing.Size(281, 32);
             this.cbxOrganizar.TabIndex = 9;
+            this.cbxOrganizar.SelectedIndexChanged += new System.EventHandler(this.cbxOrganizar_SelectedIndexChanged);
             // 
             // btnBuscar
             // 
             this.btnBuscar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.Location = new System.Drawing.Point(1104, 113);
+            this.btnBuscar.Location = new System.Drawing.Point(1472, 139);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(212, 35);
+            this.btnBuscar.Size = new System.Drawing.Size(283, 43);
             this.btnBuscar.TabIndex = 8;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -245,9 +271,10 @@
             // btnVerVaga
             // 
             this.btnVerVaga.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerVaga.Location = new System.Drawing.Point(1104, 154);
+            this.btnVerVaga.Location = new System.Drawing.Point(1472, 190);
+            this.btnVerVaga.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnVerVaga.Name = "btnVerVaga";
-            this.btnVerVaga.Size = new System.Drawing.Size(212, 30);
+            this.btnVerVaga.Size = new System.Drawing.Size(283, 37);
             this.btnVerVaga.TabIndex = 7;
             this.btnVerVaga.Text = "Visualizar Detalhes da Vaga";
             this.btnVerVaga.UseVisualStyleBackColor = true;
@@ -262,18 +289,20 @@
             this.pnlContent.Controls.Add(this.lblBuscar);
             this.pnlContent.Controls.Add(this.btnBuscar);
             this.pnlContent.Controls.Add(this.btnVerVaga);
-            this.pnlContent.Location = new System.Drawing.Point(80, 12);
+            this.pnlContent.Location = new System.Drawing.Point(107, 15);
+            this.pnlContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1349, 666);
+            this.pnlContent.Size = new System.Drawing.Size(1799, 820);
             this.pnlContent.TabIndex = 11;
             // 
             // FormPesquisarVagas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1516, 737);
+            this.ClientSize = new System.Drawing.Size(1924, 907);
             this.Controls.Add(this.pnlContent);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormPesquisarVagas";
             this.Text = "FormPesquisarVagas";
             this.Load += new System.EventHandler(this.FormPesquisarVagas_Load);

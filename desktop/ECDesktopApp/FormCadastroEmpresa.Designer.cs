@@ -536,6 +536,7 @@
             this.btnSelectImg.TabIndex = 20;
             this.btnSelectImg.Text = "Escolher foto...";
             this.btnSelectImg.UseVisualStyleBackColor = true;
+            this.btnSelectImg.Click += new System.EventHandler(this.btnSelectImg_Click);
             // 
             // pnlContent
             // 
@@ -568,7 +569,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(992, 1061);
+            this.ClientSize = new System.Drawing.Size(992, 845);
             this.Controls.Add(this.pnlContent);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormCadastroEmpresa";

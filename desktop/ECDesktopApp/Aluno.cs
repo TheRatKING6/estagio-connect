@@ -1,6 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +19,8 @@ namespace ECDesktopApp
         private string email;
         private string telefone;
         private string especialidade;
-        private byte foto;
-        private byte curriculo;
+        private byte[] foto;
+        private byte[] curriculo;
         private string descricao;
         private string rua;
         private int numero;
@@ -78,7 +81,7 @@ namespace ECDesktopApp
             this.senha = senha;
         }
 
-        public Aluno(string cpf, string matricula, string nome, string nascimento, string email, string telefone, string especialidade, byte foto, byte curriculo, string descricao, 
+        public Aluno(string cpf, string matricula, string nome, string nascimento, string email, string telefone, string especialidade, byte[] foto, byte[] curriculo, string descricao, 
             string rua, int numero, string bairro, string complemento, string cidade, string estado, string cep, string status, int ano, string escola, string senha)
         {
             this.cpf = cpf;
@@ -111,8 +114,8 @@ namespace ECDesktopApp
         public string Email { get => email; set => email = value; }
         public string Telefone { get => telefone; set => telefone = value; }
         public string Especialidade { get => especialidade; set => especialidade = value; }
-        public byte Foto { get => foto; set => foto = value; }
-        public byte Curriculo { get => curriculo; set => curriculo = value; }
+        public byte[] Foto { get => foto; set => foto = value; }
+        public byte[] Curriculo { get => curriculo; set => curriculo = value; }
         public string Descricao { get => descricao; set => descricao = value; }
         public string Rua { get => rua; set => rua = value; }
         public int Numero { get => numero; set => numero = value; }
@@ -138,9 +141,9 @@ namespace ECDesktopApp
                 DAO_Conexao.con.Open();
 
                 MySqlCommand insert = new MySqlCommand("insert into Connect_Aluno (CPF, Matricula, Nome, Nascimento, Email, Telefone, Especialidade, Descricao, Rua, " +
-                    "Numero, Bairro, Complemento, Cidade, Estado, CEP, Status, Ano_Letivo, Escola, Senha) values('" + cpf + "', '" + matricula + "', '" + nome + "', '" + nascimento+ "'," +
+                    "Numero, Bairro, Complemento, Cidade, Estado, CEP, Status, Ano_Letivo, Escola, Senha, Foto, Curriculo) values('" + cpf + "', '" + matricula + "', '" + nome + "', '" + nascimento + "'," +
                     " '" + email + "', '" + telefone + "', '" + especialidade + "', '" + descricao + "', '" + rua + "', " + numero + ", '" + bairro + "', '" + complemento + "', '" + cidade + "', '" + estado + "', " +
-                    "'" + cep + "', '" + status + "', " + ano + ", '" + escola + "', '" + senha + "')", DAO_Conexao.con);
+                    "'" + cep + "', '" + status + "', " + ano + ", '" + escola + "', '" + senha + "', '" + foto + "', '" + curriculo + "')", DAO_Conexao.con);
 
                 insert.ExecuteNonQuery();
 
@@ -428,7 +431,7 @@ namespace ECDesktopApp
 
                 if (!(String.IsNullOrEmpty(nome)))
                 {
-                    query += " and Nome = '" + nome + "' ";
+                    query += " and Nome like '%" + nome + "%' ";
                 }
                 if(!(String.IsNullOrEmpty(especialidade))) 
                 {
@@ -436,15 +439,15 @@ namespace ECDesktopApp
                 }
                 if(!(String.IsNullOrEmpty(cidade)))
                 {
-                    query += " and Cidade = '" + cidade + "' ";
+                    query += " and Cidade like '%" + cidade + "%' ";
                 }
                 if (!(String.IsNullOrEmpty(escola)))
                 {
-                    query += " and Escola = '" + escola + "' ";
+                    query += " and Escola like '%" + escola + "%' ";
                 }
                 if(!(String.IsNullOrEmpty(email)))
                 {
-                    query += " and Email = '" + email + "' ";
+                    query += " and Email like '%" + email + "%' ";
                 }
 
                 //MySqlCommand select = new MySqlCommand("select * from Connect_Aluno where ('"+nome+"' is null or Nome = '"+nome+"') " +
@@ -464,5 +467,40 @@ namespace ECDesktopApp
 
             return reader;
         }
+
+        //public Image getFotoAluno()
+        //{
+        //    Image foto = null;
+
+        //    try
+        //    {
+        //        DAO_Conexao.con.Open();
+        //        byte[] getImg = new byte[0];
+        //        MySqlCommand cmd = new MySqlCommand("select Foto from Connect_Aluno where CPF='" + cpf + "'", DAO_Conexao.con);
+
+        //        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+
+        //        DataSet ds = new DataSet();
+
+        //        da.Fill(ds, "Connect_Aluno");
+
+        //        byte[] byteBlob = new byte[0];
+        //        byteBlob = (byte[])(ds.Tables["Connect_Aluno"].Rows[ds.Tables["Connect_Aluno"].Rows.Count - 1]["Foto"]);
+
+        //        MemoryStream strm = new MemoryStream(byteBlob.ToArray());
+
+        //        foto = Image.FromStream(strm, true, false);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //    }
+        //    finally
+        //    {
+        //        DAO_Conexao.con.Close();
+        //    }
+
+        //    return foto;
+        //}
     }
 }

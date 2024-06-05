@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Odbc;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,12 @@ namespace ECDesktopApp
 {
     public partial class FormCadastroAluno : Form
     {
+        private byte[] curriculo = null;
+        private byte[] foto = null;
+
+        public byte[] Curriculo { get => curriculo; set => curriculo = value; }
+        public byte[] Foto { get => foto; set => foto = value; }
+
         public FormCadastroAluno()
         {
             InitializeComponent();
@@ -25,6 +33,7 @@ namespace ECDesktopApp
             btnVoltar.Visible = false;
             gpbSenha.Visible = false;
             btnCadastro.Visible = false;
+            btnLimparCurriculo.Visible = false;
             
             //o txt do nome do arqiov sempre vai ser impossivel de editar
             txtArquivoCurriculo.Enabled = false;
@@ -42,6 +51,9 @@ namespace ECDesktopApp
 
             //formata a mask do msktxtCpf
             msktxtCpf.Mask = "000.000.000-00";
+
+            //faz a imagem caber na picture box, sem ultrapassar os limites
+            picBoxFotoAluno.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void FormCadastroAluno_Load(object sender, EventArgs e)
@@ -182,7 +194,7 @@ namespace ECDesktopApp
             {
                 //cria um objeto Aluno
 
-                string cpf = msktxtCpf.Text;
+                string cpf = msktxtCpf.Text.Replace(",", ".");
                 string matricula = txtMatricula.Text;
                 string nome = txtNome.Text;
 
@@ -210,10 +222,11 @@ namespace ECDesktopApp
                     telefone = null;
                 }
 
+
                 //Console.WriteLine(data.ToString());
                 //Console.WriteLine(nascimento.ToShortDateString().ToString());
 
-                Aluno al1 = new Aluno(cpf, matricula, nome, nascimento, email, telefone, especialidade, descricao, rua, numero, bairro, complemento, cidade, estado, cep, status, 
+                Aluno al1 = new Aluno(cpf, matricula, nome, nascimento, email, telefone, especialidade, foto, curriculo, descricao, rua, numero, bairro, complemento, cidade, estado, cep, status, 
                     ano, escola, senha);
 
                 //faz o cadastro no BD
@@ -244,6 +257,108 @@ namespace ECDesktopApp
         {
             //centraliza
             pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
+        }
+
+        private void btnSelectImg_Click(object sender, EventArgs e)
+        {
+            //nao faco ideia de como isso funssiona, mas funsciona, ent vai ficar por isso msm
+            if(foto == null)
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+
+                ofd.Title = "Abrir arquivo";
+                ofd.Filter = "JPG (*.jpg)|*.jpg";
+
+                if(ofd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        picBoxFotoAluno.Image = new Bitmap(ofd.OpenFile());
+
+                        foto = converterFoto();
+
+                        //using (var stream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read))
+                        //{
+                        //    using (var reader = new BinaryReader(stream))
+                        //    {
+                        //        foto = reader.ReadBytes((int)stream.Length);
+                        //        btnSelectImg.Text = "Cancelar";
+                        //    }
+                        //}
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Aconteceu um erro ao carregar o arquivo selecionado\nErro: "+ex.ToString(), "Erro ao carregar imagem!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+                ofd.Dispose();
+            }
+            else
+            {
+                picBoxFotoAluno.Image = null;
+                foto = null;
+                btnSelectImg.Text = "Escolher Foto...";
+            }
+
+        }
+
+        private void btnEscolherCurriculo_Click(object sender, EventArgs e)
+        {
+            //nao faco ideia de como isso funssiona, mas funsciona, ent vai ficar por isso msm
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            ofd.Title = "Abrir Arquivo";
+            ofd.Filter = "PDF (*.pfd)|*.pdf"; //+ "|All files (*.*)|*.*";
+
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    txtArquivoCurriculo.Text = ofd.SafeFileName;
+
+                    using (var stream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        using (var reader = new BinaryReader(stream))
+                        {
+                            curriculo = reader.ReadBytes((int)stream.Length);
+                            btnLimparCurriculo.Visible = true;
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Houve um erro ao tentar carregar o seu arquivo, por favor tente novamente ou contate a nossa equipe\nErro: "+ ex.ToString(), "Erro ao abrir o arquivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            ofd.Dispose();
+        }
+
+        private void btnLimparCurriculo_Click(object sender, EventArgs e)
+        {
+            //limpa o txt e o array de bytes
+            curriculo = null;
+            txtArquivoCurriculo.Text = null;
+
+            //fica invisivel de novo
+            btnLimparCurriculo.Visible = false;
+        }
+
+        private byte[] converterFoto()
+        {
+            using(var stream = new System.IO.MemoryStream())
+            {
+                picBoxFotoAluno.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                //deslocamento de bytes em relação ao parâmetro original
+                //redefine a posição do fluxo para a gravação
+                stream.Seek(0, System.IO.SeekOrigin.Begin);
+                byte[] bArray = new byte[stream.Length];
+                //Lê um bloco de bytes e grava os dados em um buffer (stream)
+                stream.Read(bArray, 0, System.Convert.ToInt32(bArray.Length));
+                
+                return bArray;
+            }
         }
     }
 }

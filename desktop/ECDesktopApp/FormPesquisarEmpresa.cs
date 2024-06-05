@@ -102,5 +102,34 @@ namespace ECDesktopApp
             //faz com que o botao fique visivel assim que clicar em uma celula do dgv
             btnVerEmpresa.Visible = true;
         }
+
+        private void cbxOrganizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxOrganizar.SelectedIndex == 0)
+            {
+                dgvBuscaEmpresa.Sort(dgvBuscaEmpresa.Columns[1], ListSortDirection.Ascending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 1)
+            {
+                dgvBuscaEmpresa.Sort(dgvBuscaEmpresa.Columns[1], ListSortDirection.Descending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 2)
+            {
+                dgvBuscaEmpresa.Sort(dgvBuscaEmpresa.Columns[4], ListSortDirection.Ascending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 3)
+            {
+                dgvBuscaEmpresa.Sort(dgvBuscaEmpresa.Columns[4], ListSortDirection.Descending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 4)
+            {
+                dgvBuscaEmpresa.Sort(dgvBuscaEmpresa.Columns[3], ListSortDirection.Ascending);
+            }
+            else if (cbxOrganizar.SelectedIndex == 5)
+            {
+                dgvBuscaEmpresa.Sort(dgvBuscaEmpresa.Columns[3], ListSortDirection.Descending);
+            }
+
+        }
     }
 }
