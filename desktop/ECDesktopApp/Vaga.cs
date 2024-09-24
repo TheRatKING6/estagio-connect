@@ -135,7 +135,10 @@ namespace ECDesktopApp
             {
                 DAO_Conexao.con.Open();
 
-                MySqlCommand delete = new MySqlCommand("delete from Connect_Vagas where Codigo = " + id, DAO_Conexao.con);
+                //e preciso deletar as instancias dessa vaga nas outras tabelas antes de poder exclui se nao da problema na foreign key
+                MySqlCommand delete = new MySqlCommand("delete from Connect_Aluno_Vaga where Codigo_Vaga = " + id + ";" +
+                    "delete from Connect_Vaga_Aluno where Codigo_Vaga = " + id + ";" +
+                    "delete from Connect_Vagas where Codigo = " + id, DAO_Conexao.con);
 
                 delete.ExecuteNonQuery();
 
@@ -188,7 +191,14 @@ namespace ECDesktopApp
             {
                 DAO_Conexao.con.Open();
 
-                MySqlCommand delete = new MySqlCommand("delete from Connect_Vagas where idEmpresa= " + id_empresa, DAO_Conexao.con);
+                //MySqlCommand delete = new MySqlCommand("delete from Connect_Vagas where idEmpresa= " + id_empresa, DAO_Conexao.con);
+                string query = "delete Connect_Aluno_Vaga, Connect_Vaga_Aluno from Connect_Vagas " +
+                    "inner join Connect_Aluno_Vaga inner join Connect_Vaga_Aluno " +
+                    "where Connect_Vagas.Codigo = Connect_Aluno_Vaga.Codigo_Vaga and Connect_Vagas.Codigo = Connect_Vaga_Aluno.Codigo_Vaga " +
+                    "and Connect_Vagas.idEmpresa =" + id_empresa + ";" +
+                    "delete from Connect_Vagas where idEmpresa= " + id_empresa;
+
+                MySqlCommand delete = new MySqlCommand(query, DAO_Conexao.con);
 
                 delete.ExecuteNonQuery();
 
