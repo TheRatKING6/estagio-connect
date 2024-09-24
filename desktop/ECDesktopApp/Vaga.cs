@@ -192,6 +192,9 @@ namespace ECDesktopApp
                 DAO_Conexao.con.Open();
 
                 //MySqlCommand delete = new MySqlCommand("delete from Connect_Vagas where idEmpresa= " + id_empresa, DAO_Conexao.con);
+
+                //preguica de explicar, mas basicamente oq isso faz e q verifica todas as tabelas com foreign key pra deletar
+                //os registros da empresa e dps deleta todas as vagas da empresa
                 string query = "delete Connect_Aluno_Vaga, Connect_Vaga_Aluno from Connect_Vagas " +
                     "inner join Connect_Aluno_Vaga inner join Connect_Vaga_Aluno " +
                     "where Connect_Vagas.Codigo = Connect_Aluno_Vaga.Codigo_Vaga and Connect_Vagas.Codigo = Connect_Vaga_Aluno.Codigo_Vaga " +

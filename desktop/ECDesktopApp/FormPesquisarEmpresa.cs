@@ -41,7 +41,8 @@ namespace ECDesktopApp
             //limpa a dgv antes de fzr uma nova busca
             dgvBuscaEmpresa.Rows.Clear();
 
-            if(String.IsNullOrEmpty(txtNome.Text) && String.IsNullOrEmpty(txtRamo.Text) && String.IsNullOrEmpty(txtEmail.Text) && String.IsNullOrEmpty(txtCidade.Text))
+            if(String.IsNullOrEmpty(txtNome.Text) && String.IsNullOrEmpty(txtRamo.Text) && String.IsNullOrEmpty(txtEmail.Text) && String.IsNullOrEmpty(txtCidade.Text) 
+                && ((FormLogin)this.MdiParent).TipoUsuario != 7)
             {
                 MessageBox.Show("Você precisa preencher no mínimo um campo para poder realizar uma busca", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

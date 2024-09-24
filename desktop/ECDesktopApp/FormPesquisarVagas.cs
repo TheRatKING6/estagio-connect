@@ -53,7 +53,8 @@ namespace ECDesktopApp
             dgvBuscaVaga.Rows.Clear();
 
             //verifica se tem pelo menos alguma coisa preenchida para poder buscar
-            if (String.IsNullOrEmpty(cbxEspecializacao.Text) && String.IsNullOrEmpty(txtCarga.Text) && String.IsNullOrEmpty(txtEmpresa.Text) && String.IsNullOrEmpty(txtNomeVaga.Text))
+            if (String.IsNullOrEmpty(cbxEspecializacao.Text) && String.IsNullOrEmpty(txtCarga.Text) && String.IsNullOrEmpty(txtEmpresa.Text) && String.IsNullOrEmpty(txtNomeVaga.Text)
+                && ((FormLogin)this.MdiParent).TipoUsuario != 7)
             {
                 MessageBox.Show("Você precisa preencher no mínimo um campo para poder realizar uma busca", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

@@ -67,7 +67,7 @@ namespace ECDesktopApp
         private void btnNext_Click(object sender, EventArgs e)
         {
             string cpfstring = msktxtCpf.Text;
-            cpfstring = cpfstring.Replace(".", "").Replace("-", "").Trim();
+            cpfstring = cpfstring.Replace(".", "").Replace("-", "").Replace(",", "").Trim();
 
             //pega a data selecionada no DateTimePicker e transfroma em um objeto DateTime
             DateTime selecionado = ManipulcaoData.getDataNascimento(dateNascimento.Text.ToString()); 
