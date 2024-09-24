@@ -67,6 +67,12 @@ namespace ECDesktopApp
 
             //coloca as infos no dgv
             refreshInteressados();
+
+            if(dgvAlunosInteressadosVaga.Rows.Count < 1)
+            {
+                btnVerAluno.Visible = false;
+                btnVerVaga.Visible = false;
+            }
         }
 
         private void FormAlunosInteressadosVaga_SizeChanged(object sender, EventArgs e)

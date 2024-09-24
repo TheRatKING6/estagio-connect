@@ -654,6 +654,7 @@
             this.lblIdVaga.Size = new System.Drawing.Size(17, 19);
             this.lblIdVaga.TabIndex = 20;
             this.lblIdVaga.Text = "#";
+            this.lblIdVaga.Click += new System.EventHandler(this.lblIdVaga_Click);
             // 
             // txtNomeVaga
             // 

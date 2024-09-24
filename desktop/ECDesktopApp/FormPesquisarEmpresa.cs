@@ -75,6 +75,12 @@ namespace ECDesktopApp
                 txtRamo.Text = null;
                 txtEmail.Text = null;
                 txtCidade.Text = null;
+
+                //se a pesquisa nao tiver resultados, o botao de ver o perfil da empresa desaparece
+                if(dgvBuscaEmpresa.Rows.Count < 1)
+                {
+                    btnVerEmpresa.Visible = false;
+                }
             }
         }
 

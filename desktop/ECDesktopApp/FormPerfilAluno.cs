@@ -87,15 +87,20 @@ namespace ECDesktopApp
             //verifica se a vaga ja esta interessada no aluno
             getInteresse();
 
+            //coloca as infos do aluno nos campos
+            refreshInfosAluno();
+
             //se for empresa, some os botao de editar e excluir e aparece o de interesse
-            if(tipo == 1)
+            //if(tipo == 1)
+            if(((FormLogin)this.MdiParent).TipoUsuario == 1)
             {
                 btnDelete.Visible = false;
                 btnEditar.Visible = false;
                 btnInteresse.Visible = true;
             }
-            else if(tipo == 2) //se for um aluno vendo o perfil do outro, nao pode editar e o botao de interesse nao aparece
+            else if(((FormLogin)this.MdiParent).IdUsuario != msktxtCpf.Text.Replace(",",".")) //se for um aluno vendo o perfil do outro, nao pode editar e o botao de interesse nao aparece (cpf eh diferente)
             {
+                
                 btnDelete.Visible = false;
                 btnEditar.Visible = false;
             }
@@ -110,9 +115,6 @@ namespace ECDesktopApp
             pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
 
             btnCurriculo.Text = "Ver currículo";
-
-            //coloca as infos do aluno nos campos
-            refreshInfosAluno();
 
             //refreshFoto();
 
@@ -373,6 +375,7 @@ namespace ECDesktopApp
             {
                 msktxtCpf.Text = reader["CPF"].ToString();
                 txtNome.Text = reader["Nome"].ToString();
+                label1.Text = reader["Nome"].ToString();
                 dateNascimento.Value = ManipulcaoData.getDataNascimento(ManipulcaoData.formataData(reader["Nascimento"].ToString()));
                 cbxEspecializacao.Text = reader["Especialidade"].ToString();
                 txtMatricula.Text = reader["Matricula"].ToString();

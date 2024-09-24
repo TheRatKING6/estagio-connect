@@ -89,6 +89,11 @@ namespace ECDesktopApp
                 txtNomeVaga.Text = null;
                 cbxEspecializacao.SelectedIndex = -1;
 
+                //se a pesquisa nao tiver resultados, o botao de ver detalhes some
+                if(dgvBuscaVaga.Rows.Count < 1)
+                {
+                    btnVerVaga.Visible = false;
+                }
             }
         }
 

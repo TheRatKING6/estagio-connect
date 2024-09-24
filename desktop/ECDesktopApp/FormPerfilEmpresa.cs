@@ -78,13 +78,23 @@ namespace ECDesktopApp
             picFoto.ImageLocation = "../../img/default_user_empresa.jpg";
             picFoto.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            if(tipo == 0)
+            //se for aluno, nao vai poder mexer em nada
+            if(((FormLogin)this.MdiParent).TipoUsuario == 0)
             {
                 btnEditar.Visible = false;
                 btnDelete.Visible = false;
                 btnCriarVaga.Visible = false;
                 btnAlunosInteressados.Text = "Ver detalhes da vaga";
                 tabPage2.Text = "Vagas";
+            }
+            else if(((FormLogin)this.MdiParent).IdUsuario != cnpj_empresa)
+            {
+                btnEditar.Visible = false;
+                btnDelete.Visible = false;
+                btnCriarVaga.Visible = false;
+                btnAlunosInteressados.Text = "Ver detalhes da vaga";
+                tabPage2.Text = "Vagas";
+
             }
 
             //centraliza
@@ -495,7 +505,11 @@ namespace ECDesktopApp
             btnEditarVaga.Visible = false;
             btnAlunosInteressados.Visible = false;
 
-            btnCriarVaga.Visible = true;
+            //so deixa o btn criar vaga visivel se o perfil pertencer ao usuario
+            if(((FormLogin)this.MdiParent).IdUsuario == cnpj_empresa)
+            {
+                btnCriarVaga.Visible = true;
+            }
 
             //limpa os campos
             txtDescricaoVaga.Text = string.Empty;
@@ -535,12 +549,18 @@ namespace ECDesktopApp
 
         private void dgvVagasEmpresa_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e) //ao dar double click em uma das vagas
         {
-            //deixata tudo visisvel
-            gpbInfoVaga.Visible = true;
+            //deixa eicao e exclusao visisvel, se o perfil pertencer ao usuario
+            if((((FormLogin)this.MdiParent).IdUsuario == cnpj_empresa))
+            {
+                btnEditarVaga.Visible = true;
+                btnExcluirVaga.Visible = true;
+            }
+
+            //os detalhes da vaga e cancelar ficam visiveis
             btnAlunosInteressados.Visible = true;
-            btnEditarVaga.Visible = true;
-            btnExcluirVaga.Visible = true;
             btnCancelarVaga.Visible = true;
+            gpbInfoVaga.Visible = true;
+
 
             btnCriarVaga.Visible = false;
 
@@ -565,7 +585,7 @@ namespace ECDesktopApp
                 txtRequisitos.Text = reader["Requisitos"].ToString();
                 txtCarga.Text = reader["Carga_Horaria"].ToString();
                 cbxEspecializacao.Text = reader["Area"].ToString();
-                lblIdVaga.Text += id_vaga;
+                lblIdVaga.Text = "#"+id_vaga;
             }
             DAO_Conexao.con.Close();
 
@@ -675,6 +695,11 @@ namespace ECDesktopApp
                 txtDescricao.Text = reader["Descricao"].ToString();
             }
             DAO_Conexao.con.Close();
+        }
+
+        private void lblIdVaga_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

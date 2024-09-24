@@ -13,6 +13,12 @@ namespace ECDesktopApp
 {
     public partial class FormLogin : Form
     {
+        int tipoUsuario = -1;
+        string idUsuario;
+
+        public int TipoUsuario { get => tipoUsuario; set => tipoUsuario = value; }
+        public string IdUsuario { get => idUsuario; set => idUsuario = value; }
+
         public FormLogin()
         {
             InitializeComponent();
@@ -91,16 +97,17 @@ namespace ECDesktopApp
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            int tipo = 1; //1 é o padrão (empresa)
+            tipoUsuario = 1; //1 é o padrão (empresa)
             if (rdbAluno.Checked)
             {
-                tipo = 0;
+                tipoUsuario = 0;
             }
 
             
 
             //pega os valores dos campos e efetua login
             string userId = msktxtPK.Text;
+            IdUsuario = userId.Replace(",", ".");
             
             string password = txtSenha.Text;
 
@@ -108,7 +115,7 @@ namespace ECDesktopApp
 
             if (msktxtPK.Text.Count() == 18 || msktxtPK.Text.Count() == 14 && !(String.IsNullOrEmpty(txtSenha.Text))) //ve se voce preencheu os campos
             {
-                if(DAO_Conexao.VerificaLogin(userId, password, tipo))
+                if(DAO_Conexao.VerificaLogin(userId, password, tipoUsuario))
                 {
                     //Tranforma em MdiContainer
                     this.IsMdiContainer = true;
@@ -123,7 +130,7 @@ namespace ECDesktopApp
 
                     menuStrip1.Visible = true;
 
-                    if(tipo == 0)
+                    if(tipoUsuario == 0)
                     {
                         //Abre o FormInicioAluno
                         FormInicioAluno form = new FormInicioAluno();
@@ -318,6 +325,9 @@ namespace ECDesktopApp
 
             msktxtPK.Text = string.Empty;
             txtSenha.Text = string.Empty;
+
+            IdUsuario = "";
+            TipoUsuario = -1;
         }
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)

@@ -87,6 +87,12 @@ namespace ECDesktopApp
                 txtCidade.Text = null;
                 txtEscola.Text = null;
                 cbxEspecializacao.SelectedIndex = -1;
+
+                //se a pesquisa nao tiver resultados, o botao de ver o perfil some
+                if(dgvBuscaAlunos.Rows.Count < 1)
+                {
+                    btnVerAluno.Visible = false;
+                }
             }
         }
 
