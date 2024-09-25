@@ -14,8 +14,12 @@ namespace ECDesktopApp
 {
     public partial class FormCadastroAluno : Form
     {
+        public String caminhoFoto = "";
+        public String caminhoCurriculo = "";
         private byte[] curriculo = null;
         private byte[] foto = null;
+        public bool colocouFoto = false;
+        public bool colocouCurriculo = false;
 
         public byte[] Curriculo { get => curriculo; set => curriculo = value; }
         public byte[] Foto { get => foto; set => foto = value; }
@@ -228,6 +232,8 @@ namespace ECDesktopApp
 
                 Aluno al1 = new Aluno(cpf, matricula, nome, nascimento, email, telefone, especialidade, foto, curriculo, descricao, rua, numero, bairro, complemento, cidade, estado, cep, status, 
                     ano, escola, senha);
+                al1.caminhoFoto = caminhoFoto;
+                al1.caminhoCurriculo = caminhoCurriculo;
 
                 //faz o cadastro no BD
                 if (al1.verificaCpfCadastrado())
@@ -236,6 +242,17 @@ namespace ECDesktopApp
                 }
                 else if (al1.cadastrarAluno())
                 {
+                    if (colocouFoto)
+                    {
+                        al1.SalvarFoto();
+                        colocouFoto = false;
+                    }
+                    if (colocouCurriculo)
+                    {
+                        al1.SalvarCurriculo();
+                        colocouCurriculo = false;
+                    }
+
                     MessageBox.Show("Cadastro realizado com sucesso.", "Cadastrado", MessageBoxButtons.OK);
 
                     //Faz com que o MdiParent deixe de ser um MdiContainer e fecha o form atual
@@ -262,7 +279,7 @@ namespace ECDesktopApp
         private void btnSelectImg_Click(object sender, EventArgs e)
         {
             //nao faco ideia de como isso funssiona, mas funsciona, ent vai ficar por isso msm
-            if(foto == null)
+            /*if(foto == null)
             {
                 OpenFileDialog ofd = new OpenFileDialog();
 
@@ -299,14 +316,53 @@ namespace ECDesktopApp
                 picBoxFotoAluno.Image = null;
                 foto = null;
                 btnSelectImg.Text = "Escolher Foto...";
-            }
+            }*/
+
+            CarregarFoto();
 
         }
+
+        private void CarregarFoto()
+        {
+            var openFile = new OpenFileDialog();
+            openFile.Filter = "Arquivos de imagens jpg e png|*.jpg; *.png;";
+            openFile.Multiselect = false;
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+                caminhoFoto = openFile.FileName;
+            Console.WriteLine(caminhoFoto);
+
+            if (caminhoFoto != "")
+            {
+                picBoxFotoAluno.Load(caminhoFoto);
+                colocouFoto = true;
+            }
+        }
+
+        private void CarregarCurriculo()
+        {
+            var openFile = new OpenFileDialog();
+            openFile.Filter = "Arquivos de imagens jpg e png|*.jpg; *.png;";
+            openFile.Multiselect = false;
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+                caminhoCurriculo = openFile.FileName;
+            Console.WriteLine(caminhoCurriculo);
+
+            if (caminhoCurriculo != "")
+            {
+                txtArquivoCurriculo.Text = openFile.SafeFileName;
+                btnLimparCurriculo.Visible = true;
+                colocouCurriculo = true;
+            }
+        }
+
+
 
         private void btnEscolherCurriculo_Click(object sender, EventArgs e)
         {
             //nao faco ideia de como isso funssiona, mas funsciona, ent vai ficar por isso msm
-            OpenFileDialog ofd = new OpenFileDialog();
+            /*OpenFileDialog ofd = new OpenFileDialog();
 
             ofd.Title = "Abrir Arquivo";
             ofd.Filter = "PDF (*.pfd)|*.pdf"; //+ "|All files (*.*)|*.*";
@@ -332,12 +388,16 @@ namespace ECDesktopApp
 
                 }
             }
-            ofd.Dispose();
+            ofd.Dispose();*/
+
+            CarregarCurriculo();
         }
 
         private void btnLimparCurriculo_Click(object sender, EventArgs e)
         {
             //limpa o txt e o array de bytes
+            colocouCurriculo = false;
+            caminhoCurriculo = "";
             curriculo = null;
             txtArquivoCurriculo.Text = null;
 

@@ -56,6 +56,7 @@ namespace ECDesktopApp
                 dgvAlunosInteressados.Visible = false;
                 btnVisualizarAluno.Visible = false;
                 btnInteressado.Visible = true;
+                userId = ((FormLogin)this.MdiParent).IdUsuario;
 
                 //verifica se o aluno esta interessado nessa vaga
                 getInteresse();

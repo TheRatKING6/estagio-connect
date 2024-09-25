@@ -19,8 +19,8 @@ namespace ECDesktopApp
         private string email;
         private string telefone;
         private string especialidade;
-        private byte[] foto;
-        private byte[] curriculo;
+        //private byte[] foto;
+        //private byte[] curriculo;
         private string descricao;
         private string rua;
         private int numero;
@@ -33,6 +33,141 @@ namespace ECDesktopApp
         private int ano;
         private string escola;
         private string senha;
+
+        //TESTE
+        //------------------------------------------- CURRICULO E FOTO ---------------------------------------------
+        public String caminhoCurriculo { get; set; }
+        public String caminhoFoto { get; set; }
+        public byte[] curriculo { get; set; }
+        public byte[] foto { get; set; }
+
+        public void PegarCurriculo(int idAluno, Aluno aluno)
+        {
+            var sql = "SELECT Curriculo from Connect_Aluno WHERE idAluno ='" + idAluno + "'";
+
+            using (var con = DAO_Conexao.con)
+            {
+                con.Open();
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            if (dr.Read())
+                            {
+                                if (dr["Curriculo"].ToString() != "")
+                                {
+                                    aluno.curriculo = (byte[])dr["Curriculo"];
+                                }
+
+                            }
+                        }
+                    }
+                }
+                con.Close();
+            }
+        }
+
+        public void SalvarCurriculo()
+        {
+            byte[] curriculo = GetCurriculo(caminhoCurriculo);
+
+            var sql = "UPDATE Connect_Aluno SET curriculo = @curriculo WHERE CPF ='" + cpf + "'";
+
+            using (var con = DAO_Conexao.con)
+            {
+                con.Open();
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.Add("@curriculo", MySqlDbType.Blob).Value = curriculo;
+
+                    cmd.ExecuteNonQuery();
+                }
+                con.Close();
+            }
+        }
+
+        private byte[] GetCurriculo(string caminhoCurriculo)
+        {
+            byte[] curriculo;
+            using (var stream = new FileStream(caminhoCurriculo, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    curriculo = reader.ReadBytes((int)stream.Length);
+                }
+            }
+            return curriculo;
+        }
+
+
+
+        public void PegarFoto(int idAluno, Aluno aluno)
+        {
+            var sql = "SELECT foto from Connect_Aluno WHERE idAluno ='" + idAluno + "'";
+
+            using (var con = DAO_Conexao.con)
+            {
+                con.Open();
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            if (dr.Read())
+                            {
+                                //Console.WriteLine("\nCoisas:");
+                                //Console.WriteLine(dr["Foto"].ToString());
+                                //Console.WriteLine(dr["Foto"]);
+                                if (dr["Foto"].ToString() != "")
+                                {
+                                    aluno.foto = (byte[])dr["Foto"];
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+                con.Close();
+            }
+        }
+
+        public void SalvarFoto()
+        {
+            byte[] foto = GetFoto(caminhoFoto);
+
+            var sql = "UPDATE Connect_Aluno SET foto = @foto WHERE CPF ='" + cpf + "'";
+
+            using (var con = DAO_Conexao.con)
+            {
+                con.Open();
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.Add("@foto", MySqlDbType.Blob).Value = foto;
+
+                    cmd.ExecuteNonQuery();
+                }
+                con.Close();
+            }
+        }
+
+        private byte[] GetFoto(string caminhoFoto)
+        {
+            byte[] foto;
+            using (var stream = new FileStream(caminhoFoto, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    foto = reader.ReadBytes((int)stream.Length);
+                }
+            }
+            return foto;
+        }
+
+        //------------------------------------------- FIM CURRICULO E FOTO ---------------------------------------------
+
 
         public Aluno() { }
 

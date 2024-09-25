@@ -150,6 +150,7 @@
             this.btnMudarFoto.TabIndex = 57;
             this.btnMudarFoto.Text = "Mudar Foto de Perfil";
             this.btnMudarFoto.UseVisualStyleBackColor = true;
+            this.btnMudarFoto.Click += new System.EventHandler(this.btnMudarFoto_Click);
             // 
             // btnDelete
             // 
