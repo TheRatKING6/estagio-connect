@@ -360,5 +360,32 @@ namespace ECDesktopApp
                 return bArray;
             }
         }
+
+        private void FormCadastroAluno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private async void msktxtCep_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter) //se a tecla apertada for enter
+            {
+                if (msktxtCep.Text.Replace("-", "").Trim().Count() == 8) //verifica se o cep foi preenchido corretamente
+                {
+                    //passa o cep pra conseguir um objeto da classe endereco e dps coloca as propriedades do obj nos campos
+                    string cep = msktxtCep.Text.Replace("-", "").Trim();
+                    Endereco endereco = await Apis.getEnderecoFromCEP(cep);
+
+                    if (endereco != null)
+                    {
+                        txtRua.Text = endereco.Logradouro.ToString();
+                        txtBairro.Text = endereco.Bairro.ToString();
+                        txtCidade.Text = endereco.Localidade.ToString();
+                        txtComplmento.Text = endereco.Complemento.ToString();
+                        cbbEstado.Text = endereco.Uf.ToString();
+                    }
+                }
+            }
+        }
     }
 }
