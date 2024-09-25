@@ -6,15 +6,17 @@
     $pagina = "";
     $texto = "";
 
+
   } else if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     $pagina = "";
     $texto = "";
+    $tipo = "";
 
     $login = $_POST["login"];
     $senha = $_POST["senha"];
 
-    if ((trim($login) != "") && (trim($senha) != "")) {
+    /*if ((trim($login) != "") && (trim($senha) != "")) {
 
       if (($login == "11223344") && ($senha == "1234")) {
         session_start();
@@ -25,9 +27,40 @@
       } else if ( ($login == "55667788") && ($senha == "5678")) {
         session_start();
         $_SESSION["login"] = $login;
-        header('Location: loginB.php');
+        header('Location: loginB.php');*/
+        if ((trim($login) != "") && (trim($senha) != "")) {
+        try {
+            include("conexaoBD.php");
+            
+            $stmt = $pdo->prepare("select * from Connect_Aluno where CPF = :login and Senha = :senha");
+            $stmt->bindParam(':login', $login);
+            $stmt->bindParam(':senha', $senha);
+            $stmt->execute();
+
+            $rows = $stmt->rowCount();
+
+            if ($rows == 1 ) {
+              session_start();
+              $_SESSION["login"] = $login;
+              header('Location: loginA.php');
+            }
+              else{
+            
+                  $stmt = $pdo->prepare("select * from Connect_Empresa where CNPJ = :login and Senha = :senha");
+                  $stmt->bindParam(':login', $login);
+                  $stmt->bindParam(':senha', $senha);
+                  $stmt->execute();
+
+                  $rows = $stmt->rowCount();
+
+                  if ($rows == 1) {
+                    session_start();
+                   
+                    $_SESSION["login"] = $login;
+                    header('Location: loginB.php');
+              }
         
-      } else{
+       else{
         
 
         //echo "Login e/ou senha inválido(s)!";
@@ -42,8 +75,14 @@
                   </div>
               </div>';
 
-      }
-    } else{
+      }}
+    }catch (PDOException $e) {
+          
+          echo 'Error: ' . $e->getMessage();
+           
+        }}
+
+     else{
       //echo "Informe seu login e sua senha";
       $texto = '<div class="toast-container position-fixed bottom-0 end-0 p-3">
                 <div id="liveToast" class="toast align-items-center  border-0" role="alert" aria-live="assertive" aria-atomic="true">
@@ -56,10 +95,8 @@
                   </div>
               </div>';
 
-    }
-
   }
-
+}
 ?>
 
 
@@ -93,18 +130,13 @@
 
 </head>
 <body>
-
 <?php
   session_start();
-  if (isset($_SESSION["login"])) {
-
-     require('assets/navbarLogado.html');;
-  }
-  else{
-    
-     require('assets/navbar.html');
-  }
+  
+  
+    include('assets/qualnavbar.php');
 ?>
+
 
 <!--container Login-->
 

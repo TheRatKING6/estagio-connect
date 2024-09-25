@@ -19,7 +19,7 @@
 				
 				
 			} else{
-				include("loginAcontent.html");
+				include("loginAcontent.php");
 			}
 		
 ?>
