@@ -36,15 +36,11 @@
   
 <?php
   session_start();
-  if (isset($_SESSION["login"])) {
-
-     require('assets/navbarLogado.html');;
-  }
-  else{
-    
-     require('assets/navbar.html');
-  }
+  
+  
+    include('assets/qualnavbar.php');
 ?>
+
 
 <!-- inicio container introdução-->
 <br>

@@ -37,10 +37,14 @@
 
 <?php
   session_start();
+  
   if (isset($_SESSION["login"])) {
+    if (isset($_SESSION["login"])=="11223344") {
 
-     require('assets/navbarLogado.html');;
-  }
+     require('assets/navbarLogadoA.html');
+  }else if (isset($_SESSION["login"])=="55667788") {
+    require('assets/navbarLogadoB.html');
+  }}
   else{
     
      require('assets/navbar.html');

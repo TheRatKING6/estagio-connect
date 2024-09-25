@@ -29,15 +29,118 @@
 <body>
 <?php
   session_start();
-  if (isset($_SESSION["login"])) {
+  
 
-     require('assets/navbarLogado.html');;
-  }
-  else{
-    
-     require('assets/navbar.html');
-  }
+  
+    include('assets/qualnavbar.php');
+
+
+    if ($_SERVER["REQUEST_METHOD"] === 'GET'){
+        $texto = "";
+        $CNPJ = "";
+        $Nome = "";
+        $Rua = "";
+        $Numero = "";
+        $Bairro = "";
+        $Complemento = "";
+        $Cidade = "";
+        $Estado = "";
+        $CEP = "";
+        $Email = "";
+        $Telefone = "";
+        $Ramo = "";
+        $Descricao = "";
+        $Senha = "";
+        $mensagem = "";
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] === 'POST'){
+        $texto = "";
+        $CNPJ = $_POST["CNPJ"];
+        $Nome = $_POST["Nome"];
+        $Rua = $_POST["Rua"];
+        $Numero = $_POST["Numero"];
+        $Bairro = $_POST["Bairro"];
+        $Complemento = $_POST["Complemento"];
+        $Cidade = $_POST["Cidade"];
+        $Estado = $_POST["Estado"];
+        $CEP = $_POST["CEP"];
+        $Email = $_POST["Email"];
+        $Telefone = $_POST["Telefone"];
+        $Ramo = $_POST["Ramo"];
+        $Descricao = $_POST["Descricao"];
+        $Senha = $_POST["Senha"];
+        $mensagem = "";
+
+        if(strlen($Senha)<8){
+             $mensagem = '<div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast align-items-center  border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                      <div class="toast-body">
+                      Senha deve ter no mínimo 8 caracteres
+                      </div>
+                      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                  </div>
+              </div>';
+          }
+          else{
+        
+
+        try {
+            include("conexaoBD.php");
+            
+            $stmt = $pdo->prepare("select * from Connect_Empresa where CNPJ = :CNPJ");
+            $stmt->bindParam(':CNPJ', $CNPJ);
+            $stmt->execute();
+
+            $rows = $stmt->rowCount();
+
+            if ($rows <= 0) {
+            $stmt = $pdo->prepare("INSERT INTO Connect_Empresa (CNPJ, Nome, Rua, Numero, Bairro, Complemento, Cidade, Estado, CEP, Email, Telefone, Ramo, Descricao, Senha) VALUES (:CNPJ, :Nome, :Rua, :Numero, :Bairro, :Complemento, :Cidade, :Estado, :CEP, :Email, :Telefone, :Ramo, :Descricao, :Senha)");
+            
+            $stmt->bindParam(':CNPJ', $CNPJ);
+            $stmt->bindParam(':Nome', $Nome);
+            $stmt->bindParam(':Rua', $Rua);
+            $stmt->bindParam(':Numero', $Numero);
+            $stmt->bindParam(':Bairro', $Bairro);
+            $stmt->bindParam(':Complemento', $Complemento);
+            $stmt->bindParam(':Cidade', $Cidade);
+            $stmt->bindParam(':Estado', $Estado);
+            $stmt->bindParam(':CEP', $CEP);
+            $stmt->bindParam(':Email', $Email);
+            $stmt->bindParam(':Telefone', $Telefone);
+            $stmt->bindParam(':Ramo', $Ramo);
+            $stmt->bindParam(':Descricao', $Descricao);
+            $stmt->bindParam(':Senha', $Senha);
+
+            $stmt->execute();
+            header('Location: login.php');
+            exit();
+            }else{
+            $texto = '<div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast align-items-center  border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                      <div class="toast-body">
+                      CNPJ já cadastrado!
+                      </div>
+                      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                  </div>
+              </div>';
+
+
+          }
+        } catch (PDOExCEPtion $e) {
+          
+          echo 'Error: ' . $e->getMessage();
+           
+        }
+        $pdo = null;
+    }}
+
 ?>
+
 
 <!--container do Empresa-->
 
@@ -55,13 +158,13 @@
 
 <div class="container containerCad boxInfo">
 
-<form class="needs-validation" novalidate>
+<form class="needs-validation" novalidate method="POST">
 <br>
 
   <div class="row">
     <div class="col-sm-12 mb-3">
       <label class="form-label">CNPJ: </label><br>
-      <input type="text" class="form-control" required>
+      <input type="text" name="CNPJ" id="cnpj" class="form-control" required>
       <div class="invalid-feedback">
         Campo obrigatório.
       </div>
@@ -71,7 +174,7 @@
   <div class="row">
     <div class="col-sm-12 mb-3">
       <label class="form-label">Nome: </label><br>
-      <input type="text" class="form-control" required>
+      <input type="text" name="Nome" class="form-control" required>
       <div class="invalid-feedback">
         Campo obrigatório.
       </div>
@@ -83,7 +186,7 @@
     <div class="row">
     <div class="col-md-5 col-sm-12 mb-3">
       <label class="form-label">Rua:</label>
-      <input type="text" class="form-control" required>
+      <input type="text" name="Rua" class="form-control" required>
       <div class="invalid-feedback">
         Campo obrigatório.
       </div>
@@ -91,7 +194,7 @@
 
      <div class="col-md-1 col-sm-12 mb-3">
       <label class="form-label">Número:</label>
-      <input type="text" class="form-control" required>
+      <input type="text" name="Numero" class="form-control" required>
       <div class="invalid-feedback">
         Campo obrigatório.
       </div>
@@ -99,7 +202,7 @@
 
     <div class="col-md-4 col-sm-12 mb-3">
       <label class="form-label">Bairro:</label>
-      <input type="text" class="form-control" required>
+      <input type="text" name="Bairro" class="form-control" required>
       <div class="invalid-feedback">
         Campo obrigatório.
       </div>
@@ -110,7 +213,7 @@
  
     <div class="col-md-2 col-sm-12 mb-3">
         <label class="form-label">Complemento:</label>
-        <input type="text" class="form-control" required>
+        <input type="text" name="Complemento" class="form-control" required>
         <div class="invalid-feedback">
         Campo obrigatório.
       </div>
@@ -120,7 +223,7 @@
   <div class="row">
     <div class="col-md-6 col-sm-12 mb-3">
       <label class="form-label">Cidade:</label>
-      <input type="text" class="form-control" required>
+      <input type="text" name="Cidade" class="form-control" required>
       <div class="invalid-feedback">
         Campo obrigatório.
       </div>
@@ -128,7 +231,7 @@
 
     <div class="col-md-3 col-sm-12 mb-3">
       <label class="form-label">Estado:</label>
-      <select class="form-select" required>
+      <select class="form-select" name="Estado" required>
         <option></option>
         <option>AC</option>
         <option>AL</option>
@@ -166,7 +269,7 @@
   
     <div class="col-md-3 col-sm-12 mb-3">
         <label class="form-label">CEP:</label>
-        <input type="text" class="form-control" required>
+        <input type="text" name="CEP" id="cep" class="form-control" required>
         <div class="invalid-feedback">
         Campo obrigatório.
       </div>
@@ -177,21 +280,31 @@
   <div class="row">
   <div class="col-md-6 col-sm-12 mb-3">
       <label class="form-label">Email de Contato: </label>
-      <input type="email"  class="form-control" required>
+      <input type="Email" name="Email"  class="form-control" required>
       <div class="invalid-feedback">
         Campo obrigatório.
       </div>
     </div>
     <div class="col-md-3 col-sm-12 mb-3">
       <label class="form-label">Telefone de Contato: </label>
-      <input type="tel"  class="form-control">
+      <input type="tel" name="Telefone" id="tel" class="form-control">
     </div>
     <div class="col-md-3 col-sm-12 mb-3">
       <label class="form-label">Ramo de Atividade: </label>
-      <input type="text"  class="form-control" required>
+      <input type="text" name="Ramo" class="form-control" required>
     </div>
 
   </div>
+  <br>
+
+  <div class="row">
+
+        <div class="col-md-12 col-sm-12 mb-3">
+        <label class="form-label">Descrição:</label>
+        <input type="text" name="Descricao" class="form-control">
+      
+        </div>
+      </div>
 
 <br>
 
@@ -205,10 +318,10 @@
     </div>
 
   <div class="col-md-6 col-sm-12 mb-3">
-      <label class="form-label">Confirmar senha: </label><br>
-      <input type="password"  class="form-control" id="confirm_password" required>
+      <label class="form-label">Confirmar Senha: </label><br>
+      <input type="password"  name="Senha" class="form-control" id="confirm_password" required>
       <div class="invalid-feedback">
-        Campo inválido ou senha não corresponde.
+        Campo inválido ou Senha não corresponde.
       </div>
     </div>
 
@@ -224,27 +337,163 @@
 
         </button>
 
-         <button type="reset" class="btn btn-info btncolor" id="liveToastBtn">
+        <button type="reset" class="btn btn-info btncolor" id="liveToastBtn" onclick="exibirToast();">
           <i class="bi bi-x-circle"></i> Limpar
         </button>
 
+        <?php
+              echo $texto;
+              echo $mensagem;
+              echo exibirToast();
+       ?>
+
           <!--toast limpar inicio-->
-          <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                  <div id="liveToast" class="toast align-items-center  border-0" role="alert" aria-live="assertive" aria-atomic="true">
+          <?php
+          function exibirToast() {
+          return
+          '<div class="toast-container position-fixed bottom-0 end-0 p-3">
+                  <div id="liveToasta" class="toast align-items-center  border-0" role="alert" aria-live="assertive" aria-atomic="true">
                       <div class="d-flex">
                         <div class="toast-body">
-                          Formulário limpo com sucesso!
+                              
+                                      Formulário limpo com sucesso!
+                                      </div>
+                                      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                    </div>
+                                  </div>
+                             </div>
+                        
                         </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>';}?>
+
+                        <?php if (($texto != "") || ($mensagem != "")){
+                          echo "<script>
+                          document.addEventListener('DOMContentLoaded', function () {
+                              var toastElement = document.querySelector('.toast');
+                              if (toastElement) {
+                                  var myToast = new bootstrap.Toast(toastElement);
+                                  myToast.show();
+                              }
+                          });</script>";
+
+                          
+                          
+                        }
+
+                        ?>
+                        
                       </div>
                     </div>
                 </div>
-                <!--toast limpar fim-->
+              
+
+          <!--toast limpar fim-->
+      </div>
     </div>
+    <script>
+function exibirToast() {
+    var toastElement = document.getElementById('liveToasta');
+    if (toastElement) {
+        var myToast = new bootstrap.Toast(toastElement);
+        myToast.show();
+    }
+}
+</script>
 <!--botao envio fim-->
 </div>
 </form>
 </div>
+<script>
+    function validaCPF(cnpj) {
+      cnpj = cnpj.replace(/\D+/g, '');
+      if (cnpj.length !== 14) return false;
+
+      else
+      return true;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('Form').addEventListener('submit', function(e) {
+        var cpf = document.getElementById('cnpj').value;
+        if (!validaCPF(cnpj)) {
+          e.preventDefault();
+          alert('CNPJ inválido, mínimo 14 caracteres.');
+          document.getElementById('cnpj').focus();
+        }
+      });});
+
+    document.getElementById('cnpj').addEventListener('input', function(e) {
+      var value = e.target.value;
+      var cnpjPattern = value.replace(/\D/g, '') 
+                .replace(/(\d{2})(\d)/, '$1.$2') 
+                .replace(/(\d{3})(\d)/, '$1.$2') 
+                .replace(/(\d{3})(\d)/, '$1/$2') 
+                .replace(/(\d{4})(\d)/, '$1-$2') 
+                .replace(/(-\d{2})\d+?$/, '$1'); // Impede entrada de mais de 11 dígitos
+      e.target.value = cnpjPattern;
+    });
+    </script>
+    <script>
+
+    function validaCEP(cep) {
+      cep = cep.replace(/\D+/g, '');
+      if (cep.length !== 8) return false;
+
+      else
+      return true;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('Form').addEventListener('submit', function(e) {
+        var cep = document.getElementById('cep').value;
+        if (!validaCEP(cep)) {
+          e.preventDefault();
+          alert('CEP inválido, mínimo 8 caracteres.');
+          document.getElementById('cep').focus();
+        }
+      });});
+
+    document.getElementById('cep').addEventListener('input', function(e) {
+      var value = e.target.value;
+      var cepPattern = value.replace(/\D/g, '') // Remove qualquer coisa que não seja número
+                .replace(/(\d{5})(\d)/, '$1-$2') 
+                .replace(/(-\d{3})\d+?$/, '$1'); 
+      e.target.value = cepPattern;
+    });
+</script>
+    <script>
+
+    function validaTel(tel) {
+      tel = tel.replace(/\D+/g, '');
+      tel = tel.replace(/ +/g, '');
+      if ((tel.length !== 10) && (tel.length !==0)) return false;
+
+      else
+      return true;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('Form').addEventListener('submit', function(e) {
+        var tel = document.getElementById('tel').value;
+        if (!validaTel(tel)) {
+          e.preventDefault();
+          alert('Telefone inválido.');
+          document.getElementById('tel').focus();
+        }
+      });});
+
+    document.getElementById('tel').addEventListener('input', function(e) {
+      var value = e.target.value;
+      var telPattern = value.replace(/\D/g, '') // Remove qualquer coisa que não seja número
+                .replace(/(\d{1})(\d)/, '($1$2')
+                .replace(/(\d{2})(\d)/, '$1) $2') 
+                .replace(/(\d{4})(\d)/, '$1-$2') 
+                .replace(/(-\d{4})\d+?$/, '$1'); 
+      e.target.value = telPattern;
+    });
+</script>
+
+
 
 <!--fim container Empresa-->
 
