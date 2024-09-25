@@ -485,6 +485,28 @@ namespace ECDesktopApp
             return reader;
         }
 
+        public MySqlDataReader getAllAlunosInteressantes()
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select *, Connect_Aluno.Nome as NomeAluno, Connect_Vagas.Nome as NomeVaga " +
+                    "from Connect_Vagas, Connect_Vaga_Aluno, Connect_Aluno where " +
+                    "Connect_Vagas.Codigo = Connect_Vaga_Aluno.Codigo_Vaga and Connect_Aluno.idAluno = Connect_Vaga_Aluno.idAluno", DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
         public MySqlDataReader searchVagas(string nomeEmpresa)
         {
             MySqlDataReader reader = null;

@@ -17,7 +17,7 @@ namespace ECDesktopApp
         int tipo = 0;
         bool interesse = false;
         string UserId;
-        int vagaId;
+        int vagaId = -1;
         byte[] foto = null;
 
         public int Tipo { get => tipo; set => tipo = value; }
@@ -371,41 +371,63 @@ namespace ECDesktopApp
 
         private void btnInteresse_Click(object sender, EventArgs e)
         {
-            Vaga vaga = new Vaga();
-            Aluno aluno = new Aluno(UserId);
-            int idAluno = aluno.getIdAluno();
-            //se a empresa nao tiver interessado, ao clicar no botao ele muda o texto e seta interessado como true
-            if (!interesse)
+            //isso so vai acontecer se o usuario visualizando for uma empresa
+            if(((FormLogin)this.MdiParent).TipoUsuario == 1)
             {
-                if(vaga.setInteresseVaga(vagaId, idAluno))
+                //se o id da vaga nao estiver settado, nao tem como obter interesse, nao tem como saber com qual vaga a empresa quer se interessar
+                if(vagaId == -1)
                 {
-                    btnInteresse.Text = "Retirar o interesse";
-                    btnInteresse.BackColor = Color.Salmon;
-                    interesse = true;
+                    //pega o id do aluno com base no cpf dele
+                    Aluno al1 = new Aluno(UserId);
+                    int idAluno = al1.getIdAluno();
 
-                    if(vaga.connectCheck(vagaId, idAluno)) //verifica se o aluno ja esta interessado na vaga e cria o connect, brabo
-                    {
-                        MessageBox.Show("Parabéns, você acabou de criar um Connect, olhe a aba de connects no aplicativo para saber mais!", "Connect!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    //abre o form pra selecionar a vaga e passa o id do aluno
+                    FormSelectVagaInteressada form = new FormSelectVagaInteressada();
+                    form.MdiParent = this.MdiParent;
+                    form.IdAluno = idAluno;
+                    form.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao cadastrar interesse no aluno", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Vaga vaga = new Vaga();
+                    Aluno aluno = new Aluno(UserId);
+                    int idAluno = aluno.getIdAluno();
+                    //se a empresa nao tiver interessado, ao clicar no botao ele muda o texto e seta interessado como true
+                    if (!interesse)
+                    {
+                        if(vaga.setInteresseVaga(vagaId, idAluno))
+                        {
+                            btnInteresse.Text = "Retirar o interesse";
+                            btnInteresse.BackColor = Color.Salmon;
+                            interesse = true;
+
+                            if(vaga.connectCheck(vagaId, idAluno)) //verifica se o aluno ja esta interessado na vaga e cria o connect, brabo
+                            {
+                                MessageBox.Show("Parabéns, você acabou de criar um Connect, olhe a aba de connects no aplicativo para saber mais!", "Connect!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro ao cadastrar interesse no aluno", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+                    }
+                    //se a empresa tiver interessado, ao clicar no botao ele muda o texto e seta interessado como false
+                    else if(vaga.deleteInteresseVaga(vagaId, idAluno))
+                    {
+                        btnInteresse.Text = "Demonstrar Interesse";
+                        btnInteresse.BackColor = Color.Transparent;
+                        interesse = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao atualizar interesse", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    }
                 }
-
+                
             }
-            //se a empresa tiver interessado, ao clicar no botao ele muda o texto e seta interessado como false
-            else if(vaga.deleteInteresseVaga(vagaId, idAluno))
-            {
-                btnInteresse.Text = "Demonstrar Interesse";
-                btnInteresse.BackColor = Color.Transparent;
-                interesse = false;
-            }
-            else
-            {
-                MessageBox.Show("Erro ao atualizar interesse", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            }
+            
         }
 
         private void FormPerfilAluno_ClientSizeChanged(object sender, EventArgs e)

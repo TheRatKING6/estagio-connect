@@ -142,8 +142,9 @@ namespace ECDesktopApp
                             form.UserId = userId.Replace(",", "."); //passa o cpf do aluno logando para a propriedade UserId, para poder identificar o aluno logado
                             form.Show();
 
-                            //se for aluno desabilita o 'Alunos interessados' no menuStrip
+                            //se for aluno desabilita o 'Alunos interessados' e 'seus interesses' no menuStrip
                             alunosInteressadosToolStripMenuItem.Visible = false;
+                            seusInteressesToolStripMenuItem.Visible = false;
 
                             inicioToolStripMenuItem.Visible = true;
                             vagasToolStripMenuItem.Visible = true;
@@ -163,6 +164,7 @@ namespace ECDesktopApp
                             vagasToolStripMenuItem.Visible = false;
 
                             alunosInteressadosToolStripMenuItem.Visible = true;
+                            seusInteressesToolStripMenuItem.Visible = true;
 
                         
                         }
@@ -296,6 +298,7 @@ namespace ECDesktopApp
         {
             FormAlunosInteressadosVaga form = new FormAlunosInteressadosVaga();
             form.MdiParent = this;
+            form.Modo = 1;
             form.Cnpj = msktxtPK.Text.Replace(",", ".");
             form.Show();
         }
@@ -411,6 +414,15 @@ namespace ECDesktopApp
 
                 tipoUsuario = -1;
             }
+        }
+
+        private void seusInteressesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAlunosInteressadosVaga form = new FormAlunosInteressadosVaga();
+            form.MdiParent = this;
+            form.Modo = 2;
+            form.Cnpj = msktxtPK.Text.Replace(",", ".");
+            form.Show();
         }
     }
 }

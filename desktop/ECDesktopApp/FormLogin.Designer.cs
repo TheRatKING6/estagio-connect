@@ -56,6 +56,7 @@
             this.fecharToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
             this.lblAdm = new System.Windows.Forms.Label();
+            this.seusInteressesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpbLogin.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
@@ -275,6 +276,7 @@
             // 
             this.suasInformaçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vagasToolStripMenuItem,
+            this.seusInteressesToolStripMenuItem,
             this.alunosInteressadosToolStripMenuItem,
             this.connectsToolStripMenuItem});
             this.suasInformaçõesToolStripMenuItem.Name = "suasInformaçõesToolStripMenuItem";
@@ -346,6 +348,13 @@
             this.lblAdm.Text = "Acesso administrativo";
             this.lblAdm.Click += new System.EventHandler(this.lblAdm_Click);
             // 
+            // seusInteressesToolStripMenuItem
+            // 
+            this.seusInteressesToolStripMenuItem.Name = "seusInteressesToolStripMenuItem";
+            this.seusInteressesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seusInteressesToolStripMenuItem.Text = "Seus Interesses";
+            this.seusInteressesToolStripMenuItem.Click += new System.EventHandler(this.seusInteressesToolStripMenuItem_Click);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,5 +415,6 @@
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fecharToolStripMenuItem;
         private System.Windows.Forms.Label lblAdm;
+        private System.Windows.Forms.ToolStripMenuItem seusInteressesToolStripMenuItem;
     }
 }

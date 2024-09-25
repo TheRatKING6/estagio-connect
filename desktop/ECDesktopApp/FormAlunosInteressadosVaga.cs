@@ -14,8 +14,10 @@ namespace ECDesktopApp
     public partial class FormAlunosInteressadosVaga : Form
     {
         private string cnpj;
+        private int modo;
 
         public string Cnpj { get => cnpj; set => cnpj = value; }
+        public int Modo { get => modo; set => modo = value; }
 
         public FormAlunosInteressadosVaga()
         {
@@ -67,11 +69,20 @@ namespace ECDesktopApp
 
             //coloca as infos no dgv
             refreshInteressados();
-
+            
             if(dgvAlunosInteressadosVaga.Rows.Count < 1)
             {
                 btnVerAluno.Visible = false;
                 btnVerVaga.Visible = false;
+            }
+            
+            if(modo == 1)
+            {
+                lblAlunosInteresse.Text = "Alunos Interessados em suas vagas";
+            }
+            else if(modo == 2)
+            {
+                lblAlunosInteresse.Text = "Seus interesses";
             }
         }
 
@@ -89,7 +100,17 @@ namespace ECDesktopApp
 
             int idEmpresa = empresa.getCodigo_Empresa(); //getCodigo_Empresa tem que vir antes de chamar o reader, senao ele vai fechar a conexao
 
-            MySqlDataReader reader = vaga.getAllAlunosInteressados();
+            MySqlDataReader reader = null;
+
+            if(modo == 1) //se for modo 1, pega todos o alunos que estao interessados em alguma vaga da empresa
+            {
+                reader = vaga.getAllAlunosInteressados();
+            }
+            else if(modo == 2)//se for modo 2, pega todos os alunos que qlqr vaga da empresa estao interessadas
+            {
+                reader = vaga.getAllAlunosInteressantes();
+            }
+            //se nao for 1 nem 2, a gente chora
             
             
             while(reader.Read())
