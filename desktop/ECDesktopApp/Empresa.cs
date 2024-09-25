@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,76 @@ namespace ECDesktopApp
         private string telefone;
         private string ramo;
         private string descricao;
-        private byte[] foto;
+        //private byte[] foto;
         private string senha;
+
+
+        //--------------------------------------------- FOTO ------------------------------------
+
+        public String caminhoFoto { get; set; }
+        public byte[] foto { get; set; }
+
+
+        public void PegarFoto(String cnpj, Empresa empresa)
+        {
+            var sql = "SELECT foto from Connect_Empresa WHERE CNPJ ='" + cnpj + "'";
+
+            using (var con = DAO_Conexao.con)
+            {
+                con.Open();
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            if (dr.Read())
+                            {
+                                empresa.foto = (byte[])dr["Foto"];
+                            }
+                        }
+                    }
+                }
+                con.Close();
+            }
+        }
+
+        public void SalvarFoto()
+        {
+            byte[] foto = GetFoto(caminhoFoto);
+
+            var sql = "UPDATE Connect_Empresa SET foto = @foto WHERE CNPJ ='" + cnpj + "'";
+
+            using (var con = DAO_Conexao.con)
+            {
+                con.Open();
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.Add("@foto", MySqlDbType.Blob).Value = foto;
+
+                    cmd.ExecuteNonQuery();
+                }
+                con.Close();
+            }
+        }
+
+        private byte[] GetFoto(string caminhoFoto)
+        {
+            byte[] foto;
+            using (var stream = new FileStream(caminhoFoto, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    foto = reader.ReadBytes((int)stream.Length);
+                }
+            }
+            return foto;
+        }
+
+
+        //--------------------------------------------- FIM FOTO ------------------------------------
+
+
 
         public Empresa() { }
 

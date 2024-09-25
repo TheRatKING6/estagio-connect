@@ -26,6 +26,16 @@ namespace ECDesktopApp
         public int VagaId { get => vagaId; set => vagaId = value; }
         public byte[] Foto { get => foto; set => foto = value; }
 
+        public String caminhoFoto = "";
+
+        public bool trocouFoto = false;
+
+        public bool trocouCurriculo = false;
+
+        public String caminhoCurriculo = "";
+
+
+
         public FormPerfilAluno()
         {
             InitializeComponent();
@@ -120,9 +130,25 @@ namespace ECDesktopApp
 
             btnCurriculo.Text = "Ver currículo";
 
-            //refreshFoto();
-
+            carregarFoto();
         }
+
+        public void carregarFoto()
+        {
+            Aluno aluno = new Aluno(UserId);
+            int idAluno = aluno.getIdAluno();
+            aluno.PegarFoto(idAluno, aluno);
+            using (var foto = new MemoryStream(aluno.foto))
+            {
+                if(foto.Length > 0)
+                {
+                    picFoto.Image = Image.FromStream(foto);
+                }
+
+            }
+        }
+
+
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
@@ -285,8 +311,24 @@ namespace ECDesktopApp
                     Aluno aluno = new Aluno(cpf, matricula, nome, nascimento, email, telefone, especialidade, descricao, rua, numero, bairro,
                         complemento, cidade, estado, cep, status, ano, escola, senha); //cria um obj aluno
 
+                    aluno.caminhoFoto = caminhoFoto;
+                    aluno.caminhoCurriculo = caminhoCurriculo;
+
+
+
                     if (aluno.editarInfosAluno()) //usa o metodo pra editar o cadastro
                     {
+                        if (trocouFoto)
+                        {
+                            aluno.SalvarFoto();
+                            trocouFoto = false;
+                        }
+                        if (trocouCurriculo)
+                        {
+                            aluno.SalvarCurriculo();
+                            trocouCurriculo = false;
+                        }
+
                         MessageBox.Show("Informações de perfil modificadas com sucesso", "Sucesso ao editar perfil", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
@@ -438,14 +480,17 @@ namespace ECDesktopApp
 
         private void btnCurriculo_Click(object sender, EventArgs e)
         {
-            if(btnCurriculo.Text.Equals("Trocar currículo"))
+            if (btnCurriculo.Text.Equals("Trocar currículo"))
             {
                 //abrir o menu de arquivo e fzr upload
+                trocarCurriculo();
+
             }
             else
             {
                 FormVisualizarCurriculo form = new FormVisualizarCurriculo();
                 form.MdiParent = this.MdiParent;
+                form.UserId1 = this.UserId1;
                 form.Show();
             }
         }
@@ -559,6 +604,46 @@ namespace ECDesktopApp
             }
             DAO_Conexao.con.Close();
         }
+
+        private void btnMudarFoto_Click(object sender, EventArgs e)
+        {
+            trocarFoto();
+        }
+
+        private void trocarFoto()
+        {
+            var openFile = new OpenFileDialog();
+            openFile.Filter = "Arquivos de imagens jpg e png|*.jpg; *.png;";
+            openFile.Multiselect = false;
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+                caminhoFoto = openFile.FileName;
+            Console.WriteLine(caminhoFoto);
+
+            if (caminhoFoto != "")
+            {
+                picFoto.Load(caminhoFoto);
+                trocouFoto = true;
+            }
+        }
+
+        private void trocarCurriculo()
+        {
+            var openFile = new OpenFileDialog();
+            openFile.Filter = "Arquivos de imagens jpg e png|*.jpg; *.png;";
+            openFile.Multiselect = false;
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+                caminhoCurriculo = openFile.FileName;
+            Console.WriteLine(caminhoCurriculo);
+
+            if (caminhoCurriculo != "")
+            {
+                txtArquivoCurriculo.Text = openFile.SafeFileName;
+                trocouCurriculo = true;
+            }
+        }
+
 
         //public void refreshFoto()
         //{

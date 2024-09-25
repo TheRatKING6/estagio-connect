@@ -13,7 +13,9 @@ namespace ECDesktopApp
 {
     public partial class FormCadastroEmpresa : Form
     {
+        public String caminhoFoto = "";
         private byte[] foto = null;
+        public bool colocouFoto = false;
 
         public byte[] Foto { get => foto; set => foto = value; }
 
@@ -171,6 +173,8 @@ namespace ECDesktopApp
                 }
 
                 Empresa empresa = new Empresa(cnpj, nome, rua, numero, bairro, complemento, cidade, estado, cep, email, telefone, ramo, foto, descricao, senha);
+                empresa.caminhoFoto = caminhoFoto;
+
 
                 //faz o cadastro no BD
                 if (empresa.verificaCadastroEmpresa())
@@ -179,6 +183,13 @@ namespace ECDesktopApp
                 }
                 else if(empresa.cadastrarEmpresa())
                 {
+                    if (colocouFoto)
+                    {
+                        empresa.SalvarFoto();
+                        colocouFoto = false;
+                    }
+                    
+
                     MessageBox.Show("Cadastro efetuado com sucesso!", "Cadastrado", MessageBoxButtons.OK);
                     
                     //Faz com que o MdiParent deixe de ser um MdiContainer e fecha o form atual
@@ -204,7 +215,7 @@ namespace ECDesktopApp
         private void btnSelectImg_Click(object sender, EventArgs e)
         {
             //nao faco ideia de como isso funssiona, mas funsciona, ent vai ficar por isso msm
-            if (foto == null)
+            /*if (foto == null)
             {
                 OpenFileDialog ofd = new OpenFileDialog();
 
@@ -239,8 +250,29 @@ namespace ECDesktopApp
                 picFotoEmpresa.Image = null;
                 foto = null;
                 btnSelectImg.Text = "Escolher Foto...";
-            }
+            }*/
+
+            CarregarFoto();
         }
+
+        private void CarregarFoto()
+        {
+            var openFile = new OpenFileDialog();
+            openFile.Filter = "Arquivos de imagens jpg e png|*.jpg; *.png;";
+            openFile.Multiselect = false;
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+                caminhoFoto = openFile.FileName;
+            Console.WriteLine(caminhoFoto);
+
+            if (caminhoFoto != "")
+            {
+                picFotoEmpresa.Load(caminhoFoto);
+                colocouFoto = true;
+            }
+                
+        }
+
 
         private async void msktxtCep_KeyPress(object sender, KeyPressEventArgs e)
         {

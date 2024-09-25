@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -17,6 +18,9 @@ namespace ECDesktopApp
     {
         private int tipo = 1;
         private string cnpj_empresa = "";
+        public String caminhoFoto = "";
+        public bool mudouFoto = false;
+
 
         public int Tipo { get => tipo; set => tipo = value; }
         public string Cnpj_empresa { get => Cnpj_empresa; set => Cnpj_empresa = value; }
@@ -75,7 +79,7 @@ namespace ECDesktopApp
         private void FormPerfilEmpresa_Load(object sender, EventArgs e)
         {
             //coloca a foto default (se nao tiver foto cadastrada no bd)
-            picFoto.ImageLocation = "../../img/default_user_empresa.jpg";
+            picFoto.Image = Image.FromFile("../../img/default_user_empresa.jpg");
             picFoto.SizeMode = PictureBoxSizeMode.StretchImage;
 
             //se for adm, vai ter tudo liberado
@@ -171,8 +175,26 @@ namespace ECDesktopApp
             //DAO_Conexao.con.Close();
 
             refreshInfoEmpresa(); //faz a msm coisa desse comentario giga aqui em cima (lol)
+
+            carregarFoto();
             
         }
+
+        public void carregarFoto()
+        {
+            Empresa empresa = new Empresa(cnpj_empresa);
+            empresa.PegarFoto(cnpj_empresa, empresa);
+            using (var foto = new MemoryStream(empresa.foto))
+            {
+                if(foto.Length > 0)
+                {
+                    picFoto.Image = Image.FromStream(foto);
+                }
+                
+            }
+        }
+
+
 
         private void tabPgPerfil_Click(object sender, EventArgs e)
         {
@@ -318,6 +340,11 @@ namespace ECDesktopApp
 
                         if (empresa.editarEmpresa())
                         {
+                            if (mudouFoto)
+                            {
+                                empresa.SalvarFoto();
+                                mudouFoto = false;
+                            }
                             MessageBox.Show("Informações de cadastro atualizadas com sucesso!", "Dados Atualizados!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             refreshInfoEmpresa(); //da refresh nas infos
@@ -732,6 +759,28 @@ namespace ECDesktopApp
         private void lblIdVaga_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnMudarFoto_Click(object sender, EventArgs e)
+        {
+            trocarFoto();
+        }
+
+        private void trocarFoto()
+        {
+            var openFile = new OpenFileDialog();
+            openFile.Filter = "Arquivos de imagens jpg e png|*.jpg; *.png;";
+            openFile.Multiselect = false;
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+                caminhoFoto = openFile.FileName;
+            Console.WriteLine(caminhoFoto);
+
+            if (caminhoFoto != "")
+            {
+                picFoto.Load(caminhoFoto);
+                mudouFoto = true;
+            }
         }
     }
 }
