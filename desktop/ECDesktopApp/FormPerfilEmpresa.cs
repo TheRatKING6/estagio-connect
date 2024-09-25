@@ -18,6 +18,7 @@ namespace ECDesktopApp
     {
         private int tipo = 1;
         private string cnpj_empresa = "";
+        private string cpfAluno = "";
         public String caminhoFoto = "";
         public bool mudouFoto = false;
 
@@ -25,6 +26,7 @@ namespace ECDesktopApp
         public int Tipo { get => tipo; set => tipo = value; }
         public string Cnpj_empresa { get => Cnpj_empresa; set => Cnpj_empresa = value; }
         public string Cnpj_empresa1 { get => cnpj_empresa; set => cnpj_empresa = value; }
+        public string CpfAluno { get => cpfAluno; set => cpfAluno = value; }
 
         public FormPerfilEmpresa()
         {
@@ -92,6 +94,7 @@ namespace ECDesktopApp
                 btnCriarVaga.Visible = false;
                 btnAlunosInteressados.Text = "Ver detalhes da vaga";
                 tabPage2.Text = "Vagas";
+                cpfAluno = ((FormLogin)this.MdiParent).IdUsuario;
             }
             else if(((FormLogin)this.MdiParent).IdUsuario != cnpj_empresa)
             {
