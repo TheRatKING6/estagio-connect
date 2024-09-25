@@ -81,10 +81,10 @@
             this.picBoxFotoAluno = new System.Windows.Forms.PictureBox();
             this.btnSelectImg = new System.Windows.Forms.Button();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.btnLimparCurriculo = new System.Windows.Forms.Button();
             this.btnEscolherCurriculo = new System.Windows.Forms.Button();
             this.txtArquivoCurriculo = new System.Windows.Forms.TextBox();
             this.lblCurriculo = new System.Windows.Forms.Label();
-            this.btnLimparCurriculo = new System.Windows.Forms.Button();
             this.gpbInfoContato.SuspendLayout();
             this.gpbEndereco.SuspendLayout();
             this.gpbSenha.SuspendLayout();
@@ -351,6 +351,7 @@
             this.msktxtCep.Name = "msktxtCep";
             this.msktxtCep.Size = new System.Drawing.Size(78, 20);
             this.msktxtCep.TabIndex = 12;
+            this.msktxtCep.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.msktxtCep_KeyPress);
             // 
             // txtCidade
             // 
@@ -699,6 +700,16 @@
             this.pnlContent.Size = new System.Drawing.Size(718, 1080);
             this.pnlContent.TabIndex = 34;
             // 
+            // btnLimparCurriculo
+            // 
+            this.btnLimparCurriculo.Location = new System.Drawing.Point(634, 705);
+            this.btnLimparCurriculo.Name = "btnLimparCurriculo";
+            this.btnLimparCurriculo.Size = new System.Drawing.Size(68, 23);
+            this.btnLimparCurriculo.TabIndex = 37;
+            this.btnLimparCurriculo.Text = "Limpar";
+            this.btnLimparCurriculo.UseVisualStyleBackColor = true;
+            this.btnLimparCurriculo.Click += new System.EventHandler(this.btnLimparCurriculo_Click);
+            // 
             // btnEscolherCurriculo
             // 
             this.btnEscolherCurriculo.Location = new System.Drawing.Point(515, 705);
@@ -725,16 +736,6 @@
             this.lblCurriculo.TabIndex = 34;
             this.lblCurriculo.Text = "Currículo:";
             // 
-            // btnLimparCurriculo
-            // 
-            this.btnLimparCurriculo.Location = new System.Drawing.Point(634, 705);
-            this.btnLimparCurriculo.Name = "btnLimparCurriculo";
-            this.btnLimparCurriculo.Size = new System.Drawing.Size(68, 23);
-            this.btnLimparCurriculo.TabIndex = 37;
-            this.btnLimparCurriculo.Text = "Limpar";
-            this.btnLimparCurriculo.UseVisualStyleBackColor = true;
-            this.btnLimparCurriculo.Click += new System.EventHandler(this.btnLimparCurriculo_Click);
-            // 
             // FormCadastroAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -747,6 +748,7 @@
             this.Text = "Cadastrar-se";
             this.Load += new System.EventHandler(this.FormCadastroAluno_Load);
             this.ClientSizeChanged += new System.EventHandler(this.FormCadastroAluno_ClientSizeChanged);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormCadastroAluno_KeyPress);
             this.gpbInfoContato.ResumeLayout(false);
             this.gpbInfoContato.PerformLayout();
             this.gpbEndereco.ResumeLayout(false);

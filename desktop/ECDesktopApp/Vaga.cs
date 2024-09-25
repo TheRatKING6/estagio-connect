@@ -135,7 +135,10 @@ namespace ECDesktopApp
             {
                 DAO_Conexao.con.Open();
 
-                MySqlCommand delete = new MySqlCommand("delete from Connect_Vagas where Codigo = " + id, DAO_Conexao.con);
+                //e preciso deletar as instancias dessa vaga nas outras tabelas antes de poder exclui se nao da problema na foreign key
+                MySqlCommand delete = new MySqlCommand("delete from Connect_Aluno_Vaga where Codigo_Vaga = " + id + ";" +
+                    "delete from Connect_Vaga_Aluno where Codigo_Vaga = " + id + ";" +
+                    "delete from Connect_Vagas where Codigo = " + id, DAO_Conexao.con);
 
                 delete.ExecuteNonQuery();
 
@@ -188,7 +191,17 @@ namespace ECDesktopApp
             {
                 DAO_Conexao.con.Open();
 
-                MySqlCommand delete = new MySqlCommand("delete from Connect_Vagas where idEmpresa= " + id_empresa, DAO_Conexao.con);
+                //MySqlCommand delete = new MySqlCommand("delete from Connect_Vagas where idEmpresa= " + id_empresa, DAO_Conexao.con);
+
+                //preguica de explicar, mas basicamente oq isso faz e q verifica todas as tabelas com foreign key pra deletar
+                //os registros da empresa e dps deleta todas as vagas da empresa
+                string query = "delete Connect_Aluno_Vaga, Connect_Vaga_Aluno from Connect_Vagas " +
+                    "inner join Connect_Aluno_Vaga inner join Connect_Vaga_Aluno " +
+                    "where Connect_Vagas.Codigo = Connect_Aluno_Vaga.Codigo_Vaga and Connect_Vagas.Codigo = Connect_Vaga_Aluno.Codigo_Vaga " +
+                    "and Connect_Vagas.idEmpresa =" + id_empresa + ";" +
+                    "delete from Connect_Vagas where idEmpresa= " + id_empresa;
+
+                MySqlCommand delete = new MySqlCommand(query, DAO_Conexao.con);
 
                 delete.ExecuteNonQuery();
 
@@ -465,6 +478,28 @@ namespace ECDesktopApp
                 reader = select.ExecuteReader();
             }
             catch( Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return reader;
+        }
+
+        public MySqlDataReader getAllAlunosInteressantes()
+        {
+            MySqlDataReader reader = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand select = new MySqlCommand("select *, Connect_Aluno.Nome as NomeAluno, Connect_Vagas.Nome as NomeVaga " +
+                    "from Connect_Vagas, Connect_Vaga_Aluno, Connect_Aluno where " +
+                    "Connect_Vagas.Codigo = Connect_Vaga_Aluno.Codigo_Vaga and Connect_Aluno.idAluno = Connect_Vaga_Aluno.idAluno", DAO_Conexao.con);
+
+                reader = select.ExecuteReader();
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }

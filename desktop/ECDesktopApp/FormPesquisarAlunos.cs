@@ -48,7 +48,7 @@ namespace ECDesktopApp
 
             //verifica se tem pelo menos alguma coisa preenchida para poder buscar
             if(String.IsNullOrEmpty(txtNome.Text) && String.IsNullOrEmpty(txtEscola.Text) && String.IsNullOrEmpty(txtEmail.Text) && String.IsNullOrEmpty(cbxEspecializacao.Text) 
-                && String.IsNullOrEmpty(txtCidade.Text)) 
+                && String.IsNullOrEmpty(txtCidade.Text) && ((FormLogin)this.MdiParent).TipoUsuario != 7) 
             {
                 MessageBox.Show("Você precisa preencher no mínimo um campo para poder realizar uma busca", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -76,8 +76,9 @@ namespace ECDesktopApp
                     string especialidadeAluno = reader["Especialidade"].ToString();
                     string escolaAluno = reader["Escola"].ToString();
                     string cidadeAluno = reader["Cidade"].ToString();
+                    string statusAluno = reader["Status"].ToString();
 
-                    dgvBuscaAlunos.Rows.Add(idAluno, nomeAluno, nascimento, emailAluno, especialidadeAluno, escolaAluno, cidadeAluno);
+                    dgvBuscaAlunos.Rows.Add(idAluno, nomeAluno, nascimento, emailAluno, especialidadeAluno, escolaAluno, cidadeAluno, statusAluno);
                 }
                 DAO_Conexao.con.Close();
 
@@ -87,6 +88,12 @@ namespace ECDesktopApp
                 txtCidade.Text = null;
                 txtEscola.Text = null;
                 cbxEspecializacao.SelectedIndex = -1;
+
+                //se a pesquisa nao tiver resultados, o botao de ver o perfil some
+                if(dgvBuscaAlunos.Rows.Count < 1)
+                {
+                    btnVerAluno.Visible = false;
+                }
             }
         }
 

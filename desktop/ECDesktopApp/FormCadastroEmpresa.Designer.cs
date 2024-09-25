@@ -191,6 +191,7 @@
             this.msktxtCep.Name = "msktxtCep";
             this.msktxtCep.Size = new System.Drawing.Size(78, 20);
             this.msktxtCep.TabIndex = 12;
+            this.msktxtCep.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.msktxtCep_KeyPress);
             // 
             // txtCidade
             // 

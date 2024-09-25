@@ -29,3 +29,6 @@ C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopA
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormVagaInteresseAluno.resources
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormConnect.resources
 C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormVisualizarCurriculo.resources
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\obj\Debug\ECDesktopApp.FormSelectVagaInteressada.resources
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Pedro\Desktop\estagio-connect\desktop\ECDesktopApp\bin\Debug\Newtonsoft.Json.xml

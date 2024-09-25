@@ -28,5 +28,20 @@ namespace ECDesktopApp
             }
             
         }
+        
+        //public static bool ValidarCPF(string cpf)
+        //{
+        //    bool ativo = false;
+        //    bool valido = false;
+
+        //    if (ativo)
+        //    {
+
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
     }
 }

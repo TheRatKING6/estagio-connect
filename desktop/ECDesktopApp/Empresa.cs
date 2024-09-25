@@ -283,6 +283,34 @@ namespace ECDesktopApp
             return editar;
         }
 
+        public bool editarEmpresaById(int id) 
+        {
+            bool editar = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand update = new MySqlCommand("update Connect_Empresa set CNPJ = '" + cnpj + "', Nome='" + nome + "', Rua='" + rua + "', Numero=" + numero + ", Bairro='" + bairro + "', " +
+                    "Complemento='" + complemento + "', Cidade='" + cidade + "', Estado='" + estado + "', CEP='" + cep + "', Email='" + email + "', Telefone='" + telefone + "', " +
+                    "Ramo='" + ramo + "', Descricao='" + descricao + "' where idEmpresa='" + id + "'", DAO_Conexao.con);
+
+                update.ExecuteNonQuery();
+
+                editar = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return editar;
+        }
+
         public MySqlDataReader getAllEmpresas()
         {
             MySqlDataReader empresa = null;

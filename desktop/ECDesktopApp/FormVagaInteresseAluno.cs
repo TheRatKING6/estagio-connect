@@ -38,6 +38,15 @@ namespace ECDesktopApp
 
             //carrega as infos nos dgv's
             refreshVagas();
+
+            if(dgvSeuInteresse.Rows.Count < 1)
+            {
+                btnVerVagaSeuInteresse.Visible = false;
+            }
+            if(dataGridView1.Rows.Count < 1)
+            {
+                btnVerVagaInteresseVoce.Visible = false;
+            }
         }
 
         private void btnVerVagaSeuInteresse_Click(object sender, EventArgs e)

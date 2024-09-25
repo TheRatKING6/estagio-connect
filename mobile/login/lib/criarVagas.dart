@@ -292,7 +292,7 @@ class _CriarVagasState extends State<CriarVagas> {
                     descricaoController.text,
                     salarioController.text,
                     localizacaoController.text,
-                    requisitosController.text+" ",
+                    requisitosController.text,
                     beneficiosController.text,
                     areaController.text,
                     prazoController.text,

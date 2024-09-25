@@ -34,7 +34,7 @@ class _HomeEmpresaState extends State<HomeEmpresa> with TickerProviderStateMixin
   TextEditingController curriculoController = TextEditingController();
   int _currentIndex = 0;
   List<Vagas> listaVagas = [];
-  List<Aluno> listaAlunoRecente = [];
+  Set<Aluno> listaAlunoRecente = {};
   List<Aluno> listaAlunoSugestao = [];
   List<Aluno> listaFavoritos = [];
   List<LikeEmpresa> listaLikeDessaEmpresa = [];
@@ -184,7 +184,7 @@ class _HomeEmpresaState extends State<HomeEmpresa> with TickerProviderStateMixin
             controller: _homeTabController,
             children: [
               _buildFavoritosTab(),
-              _buildAlunosList(listaAlunoRecente),
+              _buildAlunosList(listaAlunoRecente.toList()),
               _buildAlunosList(listaAlunoSugestao),
             ],
           ),

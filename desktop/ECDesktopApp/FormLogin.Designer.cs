@@ -55,6 +55,8 @@
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fecharToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
+            this.lblAdm = new System.Windows.Forms.Label();
+            this.seusInteressesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpbLogin.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
@@ -66,9 +68,10 @@
             this.lblSemCadastro.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblSemCadastro.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSemCadastro.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblSemCadastro.Location = new System.Drawing.Point(709, 657);
+            this.lblSemCadastro.Location = new System.Drawing.Point(532, 534);
+            this.lblSemCadastro.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSemCadastro.Name = "lblSemCadastro";
-            this.lblSemCadastro.Size = new System.Drawing.Size(187, 21);
+            this.lblSemCadastro.Size = new System.Drawing.Size(154, 17);
             this.lblSemCadastro.TabIndex = 6;
             this.lblSemCadastro.Text = "... ainda não me cadastrei";
             this.lblSemCadastro.Click += new System.EventHandler(this.lblSemCadastro_Click);
@@ -77,9 +80,10 @@
             // 
             this.lblDescricao.AutoSize = true;
             this.lblDescricao.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescricao.Location = new System.Drawing.Point(259, 182);
+            this.lblDescricao.Location = new System.Drawing.Point(194, 148);
+            this.lblDescricao.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDescricao.Name = "lblDescricao";
-            this.lblDescricao.Size = new System.Drawing.Size(1079, 37);
+            this.lblDescricao.Size = new System.Drawing.Size(867, 29);
             this.lblDescricao.TabIndex = 8;
             this.lblDescricao.Text = "Bem-vindo ao Estágio Connect, a plataforma de divulgação e busca de vagas de está" +
     "gio";
@@ -95,11 +99,11 @@
             this.gpbLogin.Controls.Add(this.lblPK);
             this.gpbLogin.Controls.Add(this.rdbAluno);
             this.gpbLogin.Controls.Add(this.rdbEmpresa);
-            this.gpbLogin.Location = new System.Drawing.Point(485, 314);
-            this.gpbLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gpbLogin.Location = new System.Drawing.Point(364, 255);
+            this.gpbLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gpbLogin.Name = "gpbLogin";
-            this.gpbLogin.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gpbLogin.Size = new System.Drawing.Size(660, 313);
+            this.gpbLogin.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpbLogin.Size = new System.Drawing.Size(495, 254);
             this.gpbLogin.TabIndex = 9;
             this.gpbLogin.TabStop = false;
             this.gpbLogin.Text = "Login";
@@ -107,10 +111,10 @@
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(135, 251);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLogin.Location = new System.Drawing.Point(101, 204);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(373, 38);
+            this.btnLogin.Size = new System.Drawing.Size(280, 31);
             this.btnLogin.TabIndex = 7;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -120,37 +124,39 @@
             // 
             this.lblEuSou.AutoSize = true;
             this.lblEuSou.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEuSou.Location = new System.Drawing.Point(253, 18);
+            this.lblEuSou.Location = new System.Drawing.Point(190, 15);
+            this.lblEuSou.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEuSou.Name = "lblEuSou";
-            this.lblEuSou.Size = new System.Drawing.Size(131, 28);
+            this.lblEuSou.Size = new System.Drawing.Size(109, 23);
             this.lblEuSou.TabIndex = 6;
             this.lblEuSou.Text = "Eu sou um ...";
             // 
             // msktxtPK
             // 
             this.msktxtPK.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.msktxtPK.Location = new System.Drawing.Point(211, 144);
-            this.msktxtPK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.msktxtPK.Location = new System.Drawing.Point(158, 117);
+            this.msktxtPK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.msktxtPK.Name = "msktxtPK";
-            this.msktxtPK.Size = new System.Drawing.Size(217, 30);
+            this.msktxtPK.Size = new System.Drawing.Size(164, 26);
             this.msktxtPK.TabIndex = 5;
             // 
             // txtSenha
             // 
             this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSenha.Location = new System.Drawing.Point(211, 193);
-            this.txtSenha.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSenha.Location = new System.Drawing.Point(158, 157);
+            this.txtSenha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Size = new System.Drawing.Size(297, 30);
+            this.txtSenha.Size = new System.Drawing.Size(224, 26);
             this.txtSenha.TabIndex = 4;
             // 
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
             this.lblSenha.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSenha.Location = new System.Drawing.Point(131, 193);
+            this.lblSenha.Location = new System.Drawing.Point(98, 157);
+            this.lblSenha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSenha.Name = "lblSenha";
-            this.lblSenha.Size = new System.Drawing.Size(75, 28);
+            this.lblSenha.Size = new System.Drawing.Size(62, 23);
             this.lblSenha.TabIndex = 3;
             this.lblSenha.Text = "Senha:";
             this.lblSenha.Click += new System.EventHandler(this.lblSenha_Click);
@@ -159,9 +165,10 @@
             // 
             this.lblPK.AutoSize = true;
             this.lblPK.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPK.Location = new System.Drawing.Point(149, 144);
+            this.lblPK.Location = new System.Drawing.Point(112, 117);
+            this.lblPK.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPK.Name = "lblPK";
-            this.lblPK.Size = new System.Drawing.Size(56, 28);
+            this.lblPK.Size = new System.Drawing.Size(46, 23);
             this.lblPK.TabIndex = 2;
             this.lblPK.Text = "label";
             this.lblPK.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -170,10 +177,10 @@
             // 
             this.rdbAluno.AutoSize = true;
             this.rdbAluno.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbAluno.Location = new System.Drawing.Point(259, 87);
-            this.rdbAluno.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rdbAluno.Location = new System.Drawing.Point(194, 71);
+            this.rdbAluno.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rdbAluno.Name = "rdbAluno";
-            this.rdbAluno.Size = new System.Drawing.Size(87, 32);
+            this.rdbAluno.Size = new System.Drawing.Size(73, 27);
             this.rdbAluno.TabIndex = 1;
             this.rdbAluno.Text = "Aluno";
             this.rdbAluno.UseVisualStyleBackColor = true;
@@ -183,10 +190,10 @@
             this.rdbEmpresa.AutoSize = true;
             this.rdbEmpresa.Checked = true;
             this.rdbEmpresa.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbEmpresa.Location = new System.Drawing.Point(259, 49);
-            this.rdbEmpresa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rdbEmpresa.Location = new System.Drawing.Point(194, 40);
+            this.rdbEmpresa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rdbEmpresa.Name = "rdbEmpresa";
-            this.rdbEmpresa.Size = new System.Drawing.Size(113, 32);
+            this.rdbEmpresa.Size = new System.Drawing.Size(95, 27);
             this.rdbEmpresa.TabIndex = 0;
             this.rdbEmpresa.TabStop = true;
             this.rdbEmpresa.Text = "Empresa";
@@ -197,9 +204,10 @@
             // 
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogin.Location = new System.Drawing.Point(739, 247);
+            this.lblLogin.Location = new System.Drawing.Point(554, 201);
+            this.lblLogin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(141, 35);
+            this.lblLogin.Size = new System.Drawing.Size(113, 27);
             this.lblLogin.TabIndex = 10;
             this.lblLogin.Text = "Fazer Login";
             // 
@@ -214,22 +222,22 @@
             this.sairToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(2216, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1662, 24);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // inicioToolStripMenuItem
             // 
             this.inicioToolStripMenuItem.Name = "inicioToolStripMenuItem";
-            this.inicioToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.inicioToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.inicioToolStripMenuItem.Text = "Início";
             this.inicioToolStripMenuItem.Click += new System.EventHandler(this.inícioToolStripMenuItem_Click_1);
             // 
             // meuPerfilToolStripMenuItem
             // 
             this.meuPerfilToolStripMenuItem.Name = "meuPerfilToolStripMenuItem";
-            this.meuPerfilToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
+            this.meuPerfilToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.meuPerfilToolStripMenuItem.Text = "Meu Perfil";
             this.meuPerfilToolStripMenuItem.Click += new System.EventHandler(this.meuPerfilToolStripMenuItem_Click);
             // 
@@ -240,27 +248,27 @@
             this.empresasToolStripMenuItem,
             this.vagasDeEmpregoToolStripMenuItem});
             this.pesquisarToolStripMenuItem.Name = "pesquisarToolStripMenuItem";
-            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
+            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.pesquisarToolStripMenuItem.Text = "Pesquisar";
             // 
             // alunosToolStripMenuItem
             // 
             this.alunosToolStripMenuItem.Name = "alunosToolStripMenuItem";
-            this.alunosToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.alunosToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.alunosToolStripMenuItem.Text = "Alunos";
             this.alunosToolStripMenuItem.Click += new System.EventHandler(this.alunosToolStripMenuItem_Click);
             // 
             // empresasToolStripMenuItem
             // 
             this.empresasToolStripMenuItem.Name = "empresasToolStripMenuItem";
-            this.empresasToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.empresasToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.empresasToolStripMenuItem.Text = "Empresas";
             this.empresasToolStripMenuItem.Click += new System.EventHandler(this.empresasToolStripMenuItem_Click);
             // 
             // vagasDeEmpregoToolStripMenuItem
             // 
             this.vagasDeEmpregoToolStripMenuItem.Name = "vagasDeEmpregoToolStripMenuItem";
-            this.vagasDeEmpregoToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.vagasDeEmpregoToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.vagasDeEmpregoToolStripMenuItem.Text = "Vagas de emprego";
             this.vagasDeEmpregoToolStripMenuItem.Click += new System.EventHandler(this.vagasDeEmpregoToolStripMenuItem_Click);
             // 
@@ -268,30 +276,31 @@
             // 
             this.suasInformaçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vagasToolStripMenuItem,
+            this.seusInteressesToolStripMenuItem,
             this.alunosInteressadosToolStripMenuItem,
             this.connectsToolStripMenuItem});
             this.suasInformaçõesToolStripMenuItem.Name = "suasInformaçõesToolStripMenuItem";
-            this.suasInformaçõesToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
+            this.suasInformaçõesToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
             this.suasInformaçõesToolStripMenuItem.Text = "Suas Informações";
             // 
             // vagasToolStripMenuItem
             // 
             this.vagasToolStripMenuItem.Name = "vagasToolStripMenuItem";
-            this.vagasToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
+            this.vagasToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.vagasToolStripMenuItem.Text = "Vagas Interessadas";
             this.vagasToolStripMenuItem.Click += new System.EventHandler(this.vagasToolStripMenuItem_Click);
             // 
             // alunosInteressadosToolStripMenuItem
             // 
             this.alunosInteressadosToolStripMenuItem.Name = "alunosInteressadosToolStripMenuItem";
-            this.alunosInteressadosToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
+            this.alunosInteressadosToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.alunosInteressadosToolStripMenuItem.Text = "Alunos Interessados";
             this.alunosInteressadosToolStripMenuItem.Click += new System.EventHandler(this.alunosInteressadosToolStripMenuItem_Click);
             // 
             // connectsToolStripMenuItem
             // 
             this.connectsToolStripMenuItem.Name = "connectsToolStripMenuItem";
-            this.connectsToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
+            this.connectsToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.connectsToolStripMenuItem.Text = "Connects";
             this.connectsToolStripMenuItem.Click += new System.EventHandler(this.connectsToolStripMenuItem_Click);
             // 
@@ -301,39 +310,58 @@
             this.logOutToolStripMenuItem,
             this.fecharToolStripMenuItem});
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.sairToolStripMenuItem.Text = "Sair";
             // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.logOutToolStripMenuItem.Text = "Log Out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
             // fecharToolStripMenuItem
             // 
             this.fecharToolStripMenuItem.Name = "fecharToolStripMenuItem";
-            this.fecharToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
+            this.fecharToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.fecharToolStripMenuItem.Text = "Fechar";
             this.fecharToolStripMenuItem.Click += new System.EventHandler(this.fecharToolStripMenuItem_Click);
             // 
             // picBoxLogo
             // 
             this.picBoxLogo.BackColor = System.Drawing.Color.Transparent;
-            this.picBoxLogo.Location = new System.Drawing.Point(611, 0);
-            this.picBoxLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picBoxLogo.Location = new System.Drawing.Point(458, 0);
             this.picBoxLogo.Name = "picBoxLogo";
-            this.picBoxLogo.Size = new System.Drawing.Size(439, 178);
+            this.picBoxLogo.Size = new System.Drawing.Size(329, 145);
             this.picBoxLogo.TabIndex = 12;
             this.picBoxLogo.TabStop = false;
             // 
+            // lblAdm
+            // 
+            this.lblAdm.AutoSize = true;
+            this.lblAdm.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdm.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblAdm.Location = new System.Drawing.Point(12, 36);
+            this.lblAdm.Name = "lblAdm";
+            this.lblAdm.Size = new System.Drawing.Size(129, 15);
+            this.lblAdm.TabIndex = 13;
+            this.lblAdm.Text = "Acesso administrativo";
+            this.lblAdm.Click += new System.EventHandler(this.lblAdm_Click);
+            // 
+            // seusInteressesToolStripMenuItem
+            // 
+            this.seusInteressesToolStripMenuItem.Name = "seusInteressesToolStripMenuItem";
+            this.seusInteressesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seusInteressesToolStripMenuItem.Text = "Seus Interesses";
+            this.seusInteressesToolStripMenuItem.Click += new System.EventHandler(this.seusInteressesToolStripMenuItem_Click);
+            // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(2216, 1020);
+            this.ClientSize = new System.Drawing.Size(1662, 829);
+            this.Controls.Add(this.lblAdm);
             this.Controls.Add(this.picBoxLogo);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.gpbLogin);
@@ -341,7 +369,7 @@
             this.Controls.Add(this.lblSemCadastro);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormLogin";
             this.Text = "Estágio Connect - Login";
             this.Load += new System.EventHandler(this.FormCadastroInicio_Load);
@@ -386,5 +414,7 @@
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fecharToolStripMenuItem;
+        private System.Windows.Forms.Label lblAdm;
+        private System.Windows.Forms.ToolStripMenuItem seusInteressesToolStripMenuItem;
     }
 }

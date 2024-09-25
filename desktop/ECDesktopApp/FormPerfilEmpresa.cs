@@ -78,13 +78,25 @@ namespace ECDesktopApp
             picFoto.ImageLocation = "../../img/default_user_empresa.jpg";
             picFoto.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            if(tipo == 0)
+            //se for adm, vai ter tudo liberado
+            if(((FormLogin)this.MdiParent).TipoUsuario == 7) { }
+            //se for aluno, nao vai poder mexer em nada
+            else if(((FormLogin)this.MdiParent).TipoUsuario == 0)
             {
                 btnEditar.Visible = false;
                 btnDelete.Visible = false;
                 btnCriarVaga.Visible = false;
                 btnAlunosInteressados.Text = "Ver detalhes da vaga";
                 tabPage2.Text = "Vagas";
+            }
+            else if(((FormLogin)this.MdiParent).IdUsuario != cnpj_empresa)
+            {
+                btnEditar.Visible = false;
+                btnDelete.Visible = false;
+                btnCriarVaga.Visible = false;
+                btnAlunosInteressados.Text = "Ver detalhes da vaga";
+                tabPage2.Text = "Vagas";
+
             }
 
             //centraliza
@@ -189,6 +201,12 @@ namespace ECDesktopApp
             txtNome.Enabled = true;
             txtRamo.Enabled = true;
             txtDescricao.Enabled = true;
+
+            //se for adm, vai poder trocar o cnpj da empresa
+            if(((FormLogin)this.MdiParent).TipoUsuario == 7)
+            {
+                msktxtCnpj.Enabled = true;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -213,6 +231,8 @@ namespace ECDesktopApp
             txtNome.Enabled = false;
             txtRamo.Enabled = false;
             txtDescricao.Enabled = false;
+
+            msktxtCnpj.Enabled = false;
 
             refreshInfoEmpresa();
         }
@@ -240,11 +260,13 @@ namespace ECDesktopApp
             txtRamo.Enabled = false;
             txtDescricao.Enabled = false;
 
-            //verifica se tudo foi preenchido corretamente
-            if(String.IsNullOrEmpty(txtNome.Text) || String.IsNullOrEmpty(txtRamo.Text) || String.IsNullOrEmpty(txtRua.Text)
+            msktxtCnpj.Enabled = false;
+
+            //verifica se tudo foi preenchido corretamente, mas se for adm, pula essa verificacao
+            if(((FormLogin)this.MdiParent).TipoUsuario != 7 && (String.IsNullOrEmpty(txtNome.Text) || String.IsNullOrEmpty(txtRamo.Text) || String.IsNullOrEmpty(txtRua.Text)
                 || String.IsNullOrEmpty(txtBairro.Text) || String.IsNullOrEmpty(txtCidade.Text)
                 || String.IsNullOrEmpty(cbbEstado.Text) || String.IsNullOrEmpty(txtNumero.Text) || String.IsNullOrEmpty(txtEmail.Text)
-                || msktxtCep.Text.Trim().Length != 9)
+                || msktxtCep.Text.Trim().Length != 9))
             {
                 MessageBox.Show("Preencha corretamente todas as informações obrigatórias para cadastro (nome fantasia, ramo, rua, bairro, cidade, estado, numero e email de contato)", "Atenção, preencha os dados corretamente!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -259,6 +281,7 @@ namespace ECDesktopApp
                 {
                     int numero = int.Parse(txtNumero.Text);
 
+                    string cnpj = msktxtCnpj.Text.Replace(",", ".");
                     string nome = txtNome.Text;
                     string ramo = txtRamo.Text;
                     string rua = txtRua.Text;
@@ -271,8 +294,25 @@ namespace ECDesktopApp
                     string tel = msktxtTelefone.Text;
                     string desc = txtDescricao.Text;
 
+                    //se for adm vai poder mudar o cnpj
+                    if(((FormLogin)this.MdiParent).TipoUsuario == 7)
+                    {
+                        //cria um obj empresa com todas as informacoes dos campos pra poder dar update
+                        Empresa empresa = new Empresa(cnpj, nome, rua, numero, bairro, complemento, cidade, estado, cep, email, tel, ramo, desc);
 
-                    if (Validacao.ValidarEmail(email))
+                        Empresa empresaOg = new Empresa(cnpj_empresa); //cria um outro objeto empresa pra pegar o idEmpresa usando o cnpj original
+
+                        int idEmpresa = empresaOg.getCodigo_Empresa();
+
+                        if (empresa.editarEmpresaById(idEmpresa))
+                        {
+                            MessageBox.Show("Informações de cadastro atualizadas com sucesso!", "Dados Atualizados!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            refreshInfoEmpresa();
+                        }
+                    }
+                    //se nao for adm, procede com verificacoes, e faz update normal
+                    else if (Validacao.ValidarEmail(email))
                     {
                         Empresa empresa = new Empresa(cnpj_empresa, nome, rua, numero, bairro, complemento, cidade, estado, cep, email, tel, ramo, desc);
 
@@ -294,6 +334,8 @@ namespace ECDesktopApp
                     else
                     {
                         MessageBox.Show("Preencha corretamente o campo de e-mail", "Campo preenchido incorretamente!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        btnCancelar_Click(this, e); //desabilita tudo de novo e da refresh nas infos
                     }
 
                     
@@ -495,7 +537,11 @@ namespace ECDesktopApp
             btnEditarVaga.Visible = false;
             btnAlunosInteressados.Visible = false;
 
-            btnCriarVaga.Visible = true;
+            //so deixa o btn criar vaga visivel se o perfil pertencer ao usuario ou se ele for adm
+            if(((FormLogin)this.MdiParent).IdUsuario == cnpj_empresa || ((FormLogin)this.MdiParent).TipoUsuario == 7)
+            {
+                btnCriarVaga.Visible = true;
+            }
 
             //limpa os campos
             txtDescricaoVaga.Text = string.Empty;
@@ -535,12 +581,18 @@ namespace ECDesktopApp
 
         private void dgvVagasEmpresa_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e) //ao dar double click em uma das vagas
         {
-            //deixata tudo visisvel
-            gpbInfoVaga.Visible = true;
+            //deixa eicao e exclusao visisvel, se o perfil pertencer ao usuario ou se o usuario for adm
+            if((((FormLogin)this.MdiParent).IdUsuario == cnpj_empresa) || ((FormLogin)this.MdiParent).TipoUsuario == 7)
+            {
+                btnEditarVaga.Visible = true;
+                btnExcluirVaga.Visible = true;
+            }
+
+            //os detalhes da vaga e cancelar ficam visiveis
             btnAlunosInteressados.Visible = true;
-            btnEditarVaga.Visible = true;
-            btnExcluirVaga.Visible = true;
             btnCancelarVaga.Visible = true;
+            gpbInfoVaga.Visible = true;
+
 
             btnCriarVaga.Visible = false;
 
@@ -565,7 +617,7 @@ namespace ECDesktopApp
                 txtRequisitos.Text = reader["Requisitos"].ToString();
                 txtCarga.Text = reader["Carga_Horaria"].ToString();
                 cbxEspecializacao.Text = reader["Area"].ToString();
-                lblIdVaga.Text += id_vaga;
+                lblIdVaga.Text = "#"+id_vaga;
             }
             DAO_Conexao.con.Close();
 
@@ -675,6 +727,11 @@ namespace ECDesktopApp
                 txtDescricao.Text = reader["Descricao"].ToString();
             }
             DAO_Conexao.con.Close();
+        }
+
+        private void lblIdVaga_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

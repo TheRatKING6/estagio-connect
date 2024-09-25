@@ -13,6 +13,12 @@ namespace ECDesktopApp
 {
     public partial class FormLogin : Form
     {
+        int tipoUsuario = -1;
+        string idUsuario;
+
+        public int TipoUsuario { get => tipoUsuario; set => tipoUsuario = value; }
+        public string IdUsuario { get => idUsuario; set => idUsuario = value; }
+
         public FormLogin()
         {
             InitializeComponent();
@@ -39,6 +45,7 @@ namespace ECDesktopApp
             //inicia a maskedBox como formato de cnpj pq o radiobutton do cnpj é carregado já checkado
             lblPK.Text = "CNPJ:";
             msktxtPK.Mask = "00.000.000/0000-00";
+            lblAdm.Text = "Acesso administrativo";
 
             //coloca a logo na pictureBox
             picBoxLogo.ImageLocation = "../../img/logo2.png";
@@ -91,91 +98,126 @@ namespace ECDesktopApp
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            int tipo = 1; //1 é o padrão (empresa)
-            if (rdbAluno.Checked)
+            //se o usuario nao for administrador, faz a execucao normal do programa
+            if(tipoUsuario != 7)
             {
-                tipo = 0;
-            }
-
-            
-
-            //pega os valores dos campos e efetua login
-            string userId = msktxtPK.Text;
-            
-            string password = txtSenha.Text;
-
-            //Console.WriteLine(userId);
-
-            if (msktxtPK.Text.Count() == 18 || msktxtPK.Text.Count() == 14 && !(String.IsNullOrEmpty(txtSenha.Text))) //ve se voce preencheu os campos
-            {
-                if(DAO_Conexao.VerificaLogin(userId, password, tipo))
+                tipoUsuario = 1; //1 é o padrão (empresa)
+                if (rdbAluno.Checked)
                 {
+                    tipoUsuario = 0;
+                }
+
+
+                //pega os valores dos campos e efetua login
+                string userId = msktxtPK.Text;
+                IdUsuario = userId.Replace(",", ".");
+            
+                string password = txtSenha.Text;
+
+                //Console.WriteLine(userId);
+
+                if (msktxtPK.Text.Count() == 18 || msktxtPK.Text.Count() == 14 && !(String.IsNullOrEmpty(txtSenha.Text))) //ve se voce preencheu os campos
+                {
+                    if(DAO_Conexao.VerificaLogin(userId, password, tipoUsuario))
+                    {
+                        //Tranforma em MdiContainer
+                        this.IsMdiContainer = true;
+
+                        //Deixa tudo invisivel
+                        lblDescricao.Visible = false;
+                        lblLogin.Visible = false;
+                        lblAdm.Visible = false;
+                    
+                        lblSemCadastro.Visible = false;
+                        picBoxLogo.Visible = false;
+                        gpbLogin.Visible = false;
+
+                        menuStrip1.Visible = true;
+
+                        if(tipoUsuario == 0)
+                        {
+                            //Abre o FormInicioAluno
+                            FormInicioAluno form = new FormInicioAluno();
+                            form.MdiParent = this;
+                            form.UserId = userId.Replace(",", "."); //passa o cpf do aluno logando para a propriedade UserId, para poder identificar o aluno logado
+                            form.Show();
+
+                            //se for aluno desabilita o 'Alunos interessados' e 'seus interesses' no menuStrip
+                            alunosInteressadosToolStripMenuItem.Visible = false;
+                            seusInteressesToolStripMenuItem.Visible = false;
+
+                            inicioToolStripMenuItem.Visible = true;
+                            vagasToolStripMenuItem.Visible = true;
+
+                        }
+                        else
+                        {
+                            FormPerfilEmpresa form = new FormPerfilEmpresa();
+                            form.MdiParent = this;
+                            //passa o cnpj da empresa para o formPerfilEmpresa.cs
+                            form.Cnpj_empresa1 = msktxtPK.Text.Replace(",", ".");
+                        
+                            form.Show();
+
+                            //se for empresa, desabilita alguns botoes no menuStrip
+                            inicioToolStripMenuItem.Visible = false; 
+                            vagasToolStripMenuItem.Visible = false;
+
+                            alunosInteressadosToolStripMenuItem.Visible = true;
+                            seusInteressesToolStripMenuItem.Visible = true;
+
+                        
+                        }
+                    
+
+                        //Muda o texto na janela do FormLogin
+                        this.Text = "Estágio Connect";
+
+
+                        MessageBox.Show("Login efetuado com sucesso!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao fazer login -> Acesso negado: \nCPF/CNPJ ou senha incorreto(s)", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Você precisa preencher completamente os campos de CPF/CNPJ e senha");
+                }
+
+            }
+            else if(tipoUsuario == 7)
+            {
+                //se o usuario for administrador, usa uma funcao pra checar as credenciais de adm
+                if (DAO_Conexao.getAdmAccess(msktxtPK.Text, txtSenha.Text, tipoUsuario))
+                {
+                    //MessageBox.Show("Administrador");
+
                     //Tranforma em MdiContainer
                     this.IsMdiContainer = true;
 
                     //Deixa tudo invisivel
                     lblDescricao.Visible = false;
                     lblLogin.Visible = false;
-                    
+                    lblAdm.Visible = false;
+
                     lblSemCadastro.Visible = false;
                     picBoxLogo.Visible = false;
                     gpbLogin.Visible = false;
 
                     menuStrip1.Visible = true;
 
-                    if(tipo == 0)
-                    {
-                        //Abre o FormInicioAluno
-                        FormInicioAluno form = new FormInicioAluno();
-                        form.MdiParent = this;
-                        form.UserId = userId.Replace(",", "."); //passa o cpf do aluno logando para a propriedade UserId, para poder identificar o aluno logado
-                        form.Show();
-
-                        //se for aluno desabilita o 'Alunos interessados' no menuStrip
-                        alunosInteressadosToolStripMenuItem.Visible = false;
-
-                        inicioToolStripMenuItem.Visible = true;
-                        vagasToolStripMenuItem.Visible = true;
-
-                    }
-                    else
-                    {
-                        FormPerfilEmpresa form = new FormPerfilEmpresa();
-                        form.MdiParent = this;
-                        //passa o cnpj da empresa para o formPerfilEmpresa.cs
-                        form.Cnpj_empresa1 = msktxtPK.Text.Replace(",", ".");
-                        
-                        form.Show();
-
-                        //se for empresa, desabilita alguns botoes no menuStrip
-                        inicioToolStripMenuItem.Visible = false; 
-                        vagasToolStripMenuItem.Visible = false;
-
-                        alunosInteressadosToolStripMenuItem.Visible = true;
-
-                        
-                    }
-                    
-
-                    //Muda o texto na janela do FormLogin
-                    this.Text = "Estágio Connect";
-
-
-                    MessageBox.Show("Login efetuado com sucesso!");
+                    //deixa os itens do menuStrip invisiveis
+                    inicioToolStripMenuItem.Visible = false;
+                    meuPerfilToolStripMenuItem.Visible = false;
+                    suasInformaçõesToolStripMenuItem.Visible = false;
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao fazer login -> Acesso negado: \nCPF/CNPJ ou senha incorreto(s)", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Erro ao efetuar Login -> Suas credenciais de administrador estão incorretas", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            else
-            {
-                MessageBox.Show("Você precisa preencher completamente os campos de CPF/CNPJ e senha");
-            }
-
-
-            
-
             
         }
 
@@ -256,6 +298,7 @@ namespace ECDesktopApp
         {
             FormAlunosInteressadosVaga form = new FormAlunosInteressadosVaga();
             form.MdiParent = this;
+            form.Modo = 1;
             form.Cnpj = msktxtPK.Text.Replace(",", ".");
             form.Show();
         }
@@ -309,15 +352,23 @@ namespace ECDesktopApp
             //Deixa tudo visivel
             lblDescricao.Visible = true;
             lblLogin.Visible = true;
+            lblAdm.Visible = true;
 
             lblSemCadastro.Visible = true;
             picBoxLogo.Visible = true;
             gpbLogin.Visible = true;
 
+            inicioToolStripMenuItem.Visible = true;
+            meuPerfilToolStripMenuItem.Visible = true;
+            suasInformaçõesToolStripMenuItem.Visible = true;
+
             menuStrip1.Visible = false;
 
             msktxtPK.Text = string.Empty;
             txtSenha.Text = string.Empty;
+
+            IdUsuario = "";
+            TipoUsuario = -1;
         }
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -338,6 +389,40 @@ namespace ECDesktopApp
                 Close();
             }
                 
+        }
+
+        private void lblAdm_Click(object sender, EventArgs e)
+        {
+            if(lblAdm.Text == "Acesso administrativo")
+            {
+                lblAdm.Text = "Voltar";
+                rdbAluno.Visible = false;
+                rdbEmpresa.Visible = false;
+                lblPK.Text = "Token:";
+                msktxtPK.Mask = "AAAAAAAAAA";
+
+                tipoUsuario = 7;
+            }
+            else
+            {
+                lblAdm.Text = "Acesso administrativo";
+                rdbAluno.Visible = true;
+                rdbEmpresa.Visible = true;
+                rdbEmpresa.Checked = true;
+                lblPK.Text = "CNPJ:";
+                msktxtPK.Mask = "00.000.000/0000-00";
+
+                tipoUsuario = -1;
+            }
+        }
+
+        private void seusInteressesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAlunosInteressadosVaga form = new FormAlunosInteressadosVaga();
+            form.MdiParent = this;
+            form.Modo = 2;
+            form.Cnpj = msktxtPK.Text.Replace(",", ".");
+            form.Show();
         }
     }
 }

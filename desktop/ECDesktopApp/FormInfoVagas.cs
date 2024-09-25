@@ -50,7 +50,7 @@ namespace ECDesktopApp
         private void FormInfoVagas_Load(object sender, EventArgs e)
         {
             //se for um aluno visualizando a info da vaga, some tudo e aprece so o 'demonstrar interesse'
-            if(tipo == 0)
+            if(((FormLogin)this.MdiParent).TipoUsuario == 0)
             {
                 label1.Visible = false;
                 dgvAlunosInteressados.Visible = false;
@@ -72,16 +72,35 @@ namespace ECDesktopApp
                     btnInteressado.BackColor = Color.Transparent;
                 }
             }
-            else if(tipo == 1)
+            else if(tipo == 1 || ((FormLogin)this.MdiParent).TipoUsuario == 7) // se for uma emprea ou adm
             {
                 refreshAlunosInteressado();
             }
-            else
+
+            if(((FormLogin)this.MdiParent).TipoUsuario != 7)
             {
-                label1.Visible = false;
-                dgvAlunosInteressados.Visible = false;
-                btnVisualizarAluno.Visible = false;
+                //basicamente, se o usuario for uma empresa, e estiver olhando a vaga de outra empresa, voce nao vai poder alterar nada e nem ver os alunos interessados
+                //mas só se o usuario nao for adm, se for, deixa fazer tudo ai e boa
+                Vaga vaga = new Vaga();
+
+                MySqlDataReader reader = vaga.getEmpresasVagasById(vagaId);
+
+                while (reader.Read())
+                {
+                    Console.WriteLine(reader["Cnpj"]);
+                    Console.WriteLine(((FormLogin)this.MdiParent).IdUsuario);
+                    if(((FormLogin)this.MdiParent).IdUsuario != reader["Cnpj"].ToString())
+                    {
+                        label1.Visible = false;
+                        dgvAlunosInteressados.Visible = false;
+                        btnVisualizarAluno.Visible = false;
+                    }
+                }
+                DAO_Conexao.con.Close();
+
             }
+            
+            
 
             //centraliza
             pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;

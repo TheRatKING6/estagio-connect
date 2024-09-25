@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -58,30 +59,40 @@ namespace ECDesktopApp
             pnlContent.Top = (this.ClientSize.Height - pnlContent.Height) / 2;
 
             refreshVagas(); //preenche os DGV
+
+            if(dgvVagasRecomendadas.Rows.Count < 1)
+            {
+                tabctrlInicoAluno.SelectedTab = tabPgTodas;
+                tabctrlInicoAluno.TabPages.Remove(tabPgRecommended);
+            }
         }
 
         private void btnVerVaga_Click(object sender, EventArgs e)
         {   
-            FormInfoVagas form = new FormInfoVagas();
-            form.MdiParent = this.MdiParent;
-
-            //ve qual das duas paginas esta selecionada e pega o id na dgv correspondente
-            if(tabctrlInicoAluno.SelectedTab == tabPgRecommended)
+            if(dgvTodasVagas.Rows.Count > 0)
             {
-                int idVaga = int.Parse(dgvVagasRecomendadas.SelectedCells[0].Value.ToString());
+                FormInfoVagas form = new FormInfoVagas();
+                form.MdiParent = this.MdiParent;
 
-                form.VagaId = idVaga;
-            }
-            else if(tabctrlInicoAluno.SelectedTab == tabPgTodas)
-            {
-                int idVaga = int.Parse(dgvTodasVagas.SelectedCells[0].Value.ToString());
+                //ve qual das duas paginas esta selecionada e pega o id na dgv correspondente
+                if(tabctrlInicoAluno.SelectedTab == tabPgRecommended)
+                {
+                    int idVaga = int.Parse(dgvVagasRecomendadas.SelectedCells[0].Value.ToString());
+
+                    form.VagaId = idVaga;
+                }
+                else if(tabctrlInicoAluno.SelectedTab == tabPgTodas)
+                {
+                    int idVaga = int.Parse(dgvTodasVagas.SelectedCells[0].Value.ToString());
                 
-                form.VagaId = idVaga;
-            }
-            form.UserId = userId;
-            form.Tipo = 0;
+                    form.VagaId = idVaga;
+                }
+                form.UserId = userId;
+                form.Tipo = 0;
 
-            form.Show();
+                form.Show();
+            }
+            
         }
          
         public void refreshVagas()

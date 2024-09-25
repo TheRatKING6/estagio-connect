@@ -67,7 +67,7 @@ namespace ECDesktopApp
         private void btnNext_Click(object sender, EventArgs e)
         {
             string cpfstring = msktxtCpf.Text;
-            cpfstring = cpfstring.Replace(".", "").Replace("-", "").Trim();
+            cpfstring = cpfstring.Replace(".", "").Replace("-", "").Replace(",", "").Trim();
 
             //pega a data selecionada no DateTimePicker e transfroma em um objeto DateTime
             DateTime selecionado = ManipulcaoData.getDataNascimento(dateNascimento.Text.ToString()); 
@@ -358,6 +358,33 @@ namespace ECDesktopApp
                 stream.Read(bArray, 0, System.Convert.ToInt32(bArray.Length));
                 
                 return bArray;
+            }
+        }
+
+        private void FormCadastroAluno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private async void msktxtCep_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter) //se a tecla apertada for enter
+            {
+                if (msktxtCep.Text.Replace("-", "").Trim().Count() == 8) //verifica se o cep foi preenchido corretamente
+                {
+                    //passa o cep pra conseguir um objeto da classe endereco e dps coloca as propriedades do obj nos campos
+                    string cep = msktxtCep.Text.Replace("-", "").Trim();
+                    Endereco endereco = await Apis.getEnderecoFromCEP(cep);
+
+                    if (endereco != null)
+                    {
+                        txtRua.Text = endereco.Logradouro.ToString();
+                        txtBairro.Text = endereco.Bairro.ToString();
+                        txtCidade.Text = endereco.Localidade.ToString();
+                        txtComplmento.Text = endereco.Complemento.ToString();
+                        cbbEstado.Text = endereco.Uf.ToString();
+                    }
+                }
             }
         }
     }

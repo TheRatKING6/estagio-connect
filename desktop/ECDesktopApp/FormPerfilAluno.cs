@@ -17,7 +17,7 @@ namespace ECDesktopApp
         int tipo = 0;
         bool interesse = false;
         string UserId;
-        int vagaId;
+        int vagaId = -1;
         byte[] foto = null;
 
         public int Tipo { get => tipo; set => tipo = value; }
@@ -74,6 +74,9 @@ namespace ECDesktopApp
             //a data sempre terá o msm formato, assim o código nao buga :)
             dateNascimento.Format = DateTimePickerFormat.Custom;
             dateNascimento.CustomFormat = "dd/MM/yyyy";
+
+            //formata a mask do cpf
+            msktxtCpf.Mask = "000.000.000-00";
         }
 
         private void FormPerfilAluno_Load(object sender, EventArgs e)
@@ -87,15 +90,21 @@ namespace ECDesktopApp
             //verifica se a vaga ja esta interessada no aluno
             getInteresse();
 
+            //coloca as infos do aluno nos campos
+            refreshInfosAluno();
+
             //se for empresa, some os botao de editar e excluir e aparece o de interesse
-            if(tipo == 1)
+            //if(tipo == 1)
+            if (((FormLogin)this.MdiParent).TipoUsuario == 7) { }
+            else if (((FormLogin)this.MdiParent).TipoUsuario == 1)
             {
                 btnDelete.Visible = false;
                 btnEditar.Visible = false;
                 btnInteresse.Visible = true;
             }
-            else if(tipo == 2) //se for um aluno vendo o perfil do outro, nao pode editar e o botao de interesse nao aparece
+            else if (((FormLogin)this.MdiParent).IdUsuario != msktxtCpf.Text.Replace(",", ".")) //se for um aluno vendo o perfil do outro, nao pode editar e o botao de interesse nao aparece (cpf eh diferente)
             {
+
                 btnDelete.Visible = false;
                 btnEditar.Visible = false;
             }
@@ -110,9 +119,6 @@ namespace ECDesktopApp
             pnlContent.Left = (this.ClientSize.Width - pnlContent.Width) / 2;
 
             btnCurriculo.Text = "Ver currículo";
-
-            //coloca as infos do aluno nos campos
-            refreshInfosAluno();
 
             //refreshFoto();
 
@@ -145,6 +151,14 @@ namespace ECDesktopApp
             txtMatricula.Enabled = true;
             cbxStatus.Enabled = true;
 
+            //se for adm, vai poder editar cpf, nome e nascimento
+            if(((FormLogin)this.MdiParent).TipoUsuario == 7)
+            {
+                msktxtCpf.Enabled = true;
+                txtNome.Enabled = true;
+                dateNascimento.Enabled = true;
+            }
+
             btnCurriculo.Text = "Trocar currículo";
         }
 
@@ -175,6 +189,10 @@ namespace ECDesktopApp
             txtMatricula.Enabled = false;
             cbxStatus.Enabled = false;
 
+            msktxtCpf.Enabled = false;
+            txtNome.Enabled = false;
+            dateNascimento.Enabled = false;
+
             btnCurriculo.Text = "Ver currículo";
 
             refreshInfosAluno();
@@ -182,92 +200,140 @@ namespace ECDesktopApp
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            //ve se o email foi preenchido corretamente
-            if (Validacao.ValidarEmail(txtEmail.Text))
+            try //try pra ver se ele nao deixou o campo numero vazio ou com um caracter invalido
             {
-                try //try pra ver se ele nao deixou o campo numero vazio ou com um caracter invalido
+                string cpf = msktxtCpf.Text.Replace(",", ".");
+                string matricula = txtMatricula.Text;
+                string nome = txtNome.Text;
+                //string nascimento = dateNascimento.Text;
+
+                //pega a data do nascimento e transforma numa string
+                DateTime data = ManipulcaoData.getDataNascimento(dateNascimento.Text.ToString());
+                string nascimento = data.Date.ToString("yyyMMdd").Replace("/", "-");
+
+                string email = txtEmail.Text;
+                string telefone = msktxtTelefone.Text;
+                string especialidade = cbxEspecializacao.Text;
+                string descricao = txtDescricao.Text;
+                string rua = txtRua.Text;
+                int numero = int.Parse(txtNumero.Text);
+                string bairro = txtBairro.Text;
+                string complemento = txtComplmento.Text;
+                string cidade = txtCidade.Text;
+                string estado = cbbEstado.Text;
+                string cep = msktxtCep.Text;
+                string status = cbxStatus.Text;
+                int ano = int.Parse(cbxAno.Text);
+                string escola = txtEscola.Text;
+                string senha = null;
+
+
+                if(((FormLogin)this.MdiParent).TipoUsuario == 7)
                 {
-                    string cpf = msktxtCpf.Text;
-                    string matricula = txtMatricula.Text;
-                    string nome = txtNome.Text;
-                    string nascimento = dateNascimento.Text;
-                    string email = txtEmail.Text;
-                    string telefone = msktxtTelefone.Text;
-                    string especialidade = cbxEspecializacao.Text;
-                    string descricao = txtDescricao.Text;
-                    string rua = txtRua.Text;
-                    int numero = int.Parse(txtNumero.Text);
-                    string bairro = txtBairro.Text;
-                    string complemento = txtComplmento.Text;
-                    string cidade = txtCidade.Text;
-                    string estado = cbbEstado.Text;
-                    string cep = msktxtCep.Text;
-                    string status = cbxStatus.Text;
-                    int ano = int.Parse(cbxAno.Text);
-                    string escola = txtEscola.Text;
-                    string senha = null;
+                    //cria o objeto com as modificacoes que foram feitas
+                    Aluno aluno = new Aluno(cpf, matricula, nome, nascimento, email, telefone, especialidade, descricao, rua, numero, bairro,
+                        complemento, cidade, estado, cep, status, ano, escola, senha); //cria um obj aluno
 
-                    //ve se nao tem nenhum campo vazio e se o cep foi preenchido corretamente
-                    if(!(String.IsNullOrEmpty(matricula) || String.IsNullOrEmpty(email) || String.IsNullOrEmpty(rua) || String.IsNullOrEmpty(bairro) ||
-                        String.IsNullOrEmpty(cidade) || String.IsNullOrEmpty(estado) || String.IsNullOrEmpty(cep) || String.IsNullOrEmpty(escola))
-                        && msktxtCep.Text.Trim().Length == 9)
+                    //como o cpf pode ser editado, e preciso puxar o cpf do aluno atraves do UserId e usar ele pra pegar o Id do Aluno no BD
+                    Aluno alunoOg = new Aluno(UserId);
+                    
+                    int idAluno = alunoOg.getIdAluno();
+
+                    //faz a edicao cmo adm
+                    if (aluno.editarInfosById(idAluno))
                     {
-                        Aluno aluno = new Aluno(cpf, matricula, nome, nascimento, email, telefone, especialidade, descricao, rua, numero, bairro,
-                            complemento, cidade, estado, cep, status, ano, escola, senha); //cria um obj aluno
+                        MessageBox.Show("Informações de perfil modificadas com sucesso", "Sucesso ao editar perfil", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        if (aluno.editarInfosAluno()) //usa o metodo pra editar o cadastro
-                        {
-                            MessageBox.Show("Informações de perfil modificadas com sucesso", "Sucesso ao editar perfil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //desabilita a modificacao
+                        btnEditar.Visible = true;
+
+                        btnCancelar.Visible = false;
+                        btnSalvar.Visible = false;
+                        btnMudarFoto.Visible = false;
+
+                        txtEmail.Enabled = false;
+                        msktxtTelefone.Enabled = false;
+
+                        msktxtCep.Enabled = false;
+                        txtRua.Enabled = false;
+                        txtBairro.Enabled = false;
+                        txtCidade.Enabled = false;
+                        txtNumero.Enabled = false;
+                        txtComplmento.Enabled = false;
+                        cbbEstado.Enabled = false;
+                        txtDescricao.Enabled = false;
+
+                        cbxAno.Enabled = false;
+                        cbxEspecializacao.Enabled = false;
+                        txtEscola.Enabled = false;
+                        txtMatricula.Enabled = false;
+                        cbxStatus.Enabled = false;
+
+                        msktxtCpf.Enabled = false;
+                        txtNome.Enabled = false;
+                        dateNascimento.Enabled = false;
 
 
-                            //desabilita a modificacao
-                            btnEditar.Visible = true;
+                        btnCurriculo.Text = "Ver currículo";
+                    }
+                }
+                //ve se nao tem nenhum campo vazio e se o cep e email foi preenchido corretamente
+                else if(!(String.IsNullOrEmpty(matricula) || String.IsNullOrEmpty(email) || String.IsNullOrEmpty(rua) || String.IsNullOrEmpty(bairro) ||
+                    String.IsNullOrEmpty(cidade) || String.IsNullOrEmpty(estado) || String.IsNullOrEmpty(cep) || String.IsNullOrEmpty(escola))
+                    && msktxtCep.Text.Trim().Length == 9 && Validacao.ValidarEmail(txtEmail.Text))
+                {
+                    Aluno aluno = new Aluno(cpf, matricula, nome, nascimento, email, telefone, especialidade, descricao, rua, numero, bairro,
+                        complemento, cidade, estado, cep, status, ano, escola, senha); //cria um obj aluno
 
-                            btnCancelar.Visible = false;
-                            btnSalvar.Visible = false;
-                            btnMudarFoto.Visible = false;
+                    if (aluno.editarInfosAluno()) //usa o metodo pra editar o cadastro
+                    {
+                        MessageBox.Show("Informações de perfil modificadas com sucesso", "Sucesso ao editar perfil", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            txtEmail.Enabled = false;
-                            msktxtTelefone.Enabled = false;
 
-                            msktxtCep.Enabled = false;
-                            txtRua.Enabled = false;
-                            txtBairro.Enabled = false;
-                            txtCidade.Enabled = false;
-                            txtNumero.Enabled = false;
-                            txtComplmento.Enabled = false;
-                            cbbEstado.Enabled = false;
-                            txtDescricao.Enabled = false;
+                        //desabilita a modificacao
+                        btnEditar.Visible = true;
 
-                            cbxAno.Enabled = false;
-                            cbxEspecializacao.Enabled = false;
-                            txtEscola.Enabled = false;
-                            txtMatricula.Enabled = false;
-                            cbxStatus.Enabled = false;
+                        btnCancelar.Visible = false;
+                        btnSalvar.Visible = false;
+                        btnMudarFoto.Visible = false;
 
-                            btnCurriculo.Text = "Ver currículo";
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ocorreu um erro ao tentarmos modificar suas informações", "Erro ao editar perfil", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        txtEmail.Enabled = false;
+                        msktxtTelefone.Enabled = false;
+
+                        msktxtCep.Enabled = false;
+                        txtRua.Enabled = false;
+                        txtBairro.Enabled = false;
+                        txtCidade.Enabled = false;
+                        txtNumero.Enabled = false;
+                        txtComplmento.Enabled = false;
+                        cbbEstado.Enabled = false;
+                        txtDescricao.Enabled = false;
+
+                        cbxAno.Enabled = false;
+                        cbxEspecializacao.Enabled = false;
+                        txtEscola.Enabled = false;
+                        txtMatricula.Enabled = false;
+                        cbxStatus.Enabled = false;
+
+                        btnCurriculo.Text = "Ver currículo";
                     }
                     else
                     {
-                        MessageBox.Show("Preencha corretamente todas as informações necessárias", "Erro: Informações faltando!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Ocorreu um erro ao tentarmos modificar suas informações", "Erro ao editar perfil", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
                 }
-                catch(Exception ex)
+                else
                 {
-                    MessageBox.Show("Por favor, preencha os campos numéricos corretamente!", "Erro ao converter os campos numéricos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Console.WriteLine(ex.Message);
-                } 
+                    MessageBox.Show("Preencha corretamente todas as informações necessárias", "Erro: Informações faltando!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Preencha corretamente o campo 'e-mail'", "Erro: E-Mail inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                MessageBox.Show("Por favor, preencha os campos numéricos corretamente!", "Erro ao converter os campos numéricos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Console.WriteLine(ex.Message);
+            } 
+            
 
             refreshInfosAluno(); //da refresh nas informacoes (pq sim)
 
@@ -305,41 +371,63 @@ namespace ECDesktopApp
 
         private void btnInteresse_Click(object sender, EventArgs e)
         {
-            Vaga vaga = new Vaga();
-            Aluno aluno = new Aluno(UserId);
-            int idAluno = aluno.getIdAluno();
-            //se a empresa nao tiver interessado, ao clicar no botao ele muda o texto e seta interessado como true
-            if (!interesse)
+            //isso so vai acontecer se o usuario visualizando for uma empresa
+            if(((FormLogin)this.MdiParent).TipoUsuario == 1)
             {
-                if(vaga.setInteresseVaga(vagaId, idAluno))
+                //se o id da vaga nao estiver settado, nao tem como obter interesse, nao tem como saber com qual vaga a empresa quer se interessar
+                if(vagaId == -1)
                 {
-                    btnInteresse.Text = "Retirar o interesse";
-                    btnInteresse.BackColor = Color.Salmon;
-                    interesse = true;
+                    //pega o id do aluno com base no cpf dele
+                    Aluno al1 = new Aluno(UserId);
+                    int idAluno = al1.getIdAluno();
 
-                    if(vaga.connectCheck(vagaId, idAluno)) //verifica se o aluno ja esta interessado na vaga e cria o connect, brabo
-                    {
-                        MessageBox.Show("Parabéns, você acabou de criar um Connect, olhe a aba de connects no aplicativo para saber mais!", "Connect!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    //abre o form pra selecionar a vaga e passa o id do aluno
+                    FormSelectVagaInteressada form = new FormSelectVagaInteressada();
+                    form.MdiParent = this.MdiParent;
+                    form.IdAluno = idAluno;
+                    form.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao cadastrar interesse no aluno", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Vaga vaga = new Vaga();
+                    Aluno aluno = new Aluno(UserId);
+                    int idAluno = aluno.getIdAluno();
+                    //se a empresa nao tiver interessado, ao clicar no botao ele muda o texto e seta interessado como true
+                    if (!interesse)
+                    {
+                        if(vaga.setInteresseVaga(vagaId, idAluno))
+                        {
+                            btnInteresse.Text = "Retirar o interesse";
+                            btnInteresse.BackColor = Color.Salmon;
+                            interesse = true;
+
+                            if(vaga.connectCheck(vagaId, idAluno)) //verifica se o aluno ja esta interessado na vaga e cria o connect, brabo
+                            {
+                                MessageBox.Show("Parabéns, você acabou de criar um Connect, olhe a aba de connects no aplicativo para saber mais!", "Connect!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro ao cadastrar interesse no aluno", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+                    }
+                    //se a empresa tiver interessado, ao clicar no botao ele muda o texto e seta interessado como false
+                    else if(vaga.deleteInteresseVaga(vagaId, idAluno))
+                    {
+                        btnInteresse.Text = "Demonstrar Interesse";
+                        btnInteresse.BackColor = Color.Transparent;
+                        interesse = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao atualizar interesse", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    }
                 }
-
+                
             }
-            //se a empresa tiver interessado, ao clicar no botao ele muda o texto e seta interessado como false
-            else if(vaga.deleteInteresseVaga(vagaId, idAluno))
-            {
-                btnInteresse.Text = "Demonstrar Interesse";
-                btnInteresse.BackColor = Color.Transparent;
-                interesse = false;
-            }
-            else
-            {
-                MessageBox.Show("Erro ao atualizar interesse", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            }
+            
         }
 
         private void FormPerfilAluno_ClientSizeChanged(object sender, EventArgs e)
@@ -373,6 +461,7 @@ namespace ECDesktopApp
             {
                 msktxtCpf.Text = reader["CPF"].ToString();
                 txtNome.Text = reader["Nome"].ToString();
+                label1.Text = reader["Nome"].ToString();
                 dateNascimento.Value = ManipulcaoData.getDataNascimento(ManipulcaoData.formataData(reader["Nascimento"].ToString()));
                 cbxEspecializacao.Text = reader["Especialidade"].ToString();
                 txtMatricula.Text = reader["Matricula"].ToString();

@@ -376,6 +376,35 @@ namespace ECDesktopApp
             return editar;
         }
 
+        public bool editarInfosById(int id)
+        {
+            bool editar = false;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+
+                MySqlCommand update = new MySqlCommand("update Connect_Aluno set CPF='" + cpf + "', Nome='" + nome + "', Nascimento='" + nascimento + "', " +
+                    "Matricula='" + matricula + "', Email='" + email + "', Telefone='" + telefone + "', Especialidade='" + especialidade + "'," +
+                    " Descricao='" + descricao + "', Rua='" + rua + "', Numero=" + numero + ", Bairro='" + bairro + "', Complemento='" + complemento + "', Cidade='" + cidade + "', Estado='" + estado + "'," +
+                    " CEP='" + cep + "', Status='" + status + "', Ano_Letivo='" + ano + "', Escola='" + escola + "' where idAluno='" + id + "'", DAO_Conexao.con);
+
+                update.ExecuteNonQuery();
+
+                editar = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+
+            return editar;
+        }
+
         public MySqlDataReader getInfosVagasInteressantes(int idAluno) //pega todas as informacoes sobre as vagas em que o aluno esta interessado, inclusive infos sobre a empresa que criou a vaga
         {
             MySqlDataReader reader = null;
