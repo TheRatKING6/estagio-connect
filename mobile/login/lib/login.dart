@@ -151,7 +151,7 @@ class _LoginState extends State<Login> {
                           
                           if (_formKey.currentState!.validate()) {
                             int indexL = indexLista();
-                            print(indexL);
+                            
                             if (cpfController.text.length==11){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeAluno(widget.listaAl, widget.listaEm, widget.listaVa, widget.listaLikeAl, widget.listaLikeEm, widget.listaMatchs, indexL)));
                             } else

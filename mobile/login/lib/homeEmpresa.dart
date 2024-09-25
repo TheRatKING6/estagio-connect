@@ -1085,7 +1085,9 @@ class _HomeEmpresaState extends State<HomeEmpresa> with TickerProviderStateMixin
 List<Aluno> getMatchesParaEmpresa() {
   Set<Aluno> matches = {};
 
-  for (var likeEmpresa in widget.listaLikeEm) {
+  var likesDaEmpresaAtual = widget.listaLikeEm.where((like) => like.cnpj == widget.listaEm[widget.indexL].CNPJ).toList();
+
+  for (var likeEmpresa in likesDaEmpresaAtual) {
     if (isMatchEmpresa(likeEmpresa.idVaga)) {
       matches.add(widget.listaAl.firstWhere((aluno) => alunoCurtiuVaga(aluno.CPF, likeEmpresa.idVaga)));
     }

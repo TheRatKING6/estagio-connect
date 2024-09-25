@@ -957,7 +957,9 @@ class _HomeAlunoState extends State<HomeAluno> with TickerProviderStateMixin {
 List<Vagas> getMatches() {
   Set<Vagas> matches = {};
 
-  for (var likeAluno in widget.listaLikeAl) {
+  var likesDoAlunoAtual = widget.listaLikeAl.where((like) => like.cpf == widget.listaAl[widget.indexL].CPF).toList();
+
+  for (var likeAluno in likesDoAlunoAtual) {
     if (isMatch(likeAluno.cpf, likeAluno.idVaga)) {
       matches.add(widget.listaVa.firstWhere((vaga) => vaga.id == likeAluno.idVaga));
     }
