@@ -184,14 +184,18 @@ namespace ECDesktopApp
         {
             Empresa empresa = new Empresa(cnpj_empresa);
             empresa.PegarFoto(cnpj_empresa, empresa);
-            using (var foto = new MemoryStream(empresa.foto))
+            if(empresa.foto != null)
             {
-                if(foto.Length > 0)
+                using (var foto = new MemoryStream(empresa.foto))
                 {
-                    picFoto.Image = Image.FromStream(foto);
-                }
+                    if(foto.Length > 0)
+                    {
+                        picFoto.Image = Image.FromStream(foto);
+                    }
                 
+                }
             }
+
         }
 
 
@@ -340,11 +344,14 @@ namespace ECDesktopApp
 
                         if (empresa.editarEmpresa())
                         {
+                            Console.WriteLine(mudouFoto);
                             if (mudouFoto)
                             {
+                                empresa.caminhoFoto = caminhoFoto;
                                 empresa.SalvarFoto();
                                 mudouFoto = false;
                             }
+                            Console.WriteLine(mudouFoto);
                             MessageBox.Show("Informações de cadastro atualizadas com sucesso!", "Dados Atualizados!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             refreshInfoEmpresa(); //da refresh nas infos

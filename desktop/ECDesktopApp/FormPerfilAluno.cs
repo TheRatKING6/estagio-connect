@@ -138,14 +138,18 @@ namespace ECDesktopApp
             Aluno aluno = new Aluno(UserId);
             int idAluno = aluno.getIdAluno();
             aluno.PegarFoto(idAluno, aluno);
-            using (var foto = new MemoryStream(aluno.foto))
+            if(aluno.foto != null)
             {
-                if(foto.Length > 0)
+                using (var foto = new MemoryStream(aluno.foto))
                 {
-                    picFoto.Image = Image.FromStream(foto);
-                }
+                    if(foto.Length > 0)
+                    {
+                        picFoto.Image = Image.FromStream(foto);
+                    }
 
+                }
             }
+            
         }
 
 

@@ -56,7 +56,11 @@ namespace ECDesktopApp
                         {
                             if (dr.Read())
                             {
-                                aluno.curriculo = (byte[])dr["Curriculo"];
+                                if (dr["Curriculo"].ToString() != "")
+                                {
+                                    aluno.curriculo = (byte[])dr["Curriculo"];
+                                }
+
                             }
                         }
                     }
@@ -114,7 +118,14 @@ namespace ECDesktopApp
                         {
                             if (dr.Read())
                             {
-                                aluno.foto = (byte[])dr["Foto"];
+                                //Console.WriteLine("\nCoisas:");
+                                //Console.WriteLine(dr["Foto"].ToString());
+                                //Console.WriteLine(dr["Foto"]);
+                                if (dr["Foto"].ToString() != "")
+                                {
+                                    aluno.foto = (byte[])dr["Foto"];
+                                }
+                                
                             }
                         }
                     }

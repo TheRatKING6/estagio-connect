@@ -28,6 +28,8 @@ namespace ECDesktopApp
         {
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Left = (this.ClientSize.Width - pictureBox.Width) / 2;
+            pictureBox.Image = Image.FromFile("../../img/placeholder.jpg");
+
             carregarCurriculo();
         }
 
@@ -36,14 +38,18 @@ namespace ECDesktopApp
             Aluno aluno = new Aluno(UserId);
             int idAluno = aluno.getIdAluno();
             aluno.PegarCurriculo(idAluno, aluno);
-            using (var curriculo = new MemoryStream(aluno.curriculo))
+            if (aluno.curriculo != null)
             {
-                if(curriculo.Length > 0)
+                using (var curriculo = new MemoryStream(aluno.curriculo))
                 {
-                    pictureBox.Image = Image.FromStream(curriculo);
-                }
+                    if(curriculo.Length > 0)
+                    {
+                        pictureBox.Image = Image.FromStream(curriculo);
+                    }
 
+                }
             }
+
         }
     }
 }

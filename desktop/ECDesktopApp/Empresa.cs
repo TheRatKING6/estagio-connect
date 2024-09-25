@@ -49,7 +49,11 @@ namespace ECDesktopApp
                         {
                             if (dr.Read())
                             {
-                                empresa.foto = (byte[])dr["Foto"];
+                                if (dr["Foto"].ToString() != "")
+                                {
+                                    empresa.foto = (byte[])dr["Foto"];
+                                }
+
                             }
                         }
                     }
