@@ -148,6 +148,7 @@ namespace ECDesktopApp
 
                             inicioToolStripMenuItem.Visible = true;
                             vagasToolStripMenuItem.Visible = true;
+                            vagasDeEmpregoToolStripMenuItem.Visible = true;
 
                         }
                         else
@@ -162,6 +163,7 @@ namespace ECDesktopApp
                             //se for empresa, desabilita alguns botoes no menuStrip
                             inicioToolStripMenuItem.Visible = false; 
                             vagasToolStripMenuItem.Visible = false;
+                            vagasDeEmpregoToolStripMenuItem.Visible = false;
 
                             alunosInteressadosToolStripMenuItem.Visible = true;
                             seusInteressesToolStripMenuItem.Visible = true;

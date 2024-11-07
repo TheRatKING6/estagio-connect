@@ -81,6 +81,10 @@ namespace ECDesktopApp
             {
                 MessageBox.Show("Preencha completamente os campos de CPF, CEP e Número para prosseguir.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (!Validacao.ValidarCPF(msktxtCpf.Text))
+            {
+                MessageBox.Show("O CPF informado não é válido. Confira se há erros na digitação", "CPF inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else if(String.IsNullOrEmpty(txtNome.Text) || String.IsNullOrEmpty(cbxEspecializacao.Text) || String.IsNullOrEmpty(cbxStatus.Text) || 
                 String.IsNullOrEmpty(txtEscola.Text) || String.IsNullOrEmpty(txtEmail.Text) || String.IsNullOrEmpty(cbxAno.Text) || String.IsNullOrEmpty(txtRua.Text) ||
                 String.IsNullOrEmpty(txtBairro.Text) || String.IsNullOrEmpty(txtCidade.Text) || String.IsNullOrEmpty(cbbEstado.Text) || String.IsNullOrEmpty(txtNome.Text))
@@ -428,23 +432,41 @@ namespace ECDesktopApp
 
         private async void msktxtCep_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter) //se a tecla apertada for enter
+            try
             {
-                if (msktxtCep.Text.Replace("-", "").Trim().Count() == 8) //verifica se o cep foi preenchido corretamente
+                if (e.KeyChar == (char)Keys.Enter) //se a tecla apertada for enter
                 {
-                    //passa o cep pra conseguir um objeto da classe endereco e dps coloca as propriedades do obj nos campos
-                    string cep = msktxtCep.Text.Replace("-", "").Trim();
-                    Endereco endereco = await Apis.getEnderecoFromCEP(cep);
-
-                    if (endereco != null)
+                    if (msktxtCep.Text.Replace("-", "").Trim().Count() == 8) //verifica se o cep foi preenchido corretamente
                     {
-                        txtRua.Text = endereco.Logradouro.ToString();
-                        txtBairro.Text = endereco.Bairro.ToString();
-                        txtCidade.Text = endereco.Localidade.ToString();
-                        txtComplmento.Text = endereco.Complemento.ToString();
-                        cbbEstado.Text = endereco.Uf.ToString();
+                        //passa o cep pra conseguir um objeto da classe endereco e dps coloca as propriedades do obj nos campos
+                        string cep = msktxtCep.Text.Replace("-", "").Trim();
+
+                        Endereco endereco = null;
+                        try
+                        {
+                            endereco = await Apis.getEnderecoFromCEP(cep);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message); //caso de algum erro async
+                        }
+
+
+                        if (endereco != null) //se o objeto endereco estiver vazio, nao executa o resto
+                        {
+                            //essas interrogacoes garantem q caso tenha alguma info vazia, o campo seja preenchido com string.Empty (pra nao crashar tudo)
+                            txtRua.Text = endereco.Logradouro?.ToString() ?? string.Empty;
+                            txtBairro.Text = endereco.Bairro?.ToString() ?? string.Empty;
+                            txtCidade.Text = endereco.Localidade?.ToString() ?? string.Empty;
+                            txtComplmento.Text = endereco.Complemento?.ToString() ?? string.Empty;
+                            cbbEstado.Text = endereco.Uf?.ToString() ?? string.Empty;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("CEP não encontrado, por favor, digite manualmente seu endereço. \nErro: " + ex.Message, "CEP não encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

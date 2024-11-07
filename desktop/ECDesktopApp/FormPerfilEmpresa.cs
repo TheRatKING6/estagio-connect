@@ -94,15 +94,18 @@ namespace ECDesktopApp
                 btnCriarVaga.Visible = false;
                 btnAlunosInteressados.Text = "Ver detalhes da vaga";
                 tabPage2.Text = "Vagas";
+                tabPgPerfil.Text = "Perfil";
                 cpfAluno = ((FormLogin)this.MdiParent).IdUsuario;
             }
-            else if(((FormLogin)this.MdiParent).IdUsuario != cnpj_empresa)
+            else if(((FormLogin)this.MdiParent).IdUsuario != cnpj_empresa) //se for uma empresa mas nao a empresa dona do perfil
             {
                 btnEditar.Visible = false;
                 btnDelete.Visible = false;
                 btnCriarVaga.Visible = false;
                 btnAlunosInteressados.Text = "Ver detalhes da vaga";
                 tabPage2.Text = "Vagas";
+                tabPgPerfil.Text = "Perfil";
+                tabCtrlPerfilEmpresa.TabPages.Remove(tabPage2); //vai remover a pagina de vagas
 
             }
 
@@ -335,10 +338,24 @@ namespace ECDesktopApp
 
                         if (empresa.editarEmpresaById(idEmpresa))
                         {
+                            if (mudouFoto)
+                            {
+                                empresa.caminhoFoto = caminhoFoto;
+                                empresa.SalvarFoto();
+                                mudouFoto = false;
+                            }
                             MessageBox.Show("Informações de cadastro atualizadas com sucesso!", "Dados Atualizados!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             refreshInfoEmpresa();
                         }
+                        else
+                        {
+                            MessageBox.Show("Erro ao atualizar as informações do cadastro", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            //refreshInfoEmpresa();
+                            btnCancelar_Click(this, e); //desabilita tudo de novo e da refresh nas infos
+                        }
+
                     }
                     //se nao for adm, procede com verificacoes, e faz update normal
                     else if (Validacao.ValidarEmail(email))
@@ -347,14 +364,14 @@ namespace ECDesktopApp
 
                         if (empresa.editarEmpresa())
                         {
-                            Console.WriteLine(mudouFoto);
+                            //Console.WriteLine(mudouFoto);
                             if (mudouFoto)
                             {
                                 empresa.caminhoFoto = caminhoFoto;
                                 empresa.SalvarFoto();
                                 mudouFoto = false;
                             }
-                            Console.WriteLine(mudouFoto);
+                            //Console.WriteLine(mudouFoto);
                             MessageBox.Show("Informações de cadastro atualizadas com sucesso!", "Dados Atualizados!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             refreshInfoEmpresa(); //da refresh nas infos

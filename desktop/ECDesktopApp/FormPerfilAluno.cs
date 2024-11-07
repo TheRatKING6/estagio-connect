@@ -269,9 +269,23 @@ namespace ECDesktopApp
                     
                     int idAluno = alunoOg.getIdAluno();
 
+                    aluno.caminhoFoto = caminhoFoto;
+                    aluno.caminhoCurriculo = caminhoCurriculo;
+
                     //faz a edicao cmo adm
                     if (aluno.editarInfosById(idAluno))
                     {
+                        if (trocouFoto)
+                        {
+                            aluno.SalvarFoto();
+                            trocouFoto = false;
+                        }
+                        if (trocouCurriculo)
+                        {
+                            aluno.SalvarCurriculo();
+                            trocouCurriculo = false;
+                        }
+
                         MessageBox.Show("Informações de perfil modificadas com sucesso", "Sucesso ao editar perfil", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         //desabilita a modificacao
